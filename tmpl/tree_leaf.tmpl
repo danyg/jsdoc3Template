@@ -1,0 +1,27 @@
+[
+	"<?js 
+		print(this.name);
+	?>", 
+	"<?js= this.longname ?>.html", "<?js
+		if(this.kind === 'class' && this.augments && this.augments.length) {
+			print(' < ' + this.augments.join(', '));
+		}
+	?>", [
+  <?js
+  	var children = find({
+  		kind: ['namespace', 'class'],
+  		memberof: this.longname
+  	});
+  	
+  	if(children.length) {
+			children.forEach(function(child, i) {
+	  		print(render('tree_leaf.tmpl', child));
+	  		
+	  		if(i < children.length - 1) {
+	  			print(', ');
+	  		} 
+  		});
+  	}
+  ?>
+	]
+]

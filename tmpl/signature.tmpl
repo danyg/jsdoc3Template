@@ -1,0 +1,41 @@
+<?js
+
+var signature = [], paramType, name, defaultValue;
+
+if(this.params && this.params.length) {
+
+  this.params.forEach(function(p) {
+    if(p && p.name){
+		if(p.name.indexOf('.') === -1) {
+		paramType = [];
+		defaultValue = '';
+
+		if(p.type && p.type.names) {
+			p.type.names.forEach(function(t) {
+
+				if(t.indexOf('[]') > -1) {
+					var suffix = t.substr(t.indexOf('[]'));
+
+					t = t.replace('[]', '');
+
+					paramType.push(linkto(t, htmlsafe(t)) + suffix);
+				} else {
+				paramType.push(linkto(t, htmlsafe(t)));
+				}
+			});
+		}
+
+		if(typeof p.defaultValue !== 'undefined') {
+			defaultValue = ' = ' + p.defaultValue;
+		}
+
+		signature.push(paramType.join(' | ') + ' ' + p.name + defaultValue);
+
+		}
+	}
+  });
+}
+
+print('(' + signature.join(', ') + ')');
+
+?>

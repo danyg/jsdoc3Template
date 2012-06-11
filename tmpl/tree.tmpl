@@ -1,0 +1,12 @@
+var tree = [
+	["Global", "namespaces.html", "", [
+		<?js 
+			docs.forEach(function(doc, i) {
+				print(render('tree_leaf.tmpl', doc));
+				if(i < docs.length - 1) {
+					print(',');
+				}
+			}); 
+		?>
+	]]
+];

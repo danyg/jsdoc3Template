@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <title>Package API</title>
+	
+	<script src="js/sh_main.min.js"> </script>
+  <script src="js/lang/sh_javascript.min.js"> </script>
+  
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+</head>
+<body>
+
+	<div class="header">
+    <?js print(render('header.tmpl', docs)); ?>
+
+    <div class="type">File</div>
+    <h1><?js= title ?></h1>
+  </div>
+  
+  <div class="content">
+  	<pre class="example sh_javascript"><?js print(htmlsafe(docs.code)); ?></pre>
+  </div>
+
+  <?js print(render('footer.tmpl', this)); ?>
+	
+	<script> sh_highlightDocument(); </script>
+</body>
+</html>

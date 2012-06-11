@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+  <title>jWire API</title>
+</head>
+<body id="overview">
+
+	<div class="header">
+    <?js print(render('header.tmpl', this)); ?>
+
+    <div class="type">Package</div>
+    <h1>README</h1>
+  </div>
+  
+  <div class="content">
+  	<p>package <strong><?js= docs['package'].name ?></strong></p>
+  	
+  	
+  	<!-- PACKAGE DESCRIPTION -->
+  	<div class="description">
+  	<?js
+  		if(docs['package'].description) {
+	  		print('<p>' + docs['package'].description + '</p>');
+	  	}
+  		if(docs['package'].version) {
+	  		print('<p>Version: ' + docs['package'].version + '</p>');
+	  	}
+  		if(docs['package'].author) {
+	  		print('<p>Author: ' + htmlsafe(docs['package'].author) + '</p>');
+	  	}
+  		if(docs['package'].licenses) {
+	  		print('<p>License: <ul>');
+	  		for(var i = 0, n = docs['package'].licenses.length; i < n; ++i) {
+	  			print('<li><a href="license.html">' + docs['package'].licenses[i].type + '</a></li>');
+	  		}
+	  		print('</ul></p>');
+	  	}
+  		if(docs['package'].homepage) {
+	  		print('<p>Homepage: <ul><li><a href="' + docs['package'].homepage + '">' + docs['package'].homepage + '</a></li></ul></p>');
+	  	}
+  		if(docs['package'].contributors) {
+	  		print('<p>Contributors: <ul>');
+	  		for(var i = 0, n = docs['package'].contributors.length; i < n; ++i) {
+	  			print('<li>' + docs['package'].contributors[i].name + ', <a href="mailto:' + docs['package'].contributors[i].mail + '">' + docs['package'].contributors[i].mail + '</a></li>');
+	  		}
+	  		print('</ul></p>');
+	  	}
+  		if(docs['package'].maintainers) {
+	  		print('<p>Maintainers: <ul>');
+	  		for(var i = 0, n = docs['package'].maintainers.length; i < n; ++i) {
+	  			print('<li>' + docs['package'].maintainers[i].name + ', <a href="mailto:' + docs['package'].maintainers[i].mail + '">' + docs['package'].maintainers[i].mail + '</a></li>');
+	  		}
+	  		print('</ul></p>');
+	  	}
+  		if(docs['package'].repository) {
+	  		print('<p>Repository: <ul><li><a href="' + docs['package'].repository.url + '">' + docs['package'].repository.url + '</a> (' + docs['package'].repository.type + ')</li></ul></p>');
+	  	}
+  		if(docs['package'].bugs) {
+	  		print('<p>Bugs: <ul>' +
+	  			'<li><a href="mailto:' + docs['package'].bugs.mail + '">' + docs['package'].bugs.mail + '</a> (Mail)</li>' +
+	  			'<li><a href="' + docs['package'].bugs.web + '">' + docs['package'].bugs.web + '</a> (Web)</li>' +
+	  			'</ul></p>'
+	  		);
+	  	}
+	  ?>
+  	</div>
+  	
+  	
+  </div>
+  
+  <?js print(render('footer.tmpl', this)); ?>
+  
+</body>
+</html>

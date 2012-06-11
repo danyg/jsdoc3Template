@@ -1,0 +1,54 @@
+<table>
+  <tbody>
+  
+    <?js 
+		PARENTNAME = this.parentName;
+		this.methods.forEach(function(method) { ?>
+
+    <tr  class="<?js print((method.access ? method.access : 'public') + (method.inherited ? ' inherited' : '') + (method.borrowed ? ' borrowed' : '') + (method.mixed ? ' mixed' : '')); ?>">
+      <td class="type">
+      	<span>
+      	<?js print(render('returns.tmpl', method)); ?>
+      	</span>
+      </td>
+      
+      <td class="last">
+        <a href="#<?js= method.id ?>">
+        	<abbr title="<?js= method.longname ?>">
+        		<?js= method.name ?>
+        	</abbr>
+        </a>
+        
+      	<span>
+      		<?js print(render('signature.tmpl', method)); ?>
+      	</span>
+        
+        <?js if(method.summary) { ?>
+        	<p><?js= method.summary ?></p>
+        <?js } ?>
+      </td>
+      
+      <td>
+      	<?js
+			if(method.memberof != PARENTNAME){
+				print('<small>inherited from ' + linkto(method.memberof, method.memberof) + '</small>');
+			}
+		
+      		if(method.inherited) { 
+      			var parent = method.inherits.split('#')[0];
+      			print('<small>inherited from ' + linkto(parent, parent) + '</small>');
+      			
+      		} else if(method.borrowed && method.borrower) {
+      			print('<small>borrowed from ' + linkto(method.borrower, method.borrower) + '</small>');
+      			
+      		} else if(method.mixed && method.borrower) {
+      			print('<small>mixed from ' + linkto(method.borrower, method.borrower) + '</small>');
+      		}
+      	?>
+      </td>
+    </tr>
+    
+    <?js }); ?>
+    
+  </tbody>
+</table>

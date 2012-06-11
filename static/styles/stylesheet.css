@@ -1,0 +1,134 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version:2.8.1
+*/
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}
+del,ins{text-decoration:none;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:baseline;}
+sub{vertical-align:baseline;}
+legend{color:#000;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input,button,textarea,select{*font-size:100%;}
+body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
+table{font-size:inherit;font:100%;}
+pre,code,kbd,samp,tt{font-family:Menlo,Monaco,"Courier New",monospace;*font-size:108%;line-height:100%;}
+body{text-align:center;}
+
+strong { font-weight:bold; }
+em { font-style:italic; }
+a { color:#00e; text-decoration:none; }
+a:hover { text-decoration:underline; }
+body { text-align:left; margin:0; padding:0; background-color:#fff; color:#000; }
+
+td.last { width:100%; }
+table, th, td { vertical-align:top; }
+table tr { border-bottom:1px solid #ccc; }
+table tr:last-child { border-bottom:0 none; }
+table { margin-bottom:20px; }
+td { padding:7px 4px; }
+td p { padding:0; margin:0; }
+
+p, dl, ul, ol, h1, h2, h3, h4, h5, h6 { margin:5px 0; }
+dd { margin-left:20px; margin-bottom:7px; }
+ul, ol { margin-left:30px; }
+
+#title { font-size:140%; }
+#title a { color:#000; }
+h1 { font-size:130%; }
+h2 { font-size:120%; font-weight:bold; margin:15px 0; background-color:#EDF3FE; padding:5px; }
+h3 { font-size:110%; }
+h4 { font-weight:bold; }
+h2 small { font-size:11px; font-weight:normal; float:right; line-height:19px; padding:0 8px; }
+
+/* page header */
+div.header { background-color:#EDF3FE; border-bottom:1px solid #ccc; padding:20px 30px 10px 30px; }
+#frame div.header { background-color:#fff; border:0; padding:10px 15px 5px 15px; }
+
+/* menu */
+div.header ul { list-style:none; margin:0; float:right; font-size:80%; }
+div.header ul li { display:inline; font-size:100%; font-weight:bold; padding:0 4px; }
+div.header ul li a { color:#000; text-transform:uppercase; }
+
+#frame div.header ul { float:none; }
+#frame div.header ul li { padding:0; padding-right:7px; }
+
+/* footer */
+#footer { margin:30px; text-align:right; font-size:80%; }
+.fineprint { color:#999; font-size:85%; }
+
+/* frames */
+#frame .content { margin:10px; }
+#frame h1 { font-size:120%; }
+#frame h2 { font-size:100%; }
+#frame ul { list-style:none; margin-left:0; }
+
+/* class */
+div.type { color:#aaa; margin:10px 0 0; }
+div.location { font-size:85%; float:right; }
+
+#class h1 { margin:0 0 10px; }
+#class h3 { font-size:100%; margin:15px 0; }
+#class h3 strong { font-size:120%; }
+
+div.details { padding:0 0 10px 20px; border-bottom:1px solid #ccc; }
+div.tags { clear:both; padding-top:15px; font-size:100%; }
+td.type { text-align:right; white-space:nowrap; }
+td small { font-size:85%; white-space:nowrap; }
+#class .content, #overview .content, .fineprint { padding:10px 30px; }
+.description { margin:10px 0; padding:10px; background-color:#efefef; }
+.description ol { list-style-type:decimal; margin:10px 0; }
+.description ol li { margin:5px 0; }
+.description ol li p { padding:8px 0; text-align:center; }
+
+/* code */
+pre, .example { background-color:transparent; font-family:Menlo,Monaco,"Courier New",monospace; line-height:1.5; margin:1.5em 0; overflow:aMenlo,Monaco,"Courier New",monospaceing:6px 10px 6px 20px; white-space:pre; }
+.content .example { padding:0 30px; }
+.example { font-size:12px; }
+.example .sh_comment { color:#9365c1 /*#717ab3*/; }
+.example .sh_cbracket { color:#000; }
+.example .sh_function { color:#000; }
+.example .sh_difflines,
+.example .sh_keyword,
+.example .sh_property,
+.example .sh_selector { color:#7F0055; font-weight:bold; }
+.example .sh_number { color:#000; }
+.example .sh_preproc { color:#3f5fbf; }
+.example .sh_regexp,
+.example .sh_specialchar,
+.example .sh_string { color:#2A00FF /*#0000ff*/; }
+.example .sh_symbol { color:#000; }
+.example .sh_type { color:#8F9FC0 /*#7f0055*/; font-weight:bold; }
+.example .sh_ip,
+.example .sh_name,
+.example .sh_newfile,
+.example .sh_oldfile,
+.example .sh_url,
+.example .sh_value { color:#2A00FF /*#0000ff*/; }
+.example .sh_variable,
+.example .sh_date,
+.example .sh_time,
+.example .sh_file { color:#8F9FC0 /*#7f0055*/; font-weight:bold; }
+
+/* footer */
+footer { color:#999; font-size:11px; padding:10px 30px; }
+
+
+.Properties{margin:0;padding:0;}
+.Properties li{
+	padding: 7px 0px;
+	line-height: 23px;
+}
+.Properties li span{padding: 0px 4px;}
+.Properties li ul{padding-left: 10px;}

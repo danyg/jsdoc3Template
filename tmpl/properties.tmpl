@@ -1,0 +1,77 @@
+<table>
+  <tbody>
+  
+    <?js 
+	PARENTNAME = this.parentName;
+	this.props.forEach(function(doc) { ?>
+
+    <tr class="<?js print((doc.access ? doc.access : 'public') + (doc.inherited ? ' inherited' : '') + (doc.borrowed ? ' borrowed' : '') + (doc.mixed ? ' mixed' : '')); ?>">
+      <td class="type">
+      	<span>
+      	<?js
+	      	if(doc.kind === 'constant') {
+		        print('const ');
+	      	}
+	      	if(doc.kind !== 'constant' && doc.readonly) {
+		        print('readonly ');
+	      	}
+	      	if(doc.isEnum) {
+		        print('enum ');
+	      	}
+	      ?>
+      	</span>
+        	
+      	<span>
+        <?js print(render('type.tmpl', doc)); ?>
+        </span>
+      </td>
+      
+      <td class="last">
+        <a href="#<?js= doc.id ? doc.id : doc.name ?>">
+        	<abbr title="<?js= doc.longname ?>">
+        		<?js= doc.name ?>
+        	</abbr>
+        </a>
+        
+        <span class="value">
+        <?js
+          if(doc.defaultvalue) {
+            print(' = <code>' + doc.defaultvalue + '</code>');
+          }
+        ?>
+        </span>
+        
+        <?js if(doc.summary) { ?>
+        	<p><?js= doc.summary ?></p>
+        <?js } ?>
+		
+		
+		<?js if(doc.properties && doc.properties.length){
+			print(render('properties.tmpl', {parentName: PARENTNAME, props: doc.properties}));
+		}?>
+		
+      <td>
+      <td>
+      	<?js
+      		if(doc.memberof && doc.memberof != PARENTNAME){
+				print('<small>inherited from ' + linkto(doc.memberof, doc.memberof) + '</small>');
+			}
+
+			if(doc.inherited) { 
+      			var parent = doc.inherits.split('#')[0];
+      			print('<small>inherited from ' + linkto(parent, parent) + '</small>');
+      			
+      		} else if(doc.borrowed && doc.borrower) {
+      			print('<small>borrowed from ' + linkto(doc.borrower, doc.borrower) + '</small>');
+      			
+      		} else if(doc.mixed && doc.borrower) {
+      			print('<small>mixed from ' + linkto(doc.borrower, doc.borrower) + '</small>');
+      		}
+      	?>
+      </td>
+    </tr>
+    
+    <?js }); ?>
+    
+  </tbody>
+</table>

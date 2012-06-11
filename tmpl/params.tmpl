@@ -1,0 +1,82 @@
+<?js
+  var params = this;
+  
+  /* sort subparams under their parent params (like opts.classname) */
+  var parentParam = null;
+  params.forEach(function(param, i) {
+    if(!param) { 
+      return; 
+    }
+    if(parentParam && param.name.indexOf(parentParam.name + '.') === 0 ) {
+      param.name = param.name.substr(parentParam.name.length + 1);
+      parentParam.subparams = parentParam.subparams || [];
+      parentParam.subparams.push(param);
+      params[i] = null;
+    } else {
+      parentParam = param;
+    }
+  });
+  
+  /* determine if we need extra columns, "attributes" and "default" */
+  params.hasAttributes = false;
+  params.hasDefault = false;
+  params.hasName = false;
+  
+  params.forEach(function(param) {
+    if(!param) {
+      return; 
+    }
+    if(param.optional || param.nullable) {
+      params.hasAttributes = true;
+    }
+    if(param.name) {
+      params.hasName = true;
+    }
+    if(typeof param.defaultvalue !== 'undefined') {
+      params.hasDefault = true;
+    }
+  });
+?>
+
+<table>
+  <tbody>
+
+  <?js
+    params.forEach(function(param) {
+      if(!param) { 
+        return; 
+      }
+  ?>
+  <tr>
+    <td class="type">
+			<span>
+				<?js print(render('type.tmpl', param)); ?>
+			</span>
+    </td>
+    
+    <td class="last">
+    <?js
+      if(param.name) {
+        print('<a>' + param.name + '</a>');
+      }
+      
+      if(typeof param.defaultvalue !== 'undefined') {
+        print(' = <code>' + param.defaultvalue + '</code>');
+      }
+      
+      if(param.description) {
+        print('<p>' + param.description + (param.optional || param.nullable ? ' (Optional)' : '') + '</p>');
+      } else if(param.optional) {
+        print('<p>(Optional)</p>');
+      }
+    
+      if(param.subparams) {
+        print(render('params.tmpl', param.subparams));
+      }
+    ?>
+    </td>
+    
+  <?js }); ?>
+
+  </tbody>
+</table>

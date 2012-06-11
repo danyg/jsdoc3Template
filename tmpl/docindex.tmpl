@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+  <title>jWire API</title>
+</head>
+<body id="overview">
+
+	<div class="header">
+    <?js print(render('header.tmpl', this)); ?>
+
+    <div class="type">Index</div>
+    
+    <?js
+      var letters = ('A B C D E F G H I J K L M N O P Q R S T U V W X Y Z').split(' '); 
+      for(var i = 0, n = letters.length; i < n; i++) {
+        var letter = letters[i];
+        if(docs[letter] && docs[letter].length) {
+          print('<a href="#letter' + letter + '">' + letter + '</a>');
+        } else {
+          print(letter);
+        }
+        print('&nbsp;');
+      }
+    ?>
+  </div>
+  
+  <div class="content">
+    <?js var prevEntry = null; ?>
+    <?js for(var letter in docs) { ?> 
+      <?js if(docs[letter] && docs[letter].length) { ?>
+      
+      <h2 id="letter<?js= letter ?>">
+      	<?js= letter ?>
+      	<small><a href="#">Top</a></small>
+      </h2>
+      <dl>
+        <?js for(var i = 0, n = docs[letter].length; i < n; i++) { ?>
+        <?js var doc = docs[letter][i]; ?>
+        <dt>
+          <?js print(linkto(doc.data.longname, doc.name)); ?>
+          <?js
+            if(doc.kind === 'constant' && doc.data.defaultvalue) {
+              print(' = <code>' + doc.data.defaultvalue + '</code>');
+            }
+          ?>
+          &nbsp;&mdash;&nbsp;
+          <em>
+          <?js
+           
+            if(doc.kind === 'module') {
+              console.log('     *  docindex: MODULE ' + doc.data.name);
+              print('Module');
+            }
+            if(doc.kind === 'external') {
+              console.log('     *  docindex: EXTERNAL ' + doc.data.name);
+              print('' +
+                ' external in ' + 
+                linkto(doc.data.memberof, doc.data.memberof)
+              );
+            } 
+            if(doc.kind === 'class') {
+              print('' +
+                (doc.data.virtual ? 'abstract ' : '') +
+                ' class in namespace ' + 
+                linkto(doc.data.memberof, doc.data.memberof)
+              );
+            } 
+            if(doc.kind === 'namespace') {
+              print(' namespace');
+            } 
+            if(doc.kind === 'constant') {
+              print(' constant in ' + linkto(doc.data.memberof, doc.data.memberof));
+            } 
+            if(doc.kind === 'mixin') {
+              print('' +
+                ' mixin in ' +
+                (doc.data.memberof === 'global' ? 'global' : 'namespace ' + linkto(doc.data.memberof, doc.data.memberof))
+              );
+            } 
+            if(doc.kind === 'global') {
+              print(' global');
+            } 
+            if(doc.kind === 'member') {
+              print('' +
+                (doc.data.scope === 'static' ? 'static ' : '') +
+                (doc.data.access === 'private' ? 'private ' : 'public ') +
+                (doc.data.readonly ? 'readonly ' : '') +
+                (doc.data.isEnum ? 'enumeration ' : 'property ') +
+                ' in class ' +
+                linkto(doc.data.memberof, doc.data.memberof)
+              );
+            } 
+            if(doc.kind === 'function') {
+            	print('' +
+                (doc.data.inherited ? 'inherited ' : '') +
+                (doc.data.virtual ? 'abstract ' : '') +
+            		(doc.data.scope === 'static' ? 'static ' : '') +
+            		(doc.data.access === 'private' ? 'private ' : 'public ') +
+            		' method in class ' + 
+            		linkto(doc.data.memberof, doc.data.memberof)
+            	);
+            }
+            if(doc.kind === 'event') {
+              print('event triggered in class ' +
+                linkto(doc.data.memberof, doc.data.memberof)
+              );
+            }
+	          if(doc.kind === 'interface') {
+	            print('interface in namespace ' + 
+              	linkto(doc.data.memberof, doc.data.memberof)
+              );
+	          }
+          ?>
+          </em>
+        </dt>
+        <dd>
+        <?js 
+          if(doc.kind === 'module') {
+          	
+          } else if(doc.kind === 'external') {
+          
+          } else if(doc.kind === 'class') {
+            print(doc.data.classdesc || '');
+            
+          } else {
+            print(doc.data.summary || doc.data.description || '');
+          }
+        ?>
+        </dd>
+        <?js } ?>
+      </dl>
+      
+      <?js prevEntry = doc.name; ?>
+      
+  	</dl>
+      
+    <?js } ?>
+    <?js } ?>
+  </div>
+  
+  <?js print(render('footer.tmpl', this)); ?>
+  
+</body>
+</html>

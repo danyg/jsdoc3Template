@@ -1,0 +1,32 @@
+<?js
+
+function printType(names) {
+  names.forEach(function(name, i) {
+    if(i > 0) {
+      print(' | ');
+    }
+    if(name.indexOf('[]') > -1) {
+      var suffix = name.substr(name.indexOf('[]'));
+      
+      name = name.replace('[]', '');
+        
+      print(linkto(name, htmlsafe(name)) + suffix);
+    } else {
+      print(linkto(name, htmlsafe(name)));
+    }
+  });
+}
+
+if(this.type && this.type.names) {
+  printType(this.type.names);
+}
+/*if(this.properties && this.properties.length) {
+  this.properties.forEach(function(prop) {
+    if(prop.type && prop.type.names) {
+      printType(prop.type.names);
+    }
+  });
+}
+*/
+
+?>

@@ -1,0 +1,78 @@
+<h3 id="<?js= this.id ? this.id : this.name ?>" class="<?js print((this.access ? this.access : 'public') + (this.inherited ? ' inherited' : '') + (this.borrowed ? ' borrowed' : '') + (this.mixed ? ' mixed' : '')); ?>">
+  
+  <div class="location">
+  <?js if(this.meta && this.meta.filename && this.meta.lineno) { ?>
+  	<a href="<?js= this.meta.filename ?>.html"><?js= this.meta.filename ?></a> at line <?js= this.meta.lineno ?>
+  <?js } ?>
+  </div>
+	
+	<div class="signature">
+		<?js if(this.kind !== 'class') { ?>
+	  <span class="scope">
+	    <?js print(this.scope === 'static' ? 'static' : ''); ?>
+	  </span>
+	  
+	  <span class="accesslevel">
+	    <?js print(this.access ? this.access : 'public'); ?>
+	  </span>
+	  
+    <span class="returnvalues">
+      <?js
+      	if(this.readonly) {
+      		print('readonly ');
+      	}
+      	if(this.isEnum) {
+      		print('enum ');
+      	} else {
+      		print(render('type.tmpl', this));
+      	}
+      ?>
+    </span>
+	  <?js } ?>
+  
+		<strong><?js= this.name ?></strong>
+	  
+	  <span class="defaultvalue">
+	    <?js print(this.defaultvalue ? ' = <code>' + this.defaultvalue + '</code>' : ''); ?>
+	  </span>
+	</div>
+</h3>
+
+<?js print(render('description.tmpl', this)); ?>
+
+<div class="details <?js if(this.inherited) { print('inherited'); } ?>">
+	<ul class="Properties">
+	<?js if(this.properties && this.properties.length) { 
+		this.properties.forEach(function(prop){
+	?>
+	<li><?js print(render('property.tmpl', prop)); ?></li>
+	<?js 
+		});
+	} ?>
+	</ul>
+  <?js if(this.isEnum) { ?>
+  <div class="tags">
+    <?js
+      var self = this;
+      var enumMembers = find({
+        kind: 'member', 
+        memberof: this.longname
+      });
+      
+      console.log(' -- Members of enum ' + this.longname);
+      enumMembers.forEach(function(m, i) {
+        if(!m.properties) {
+          enumMembers[i].type = self.type;
+        }
+        console.log('     * ' + m.name + ' (' + m.longname + ')');
+      });
+    ?>
+    
+    <!-- ENUM MEMBERS -->
+    <?js if(enumMembers && enumMembers.length) { ?>
+    <h4>Enumeration members</h4>
+    <?js print(render('params.tmpl', enumMembers)); ?>
+    <?js } ?>
+  </div>
+  <?js } ?>
+</div>

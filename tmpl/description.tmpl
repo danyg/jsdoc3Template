@@ -1,0 +1,93 @@
+<?js
+	if(
+		 this.author && this.author.length || 
+		 this.classdesc || 
+		 this.copyright || 
+	   this.deprecated || 
+		 this.description ||
+		 this.examples && this.examples.length || 
+		 this.license || 
+		 this.see && this.see.length || 
+	   this.since || 
+		 this.todo && this.todo.length ||
+		 this.summary || 
+	   this.version
+		) {
+		
+  	print('<div class="description ' + (this.inherited ? 'inherited' : '') + '">'); 
+    
+    if(this.description) {
+    	print('<p>' + this.description + '</p>'); 
+    }
+	
+    if(this.kind === 'class' && !this.description && this.classdesc) {
+    	print('<p>' + this.classdesc + '</p>'); 
+    }
+    
+    if(this.kind !== 'class' && !this.description && this.summary) {
+    	print('<p>' + this.summary + '</p>'); 
+    }
+    
+    if((this.kind === 'function' || this.kind === 'member') && this.inherited) {
+    	var parent = this.inherits.split('#')[0];
+    	print('<p>Inherited from ' + linkto(parent, parent) + '</p>'); 
+    }
+    
+    if((this.kind === 'function' || this.kind === 'member') && this.borrowed && this.borrower) {
+    	print('<p>Borrowed from ' + linkto(this.borrower, this.borrower) + '</p>'); 
+    }
+    
+    if((this.kind === 'function' || this.kind === 'member') && this.mixed && this.borrower) {
+    	print('<p>Mixed from ' + linkto(this.borrower, this.borrower) + '</p>'); 
+    }
+    
+    if(this.examples && this.examples.length) {
+    	this.examples.forEach(function(e) {
+	    	if(e.caption) {
+          print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
+        }
+        print('<pre class="example sh_javascript">' + e.code + '</pre>');
+	    }); 
+    }
+    
+    if(this.version) {
+    	print('<p>Version ' + this.version + '</p>'); 
+    }
+    
+    if(this.since) {
+    	print('<p>Since ' + this.since + '</p>'); 
+    }
+    
+    if(this.deprecated) {
+    	print('<p><strong>Deprecated</strong>' + this.deprecated + '</p>'); 
+    }
+    
+    if(this.author && this.author.length) {
+    	this.author.forEach(function(a) {
+	    	print('<p>Author: ' + a + '</p>');
+	    }); 
+    }
+    
+    if(this.copyright) {
+    	print('<p>' + this.copyright + '</p>'); 
+    }
+    
+    if(this.license) {
+    	print('<p>' + this.license + '</p>'); 
+    }
+    
+    if(this.see && this.see.length) {
+    	this.see.forEach(function(s) {
+	    	print('<p>See ' + linkto(s, s) + '</p>');
+	    }); 
+    }
+    
+    if(this.todo && this.todo.length) {
+    	this.todo.forEach(function(t) {
+	    	print('<p>To Do: ' + t + '</p>');
+	    }); 
+    }
+  	
+  	print('</div>');
+  }
+?>

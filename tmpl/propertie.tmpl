@@ -1,0 +1,77 @@
+<li class="<?js print((doc.access ? doc.access : 'public') + (doc.inherited ? ' inherited' : '') + (doc.borrowed ? ' borrowed' : '') + (doc.mixed ? ' mixed' : '')); ?>">
+	<div>
+		<span class="kind">
+		<?js
+			if(doc.kind === 'constant') {
+				print('const ');
+			}
+			if(doc.kind !== 'constant' && doc.readonly) {
+				print('readonly ');
+			}
+			if(doc.isEnum) {
+				print('enum ');
+			}
+		?>
+		</span>
+		<span class="type">
+			<?js print((
+				doc.type ? 
+					doc.type.names.join('|') : 
+					(doc.properties && doc.properties.length) ?
+						doc.properties[0].type.names.join('|') :
+						''
+					)
+				); ?>
+		</span>
+		<span class="name">
+			<!-- <a href="#<?js= doc.id ?>">
+				<abbr title="<?js= doc.longname ?>">
+					<?js= doc.name ?>
+				</abbr>
+			</a> -->
+			<?js print(linkto(doc.longname, doc.name)); ?>
+		</span>
+
+		<?js if(doc.defaultvalue) { ?>
+		<span class="value"><code><?js print(doc.defaultvalue);?></code></span>
+		<?js }?>
+
+		<?js if(doc.summary) { ?>
+		<p><?js print(doc.summary); ?></p>
+		<?js } ?>
+
+		<span class="inheritance right">
+		<?js
+			if(doc.memberof && doc.memberof != PARENTNAME){
+				print('<small>inherited from ' + linkto(doc.memberof, doc.memberof) + '</small>');
+			}
+
+			if(doc.inherited) { 
+				var parent = doc.inherits.split('#')[0];
+				print('<small>inherited from ' + linkto(parent, parent) + '</small>');
+
+			} else if(doc.borrowed && doc.borrower) {
+				print('<small>borrowed from ' + linkto(doc.borrower, doc.borrower) + '</small>');
+
+			} else if(doc.mixed && doc.borrower) {
+				print('<small>mixed from ' + linkto(doc.borrower, doc.borrower) + '</small>');
+			}
+		?>
+		</span>
+	</div>
+	<?js if(doc.properties && doc.properties.length){ ?>
+	<ul class="Properties">
+		<?js doc.properties.forEach(function(subDoc){
+			print(
+				render(
+					'propertie.tmpl', 
+					{
+						doc: subDoc, 
+						PARENTNAME: PARENTNAME
+					}
+				)
+			);
+		}); ?>
+	</ul>
+	<?js }?>
+</li>

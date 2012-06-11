@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+  <title>jWire API</title>
+</head>
+<body id="overview">
+
+	<div class="header">
+    <?js print(render('header.tmpl', this)); ?>
+
+    <div class="type">Package</div>
+    <h1>LICENSE</h1>
+  </div>
+  
+  <div class="content">
+  	<pre class="license"><?js print(htmlsafe(docs.license)); ?></pre>
+  </div>
+  
+  <?js print(render('footer.tmpl', this)); ?>
+  
+</body>
+</html>

@@ -1,0 +1,37 @@
+<ul>
+	<?js if(this.info['class']) { ?>
+	<li><a href="class_index.html">Classes</a></li>
+	<?js } ?>
+	<?js if(this.info['mixin']) { ?>
+	<li><a href="mixin_index.html">Mixins</a></li>
+	<?js } ?>
+	<?js if(this.info['interface']) { ?>
+	<li><a href="interface_index.html">Interfaces</a></li>
+	<?js } ?>
+	<?js if(this.info['namespace']) { ?>
+	<li><a href="namespace_index.html">Namespaces</a></li>
+	<?js } ?>
+	<?js if(this.info['module']) { ?>
+	<li><a href="module_index.html">Modules</a></li>
+	<?js } ?>
+	<?js if(this.info['external']) { ?>
+	<li><a href="external_index.html">Externals</a></li>
+	<?js } ?>
+	<?js if(this.info['global']) { ?>
+	<li><a href="global_index.html">Globals</a></li>
+	<?js } ?>
+	<li><a href="file_index.html">Files</a></li>
+	<li><a href="doc-index.html">Index</a></li>
+</ul>
+
+<div id="title">
+	<?js if(this.info.readme !== undefined) { ?>
+		<a href="readme.html">
+	<?js } ?>
+	
+	<?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?>
+	
+	<?js if(this.info.readme !== undefined) { ?>
+		</a>
+	<?js } ?>
+</div>

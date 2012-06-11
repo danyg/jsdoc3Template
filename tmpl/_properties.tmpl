@@ -1,0 +1,16 @@
+<ul class="Properties">
+	<?js 
+	PARENTNAME = this.parentName;
+	this.props.forEach(function(doc) { 
+	
+		print(render(
+			'propertie.tmpl', 
+			{
+				doc: doc, 
+				PARENTNAME: PARENTNAME
+			}
+		));
+	
+	}); 
+	?>
+</ul>

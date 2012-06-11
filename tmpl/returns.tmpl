@@ -1,0 +1,28 @@
+<?js
+
+var self = this, returnValues = [], returnType = [];
+
+if(this.returns && this.returns.length) {
+  this.returns.forEach(function(r) {
+    
+    if(r.type && r.type.names) {
+      r.type.names.forEach(function(t) {
+      
+      	var parent = self.inherits ? self.inherits.split('#')[0] : null;
+      
+      	if(self.inherited && t === parent) {
+      		returnType.push(linkto(self.memberof, htmlsafe(self.memberof)));
+      	} else {
+          returnType.push(linkto(t, htmlsafe(t)));
+      	}
+        
+      });
+    }
+    
+    returnValues.push(returnType.join(' | '));
+  });
+}
+
+print(returnValues.join(', '));
+
+?>
