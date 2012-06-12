@@ -14,6 +14,8 @@ Template basado en Sami: an API documentation generator by Fabien Potencier (<ht
 
 Basado en la template de Michael Mathews, modificado por lechecacharro y danyg
 
+Usa SearchDoc Copyright (c) 2009 Vladimir Kolesnikov
+
 Features
 --------
 
