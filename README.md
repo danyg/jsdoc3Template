@@ -4,17 +4,12 @@ jsdoc3Template
 A custom Customizable JSDOC3 template
 
 Authors
-- [first author]  | first algorithm & templates
+- Michael Mathews  | first algorithm & templates
 - lechecacharro		| augments algorithm & templates
 - danyg				| change algorithm more OOP
 
-Spanish/Castellano
-
-Template basado en Sami: an API documentation generator by Fabien Potencier (<https://github.com/fabpot/Sami>)
-
-Basado en la template de Michael Mathews, modificado por lechecacharro y danyg
-
-Usa SearchDoc Copyright (c) 2009 Vladimir Kolesnikov
+Template based on Fabien Potencier's Sami: an API documentation generator (<https://github.com/fabpot/Sami>)
+Uses SearchDoc Copyright (c) 2009 Vladimir Kolesnikov
 
 Features
 --------
@@ -27,7 +22,7 @@ Features
 
 RoadMap (To do)
 --------------
-- Document the code ;P
+- Document the documenting code ;P
 - Graph of inheritance
 - More efficient template system (actually undescore)
 - Custom tags in classes
