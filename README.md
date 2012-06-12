@@ -10,7 +10,8 @@ Authors
 
 Spanish/Castellano
 
-Template basado en [...] usando el codigo de [...] modificado por lechecacharro y danyg
+Template basado en Sami: an API documentation generator (by Fabien Potencier): <https://github.com/fabpot/Sami>
+Basado en la template de Michael Mathews, modificado por lechecacharro y danyg
 
 Features
 --------
