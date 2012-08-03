@@ -58,8 +58,8 @@ exports.myPublisher = {
 		this._templates = {};
 		this.linktoNotFound = {};
 		
-		this._ = require('underscore/underscore');
-		this.template = require('underscore/template');
+		this._ = require(MY_PATH + 'lib/underscore/underscore.js');
+		this.template = require(MY_PATH + 'lib/underscore/template.js');
 		this.template.settings.evaluate    = /<\?js([\s\S]+?)\?>/g;
 		this.template.settings.interpolate = /<\?js=([\s\S]+?)\?>/g;
 

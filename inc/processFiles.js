@@ -1,11 +1,40 @@
 exports.processFiles = {
 	files: null,
 	
+	_giveMeReferenceToFile: function(f, refile){
+		if(undefined === refile){
+			refile = false;
+		}
+		
+		var methodsLog = new Packages.java.io.File(f);
+
+		if(!methodsLog.canWrite()){
+			if(!methodsLog.exists()){
+				methodsLog.createNewFile();
+			}else{
+				// fuck, no puedo escribir!
+				if(!refile){
+					return this._giveMeReferenceToFile(f + '-2', true);
+				}
+				return false;
+			}
+		}
+
+		return methodsLog;
+	},
+	
+	
 	process: function(publish){
-		var me = this;
+		var me = this,
+			logFile = this._giveMeReferenceToFile('logs/methods-2.log')
+		;
 		this.publish = publish;
 		this.log = this.publish.log;
 		this.files = {};
+
+		this.logOut = new Packages.java.io.BufferedWriter(
+			new Packages.java.io.FileWriter(logFile, true)
+		);
 
 		for(var i in this.publish.kinds){
 			if(this.publish.kinds.hasOwnProperty(i)) {
@@ -15,6 +44,8 @@ exports.processFiles = {
 				});
 			}
 		}
+		
+		this.logOut.close();
 		
 		return this.files;
 	},
@@ -220,6 +251,7 @@ exports.processFiles = {
 	},
 	
 	_insertMethodOf: function(parentClassName, doclet){
+		parentClassName = parentClassName.toString();
 		var me = this,
 			methods = this.publish.find({
 				memberof: parentClassName,
@@ -227,22 +259,35 @@ exports.processFiles = {
 			})
 		;
 
+		me.logOut.write(
+			'\n' +
+			'#############################################\n' +
+			'### ' + doclet.name + '\n' + 
+			'#############################################\n'
+		);
+
 		methods.forEach(function(method){
-			me.log.dbg('** Check augments: ' + doclet.longname + ' check method: ' + method.name);
-			if(doclet.methodList.indexOf(method.name) === -1){
+			if(method.memberof === parentClassName){	// Evito procesar una clase q ya ha pasado por este metodo
+				
+				// PUAJ!
+				me.logOut.write(doclet.name + ' + ' + method.name + ' from ' + method.memberof + '(' + parentClassName + ')\n');
+				
+				me.log.dbg('** Check methods augments: ' + doclet.longname + 
+					' check method: ' + parentClassName + '.'+ method.name);
+				if(doclet.methodList.indexOf(method.name) === -1){
 
-				me.log.dbg('** Agregando Method Borrow: ' + method.name + ' a ' + doclet.longname);
+					me.log.dbg('** Agregando Method Borrow: ' + method.name + ' a ' + doclet.longname);
 
-				if(method.scope === 'static'){
-					doclet.staticMethods.push(method);
-				}else if(method.scope === 'instance'){
-					doclet.methods.push(method);
+					if(method.scope === 'static'){
+						doclet.staticMethods.push(method);
+					}else if(method.scope === 'instance'){
+						doclet.methods.push(method);
+					}
+				}else{
+					me.log.dbg('** Check augments: ' + doclet.longname + ' method: ' + method.name + ' overwrited');
 				}
-			}else{
-				me.log.dbg('** Check augments: ' + doclet.longname + ' method: ' + method.name + ' overwrited');
 			}
 		});
-		
 		
 		// recursion al abuelo...
 		var parentClass = this.publish.find({
@@ -252,6 +297,8 @@ exports.processFiles = {
 		if(parentClass && parentClass.length > 0){
 			parentClass = parentClass[0];
 		}
+		
+		this.log.dbg('ABUELO!' + parentClassName + ' augments: ' +  parentClass.augments);
 		if(parentClass.augments && parentClass.augments.length > 0) {
 			for(var i = 0; i < parentClass.augments.length; i++){
 				this._insertMethodOf(parentClass.augments[i], doclet);
@@ -260,6 +307,7 @@ exports.processFiles = {
 	},
 	
 	_insertPropertyOf: function(parentClassName, doclet){
+		parentClassName = parentClassName.toString();
 		var me = this,
 			propertys = this.publish.find({
 				memberof: parentClassName,
@@ -268,7 +316,8 @@ exports.processFiles = {
 		;
 		
 		propertys.forEach(function(property){
-			me.log.dbg('** Check augments: ' + doclet.longname + ' check property: ' + property.name);
+			me.log.dbg('** Check properties augments: ' + doclet.longname +
+				' check property: ' + parentClassName + '.'+ property.name);
 			if(doclet.propertyList.indexOf(property.name) === -1){
 
 				me.log.dbg('** Agregando Property Borrow: ' + property.name + ' a ' + doclet.longname);
@@ -286,11 +335,13 @@ exports.processFiles = {
 		// recursion al abuelo...
 		var parentClass = this.publish.find({
 			longname: parentClassName,
-			kind: 'member'
+			kind: 'class'
 		});
 		if(parentClass && parentClass.length > 0){
 			parentClass = parentClass[0];
 		}
+		
+		this.log.dbg('ABUELO!' + parentClassName + ' augments: ' +  parentClass.augments);
 		if(parentClass.augments && parentClass.augments.length > 0) {
 			for(var i = 0; i < parentClass.augments.length; i++){
 				this._insertPropertyOf(parentClass.augments[i], doclet);

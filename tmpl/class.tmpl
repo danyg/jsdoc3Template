@@ -119,17 +119,6 @@
     	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.staticMembers})); ?>
     <?js } ?>
   	
-  	
-  	<!-- CLASS STATIC METHODS SUMMARY -->
-    <?js if(docs.staticMethods && docs.staticMethods.length) { ?>
-    	<h2>
-	  		Static Methods
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
-    <?js } ?>
-  	
-  	
   	<!-- CLASS PROPERTIES SUMMARY -->
     <?js if(docs.members && docs.members.length) { ?>
     	<h2>
@@ -138,8 +127,16 @@
 	  	</h2>
     	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.members})); ?>
     <?js } ?>
-  	
-  	
+
+  	<!-- CLASS STATIC METHODS SUMMARY -->
+    <?js if(docs.staticMethods && docs.staticMethods.length) { ?>
+    	<h2>
+	  		Static Methods
+	  		<small><a href="#">Top</a></small>
+	  	</h2>
+    	<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
+    <?js } ?>
+	
   	<!-- CLASS METHODS SUMMARY -->
     <?js if(docs.methods  && docs.methods.length) { ?>
     	<h2>

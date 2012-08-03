@@ -1,14 +1,18 @@
-var THEME = 'myCustom';
+var THEME = 'myCustom',
+	MY_PATH = 'templates/myCustom/'
+;
 (function() {
 
-	// theme name
+	"use strict";
 
+	// theme name
+	
 	var
-		_ = require('underscore/underscore'),
-		template = require('underscore/template'),
+		_ = require(MY_PATH + 'lib/underscore/underscore.js'),
+		template = require(MY_PATH + 'lib/underscore/template.js'),
 		fs = require('fs'),
 		helper = require('jsdoc/util/templateHelper'),
-		myPublisher = require('templates/myCustom/inc/myPublisher.js').myPublisher
+		myPublisher = require(MY_PATH + 'inc/myPublisher.js').myPublisher
 	;
 	publish = function(data, opts) {
 		console.log('Init myPublisher');
