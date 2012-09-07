@@ -47,6 +47,16 @@
       	?>
       </td>
     </tr>
+	<?js if(undefined !== method.fires && method.fires.length > 0){
+	?>
+	<tr>
+		<td colspan="3">
+			Dispara los siguientes eventos:
+			<?js print(render('fires.tmpl',  method)); ?>
+		</td>
+	</tr>
+	<?js
+	}?>
     
     <?js }); ?>
     
