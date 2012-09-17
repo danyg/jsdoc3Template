@@ -1,103 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/reset.css">
-  <link rel="stylesheet" type="text/css" href="styles/panel.css">
-  
-  <title><?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?></title>
-  
-	<script type="text/javascript" src="tree.js"></script>
-	<script type="text/javascript" src="searchdata.js"></script>
-	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="js/searchdoc.js"></script>
-	<script type="text/javascript" charset="utf8">
-	$(document).ready(function() {
-	  $('#version-switcher').change(function() {
-	    window.parent.location = $(this).val();
-	  });
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/reset.css">
+		<link rel="stylesheet" type="text/css" href="styles/panel.css">
+
+		<title><?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?></title>
+
+		<script type="text/javascript" src="tree.js"></script>
+		<script type="text/javascript" src="searchdata.js"></script>
+		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="js/searchdoc.js"></script>
+		<script type="text/javascript" charset="utf8">
+			$(document).ready(function() {
+				$('#version-switcher').change(function() {
+					window.parent.location = $(this).val();
+				});
 	  
-	  // the number of levels opened by default
-	  var NUM_LEVELS = 1;
+				// the number of levels opened by default
+				var NUM_LEVELS = 1;
 	  
-	  // search data
-	  if(window.searchData) {
-			searchData = {
-				index: window.searchData // FIXME
-			};
-		} else {
-	  	var searchData = {
-		    index: {
-		      info: [],
-		      longSearchIndex: [],
-		      searchIndex: []
-		    }
-		  };
-		}
+				// search data
+				if(window.searchData) {
+					searchData = {
+						index: window.searchData // FIXME
+					};
+				} else {
+					var searchData = {
+						index: {
+							info: [],
+							longSearchIndex: [],
+							searchIndex: []
+						}
+					};
+				}
 	  
-	  // hide loader
-	  $('.loader').css('display', 'none');
+				// hide loader
+				$('.loader').css('display', 'none');
 	  
-	  // create a new Searchdoc panel
-	  var panel = new Searchdoc.Panel($('#panel'), searchData, tree, top.frames[1]);
+				// create a new Searchdoc panel
+				var panel = new Searchdoc.Panel($('#panel'), searchData, tree, top.frames[1]);
 	  
-	  // focus search
-	  $('#search').focus();
+				// focus search
+				$('#search').focus();
 	  
-	  // show the specified visible levels
-	  for(var i = 0; i < NUM_LEVELS; i++) {
-	    $('.level_' + i).each(function($li) {
-	      panel.tree.toggle($(this));
-	    });
-	  }
+				// show the specified visible levels
+				for(var i = 0; i < NUM_LEVELS; i++) {
+					$('.level_' + i).each(function($li) {
+						panel.tree.toggle($(this));
+					});
+				}
 	  
-	  // if the main window URL has a query string, then search
-	  var q = window.parent.location.search.match(/\?q=([^&]+)/);
-	  if(q) {
-	    q = decodeURIComponent(q[1]).replace(/\+/g, ' ');
-	    if(q.length > 0) {
-	      $('#search').val(q);
-	      panel.search(q, true);
-	    }
-	  }
-	});
-	</script>
-</head>
-<body>
-	<div id="panel" class="panel panel_tree">
-		<div class="loader">
-	    <img src="img/loader.gif">loading...
-	  </div>
-	  
-	  <div class="header">
-	    <div class="nav">
-				<h1><?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?></h1>
-	        <form action="#" method="GET">
-	        	<select id="version-switcher" name="version">
-	            <option value="../index.html">master branch</option>
-	          </select>
-	        </form>
-	        <div style="clear: both"></div>
-	      <table>
-	        <tbody>
-	        	<tr>
-	        		<td>
-	        			<input type="Search" placeholder="Search" autosave="searchdoc" results="10" id="search" autocomplete="off" />
-	        		</td>
-	        	</tr>
-	      	</tbody>
-	      </table>
-	    </div>
+				// if the main window URL has a query string, then search
+				var q = window.parent.location.search.match(/\?q=([^&]+)/);
+				if(q) {
+					q = decodeURIComponent(q[1]).replace(/\+/g, ' ');
+					if(q.length > 0) {
+						$('#search').val(q);
+						panel.search(q, true);
+					}
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div id="panel" class="panel panel_tree">
+			<div class="loader">
+				<img src="img/loader.gif">loading...
+			</div>
+
+			<div class="header">
+				<div class="nav">
+					<h1><?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?></h1>
+					<form action="#" method="GET">
+						<select id="version-switcher" name="version">
+							<option value="../index.html">master branch</option>
+						</select>
+					</form>
+					<div style="clear: both"></div>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<input type="Search" placeholder="Search" autosave="searchdoc" results="10" id="search" autocomplete="off" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="tree">
+				<ul></ul>
+			</div>
+
+			<div class="result">
+				<ul></ul>
+			</div>
+
 		</div>
-	  
-	  <div class="tree">
-	  	<ul></ul>
-	  </div>
-	  
-	  <div class="result">
-	    <ul></ul>
-	  </div>
-  
-	</div>
-	
-</body>
+
+	</body>
 </html>

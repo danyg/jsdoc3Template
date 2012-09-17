@@ -146,6 +146,12 @@ exports.processFiles = {
 			scope: 'static'
 		});
 		
+		// class events
+		doclet.events = this.publish.find({
+			kind: 'event', 
+			memberof: doclet.longname
+		});
+		
 		return true;
 	},
 	

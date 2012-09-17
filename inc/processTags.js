@@ -209,13 +209,6 @@ exports.processTags.tagListen = function(item, i, doclet){
 		doclet.listen = [];
 	}
 	doclet.listen.push( r = this.publish.hashToLink(doclet, item.value) );
-	
-	
-this.log.dbg('------- HEY HEY -------');
-this.log.dbg('Listen TAG Found on ' + doclet.longname);
-this.log.dbg('------ /HEY /HEY ------');
-	
-	
-	
-	return r;
+
+	return doclet.listen;
 };

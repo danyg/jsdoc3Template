@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-  <title>Package API</title>
-</head>
-<body id="overview">
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title>Package API</title>
+	</head>
+	<body id="overview">
 
-	<div class="header">
-    <?js print(render('header.tmpl', this)); ?>
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
 
-    <h1>Files</h1>
-  </div>
-  
-  <div class="content">
-  	<table>
-  		<tbody>
-  			<?js for(var i in docs) { ?>
-  			<?js if(docs.hasOwnProperty(i)) { ?>
-  			<tr>
-        	<td>
-        		<a href="<?js= docs[i].filename ?>.html">
-        			<?js= docs[i].path + '/' + docs[i].filename ?>
-        		</a>
-  				</td>
-  				<td>
-  					<?js= docs[i].description ?>
-  				</td>
-  			</tr>
-				<?js } ?>
-  			<?js } ?>
-  		</tbody>
-  	</table>
-  </div>
-  
-  <?js print(render('footer.tmpl', this)); ?>
-  
-</body>
+				<h1>Files</h1>
+			</div>
+		</header>
+
+		<div class="content">
+			<table>
+				<tbody>
+					<?js for(var i in docs) { ?>
+					<?js if(docs.hasOwnProperty(i)) { ?>
+					<tr>
+						<td>
+							<a href="<?js= docs[i].filename ?>.html">
+								<?js= docs[i].path + '/' + docs[i].filename ?>
+							</a>
+						</td>
+						<td>
+							<?js= docs[i].description ?>
+						</td>
+					</tr>
+					<?js } ?>
+					<?js } ?>
+				</tbody>
+			</table>
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
 </html>

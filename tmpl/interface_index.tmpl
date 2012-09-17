@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-  <title>jWire API</title>
-</head>
-<body id="overview">
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title>jWire API</title>
+	</head>
+	<body id="overview">
 
-	<div class="header">
-    <?js print(render('header.tmpl', this)); ?>
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
 
-    <h1>Interfaces</h1>
-  </div>
-  
-  <div class="content">
-  	<table>
-  		<tbody>
-        <?js docs.forEach(function(doc) { ?>
-        <tr>
-          <td>
-          	<a href="<?js= doc.longname ?>.html">
-          		<abbr title="<?js= doc.longname ?>">
-          			<?js= doc.longname ?>
-          		</abbr>
-          	</a>
-          <td><?js= doc.description ?></td>
-        </tr>
-        <?js }); ?>
-      </tbody>
-  	</table>
-  </div>
-  
-  <?js print(render('footer.tmpl', this)); ?>
-  
-</body>
+				<h1>Interfaces</h1>
+			</div>
+		</header>
+
+		<div class="content">
+			<table>
+				<tbody>
+					<?js docs.forEach(function(doc) { ?>
+					<tr>
+						<td>
+							<a href="<?js= doc.longname ?>.html">
+								<abbr title="<?js= doc.longname ?>">
+									<?js= doc.longname ?>
+								</abbr>
+							</a>
+						<td><?js= doc.description ?></td>
+					</tr>
+					<?js }); ?>
+				</tbody>
+			</table>
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
 </html>

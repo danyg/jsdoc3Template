@@ -26,12 +26,12 @@
 
 <div id="title">
 	<?js if(this.info.readme !== undefined) { ?>
-		<a href="readme.html">
-	<?js } ?>
-	
-	<?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?>
-	
-	<?js if(this.info.readme !== undefined) { ?>
-		</a>
+	<a href="readme.html">
+		<?js } ?>
+
+		<?js print((info['package'] ? info['package'].name + ' ' : '') + 'API'); ?>
+
+		<?js if(this.info.readme !== undefined) { ?>
+	</a>
 	<?js } ?>
 </div>

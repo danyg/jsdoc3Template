@@ -52,6 +52,10 @@ h3 { font-size:110%; }
 h4 { font-weight:bold; }
 h2 small { font-size:11px; font-weight:normal; float:right; line-height:19px; padding:0 8px; }
 
+header{
+	width: 100%;
+	position: fixed;
+}
 /* page header */
 div.header { background-color:#EDF3FE; border-bottom:1px solid #ccc; padding:20px 30px 10px 30px; }
 #frame div.header { background-color:#fff; border:0; padding:10px 15px 5px 15px; }
@@ -67,6 +71,8 @@ div.header ul li a { color:#000; text-transform:uppercase; }
 /* footer */
 #footer { margin:30px; text-align:right; font-size:80%; }
 .fineprint { color:#999; font-size:85%; }
+
+.content { padding: 110px 30px 10px ;}
 
 /* frames */
 #frame .content { margin:10px; }
@@ -86,7 +92,7 @@ div.details { padding:0 0 10px 20px; border-bottom:1px solid #ccc; }
 div.tags { clear:both; padding-top:15px; font-size:100%; }
 td.type { text-align:right; white-space:nowrap; }
 td small { font-size:85%; white-space:nowrap; }
-#class .content, #overview .content, .fineprint { padding:10px 30px; }
+
 .description { margin:10px 0; padding:10px; background-color:#efefef; }
 .description ol { list-style-type:decimal; margin:10px 0; }
 .description ol li { margin:5px 0; }
@@ -132,3 +138,25 @@ footer { color:#999; font-size:11px; padding:10px 30px; }
 }
 .Properties li span{padding: 0px 4px;}
 .Properties li ul{padding-left: 10px;}
+
+.anchor_list{
+	border: solid 2px lightblue;
+	background: lightblue;
+	margin: 10px 0px 20px;
+	padding: 0;
+}
+
+.anchor_list ul,
+.anchor_list ul li{
+	list-style: disc inside;
+}
+
+.anchor_list li a{
+	line-height: 1.4em;
+	font-size: 1.2em;
+	color: #000;
+}
+
+.anchor_list h2{
+	margin-top: 0;
+}

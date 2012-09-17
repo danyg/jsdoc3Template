@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-  <title>jWire API</title>
-</head>
-<body id="overview">
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title>jWire API</title>
+	</head>
+	<body id="overview">
 
-	<div class="header">
-    <?js print(render('header.tmpl', this)); ?>
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
 
-    <div class="type">Interface</div>
-    <h1>
-    <?js
-			if(docs.ancestors && docs.ancestors.length) {
-				print(docs.ancestors.join(''));
-			}
-			print(docs.name);
-		?>
-		</h1>
-  </div>
-  
-  <div class="content">
-    <p>
-      <span><?js= docs.kind ?> </span>
-      <strong>
-        <?js
-          if(docs.ancestors && docs.ancestors.length) {
-            print(docs.ancestors.join(''));
-          }
-          print(docs.name);
-        ?>
-      </strong>
-    </p>
-    
-    <?js print(render('description.tmpl', docs)); ?>
-    
-    <!-- INTERFACE IMPLEMENTATIONS -->
-    <h2>
-    	Implementations
-    	<small><a href="#">Top</a></small>
-    </h2>
-    <?js if(docs.implementations && docs.implementations.length) { ?>
-    <table>
-      <tbody>
-        <?js for(var i = 0, n = docs.implementations.length; i < n; ++i) { ?>
-        <tr>
-          <td>
-            <?js print(linkto(docs.implementations[i].longname, docs.implementations[i].longname)); ?>
-          </td>
-          <td><?js print(docs.implementations[i].classdesc || docs.implementations[i].description || ''); ?></td>
-        </tr>
-        <?js } ?>
-      </tbody>
-    </table>
-    <?js } ?>
-    
-  </div>
-  
-  <?js print(render('footer.tmpl', this)); ?>
-  
-</body>
+				<div class="type">Interface</div>
+				<h1>
+					<?js
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					?>
+				</h1>
+			</div>
+		</header>
+
+		<div class="content">
+			<p>
+				<span><?js= docs.kind ?> </span>
+				<strong>
+					<?js
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					?>
+				</strong>
+			</p>
+
+			<?js print(render('description.tmpl', docs)); ?>
+
+			<!-- INTERFACE IMPLEMENTATIONS -->
+			<h2>
+				Implementations
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js if(docs.implementations && docs.implementations.length) { ?>
+			<table>
+				<tbody>
+					<?js for(var i = 0, n = docs.implementations.length; i < n; ++i) { ?>
+					<tr>
+						<td>
+							<?js print(linkto(docs.implementations[i].longname, docs.implementations[i].longname)); ?>
+						</td>
+						<td><?js print(docs.implementations[i].classdesc || docs.implementations[i].description || ''); ?></td>
+					</tr>
+					<?js } ?>
+				</tbody>
+			</table>
+			<?js } ?>
+
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
 </html>

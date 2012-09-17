@@ -1,163 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-  <title>jWire API</title>
-</head>
-<body id="class">
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title>jWire API</title>
+	</head>
+	<body id="class">
 
-	<div class="header">
-    <?js print(render('header.tmpl', this)); ?>
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
 
-    <div class="type">Namespace</div>
-    <h1>
-    <?js
-			if(docs.ancestors && docs.ancestors.length) {
-				print(docs.ancestors.join(''));
-			}
-			print(docs.name);
-		?>
-		</h1>
-  </div>
-  
-  <div class="content">
-    <p>
-      <span><?js= docs.kind ?> </span>
-      <strong>
-        <?js
-          if(docs.ancestors && docs.ancestors.length) {
-            print(docs.ancestors.join(''));
-          }
-          print(docs.name);
-        ?>
-      </strong>
-    </p>
-    
-    <?js print(render('description.tmpl', docs)); ?>
-    
-    <!-- NAMESPACE SUB-NAMESPACES -->
-    <?js if(docs.namespaces && docs.namespaces.length) { ?>
-    <h2>
-    	Namespaces
-    	<small><a href="#">Top</a></small>
-    </h2>
-    <table>
-      <tbody>
-        <?js docs.namespaces.forEach(function(n) { ?>
-        <tr>
-          <td>
-            <?js print(linkto(n.longname, n.name)); ?>
-          </td>
-          <td><?js print(n.summary || n.description || ''); ?></td>
-        </tr>
-        <?js }); ?>
-      </tbody>
-    </table>
-    <?js } ?>
-    
-    
-    <!-- NAMESPACE CLASSES -->
-    <?js if(docs.classes && docs.classes.length) { ?>
-    <h2>
-    	Classes
-    	<small><a href="#">Top</a></small>
-    </h2>
-    <table>
-      <tbody>
-        <?js docs.classes.forEach(function(c) { ?>
-        <tr>
-          <td>
-            <?js if(c.virtual) { print('</em>'); } ?>
-            <?js print(linkto(c.longname, c.name)); ?>
-            <?js if(c.virtual) { print('</em>'); } ?>
-          </td>
-          <td><?js= c.classdesc ?></td>
-        </tr>
-        <?js }); ?>
-      </tbody>
-    </table>
-    <?js } ?>
-    
-    
-    <!-- NAMESPACE INTERFACES -->
-    <?js if(docs.interfaces && docs.interfaces.length) { ?>
-    <h2>
-    	Interfaces
-    	<small><a href="#">Top</a></small>
-    </h2>
-    <table>
-      <tbody>
-        <?js docs.interfaces.forEach(function(i) { ?>
-        <tr>
-          <td>
-			<a href="<?js= i.longname ?>.html">
-				<abbr title="<?js= i.longname ?>"><?js= i.name ?></abbr>
-			</a>
-          </td>
-          <td><?js if(i.description) { print(i.description); } ?></td>
-        </tr>
-        <?js }); ?>
-      </tbody>
-    </table>
-    <?js } ?>
-  	
-  	
-  	<!-- NAMESPACE CONSTANTS SUMMARY -->
-    <?js if(docs.constants && docs.constants.length) { ?>
-    	<h2>
-	  		Constants
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.constants})); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- NAMESPACE STATIC PROPERTIES & ENUMERATIONS SUMMARY -->
-  	<?js if(docs.staticMembers && docs.staticMembers.length) { ?>
-    	<h2>
-	  		Static Properties & Enumerations
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.staticMembers})); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- NAMESPACE STATIC METHODS SUMMARY -->
-    <?js if(docs.staticMethods && docs.staticMethods.length) { ?>
-    	<h2>
-	  		Static Methods
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- NAMESPACE STATIC PROPERTIES & ENUMERATIONS DETAIL -->
-    <?js if(docs.staticMembers  && docs.staticMembers.length) { ?>
-    	<h2>
-	  		Static Properties & Enumerations Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.staticMembers.forEach(function(prop) {
-	      print(render('property.tmpl', prop));
-	    }); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- NAMESPACE STATIC METHODS DETAIL -->
-    <?js if(docs.staticMethods  && docs.staticMethods.length) { ?>
-    	<h2>
-	  		Static Methods Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.staticMethods.forEach(function(method) {
-	      print(render('method.tmpl', method));
-	    }); ?>
-    <?js } ?>
-    
-  </div>
-  
-  <?js print(render('footer.tmpl', this)); ?>
-  
-</body>
+				<div class="type">Namespace</div>
+				<h1>
+					<?js
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					?>
+				</h1>
+			</div>
+		</header>
+
+		<div class="content">
+
+			<?js print(render('anchors_class_namespace.tmpl', docs)); ?>
+			
+			<p class="PrincipalTitle">
+				<span><?js= docs.kind ?> </span>
+				<strong>
+					<?js
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					?>
+				</strong>
+			</p>
+
+			<?js print(render('description.tmpl', docs)); ?>
+
+			<!-- NAMESPACE SUB-NAMESPACES -->
+			<?js if(docs.namespaces && docs.namespaces.length) { ?>
+			<h2>
+				<a name="namespaces"></a>
+				Namespaces
+				<small><a href="#">Top</a></small>
+			</h2>
+			<table>
+				<tbody>
+					<?js docs.namespaces.forEach(function(n) { ?>
+					<tr>
+						<td>
+							<?js print(linkto(n.longname, n.name)); ?>
+						</td>
+						<td><?js print(n.summary || n.description || ''); ?></td>
+					</tr>
+					<?js }); ?>
+				</tbody>
+			</table>
+			<?js } ?>
+
+
+			<!-- NAMESPACE CLASSES -->
+			<?js if(docs.classes && docs.classes.length) { ?>
+			<h2>
+				<a name="classes"></a>
+				Classes
+				<small><a href="#">Top</a></small>
+			</h2>
+			<table>
+				<tbody>
+					<?js docs.classes.forEach(function(c) { ?>
+					<tr>
+						<td>
+							<?js if(c.virtual) { print('</em>'); } ?>
+							<?js print(linkto(c.longname, c.name)); ?>
+							<?js if(c.virtual) { print('</em>'); } ?>
+						</td>
+						<td><?js= c.classdesc ?></td>
+					</tr>
+					<?js }); ?>
+				</tbody>
+			</table>
+			<?js } ?>
+
+
+			<!-- NAMESPACE INTERFACES -->
+			<?js if(docs.interfaces && docs.interfaces.length) { ?>
+			<h2>
+				<a name="interfaces"></a>
+				Interfaces
+				<small><a href="#">Top</a></small>
+			</h2>
+			<table>
+				<tbody>
+					<?js docs.interfaces.forEach(function(i) { ?>
+					<tr>
+						<td>
+							<a href="<?js= i.longname ?>.html">
+								<abbr title="<?js= i.longname ?>"><?js= i.name ?></abbr>
+							</a>
+						</td>
+						<td><?js if(i.description) { print(i.description); } ?></td>
+					</tr>
+					<?js }); ?>
+				</tbody>
+			</table>
+			<?js } ?>
+
+
+			<!-- NAMESPACE CONSTANTS SUMMARY -->
+			<?js if(docs.constants && docs.constants.length) { ?>
+			<h2>
+				<a name="constants"></a>
+				Constants
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.constants})); ?>
+			<?js } ?>
+
+
+			<!-- NAMESPACE STATIC PROPERTIES & ENUMERATIONS SUMMARY -->
+			<?js if(docs.staticMembers && docs.staticMembers.length) { ?>
+			<h2>
+				<a name='static_properties'></a>
+				Static Properties & Enumerations
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.staticMembers})); ?>
+			<?js } ?>
+
+
+			<!-- NAMESPACE STATIC METHODS SUMMARY -->
+			<?js if(docs.staticMethods && docs.staticMethods.length) { ?>
+			<h2>
+				<a name='static_methods'></a>
+				Static Methods
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
+			<?js } ?>
+
+			<!-- CLASS EVENTS SUMMARY -->
+			<?js if(docs.events  && docs.events.length) { ?>
+			<h2>
+				<a name='events'></a>
+				Events
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('methods.tmpl', {methods: docs.events, parentName: docs.longname})); ?>
+			<?js } ?>
+
+			<!--
+			################################################################################
+			## DETAILS
+			################################################################################
+			-->
+
+			<!-- NAMESPACE STATIC PROPERTIES & ENUMERATIONS DETAIL -->
+			<?js if(docs.staticMembers  && docs.staticMembers.length) { ?>
+			<h2>
+				Static Properties & Enumerations Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.staticMembers.forEach(function(prop) {
+			print(render('property.tmpl', prop));
+			}); ?>
+			<?js } ?>
+
+
+			<!-- NAMESPACE STATIC METHODS DETAIL -->
+			<?js if(docs.staticMethods  && docs.staticMethods.length) { ?>
+			<h2>
+				Static Methods Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.staticMethods.forEach(function(method) {
+			print(render('method.tmpl', method));
+			}); ?>
+			<?js } ?>
+
+			<!-- CLASS EVENTS DETAIL -->
+			<?js if(docs.events  && docs.events.length) { ?>
+			<h2>
+				<a name='events_details'></a>
+				Events Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.events.forEach(function(method) {
+			print(render('method.tmpl', method));
+			}); ?>
+			<?js } ?>
+
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
 </html>

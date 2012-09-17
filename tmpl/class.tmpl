@@ -1,243 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-  <title>jWire API</title>
-</head>
-<body id="class">
-	
-	<div class="header">
-    <?js print(render('header.tmpl', this)); ?>
-    
-    <div class="type"><?js print(docs.kind.charAt(0).toUpperCase() + docs.kind.substr(1)); ?></div>
-    <h1>
-    <?js
-			if(docs.ancestors && docs.ancestors.length) {
-				print(docs.ancestors.join(''));
-			}
-			print(docs.name);
-		?>
-		</h1>
-  </div>
-  
-  <div class="content">
-  
-  	<!-- CLASS SIGNATURE -->
-  	<p>
-  		<span><?js= docs.virtual ? 'abstract' : '' ?> </span>
-  		<span><?js= docs.kind ?> </span>
-  		<strong>
-  			<?js
-  				if(docs.virtual) {
-  					print('<em>');
-  				}
-  				if(docs.ancestors && docs.ancestors.length) {
-  					print(docs.ancestors.join(''));
-  				}
-	  			print(docs.name);
-	  			if(docs.variation) {
-            print('<sup class="variation">' + docs.variation + '</sup>'); 
-          }
-          if(docs.virtual) {
-  					print('</em>');
-  				}
-  			?>
-  		</strong>
-  		
-			<?js if(docs.augments && docs.augments.length) { ?>
-	  		<span> extends <?js docs.augments.forEach(function(a, k) {
-	  		  if(k > 0) {
-	  		    print(', ');
-	  		  } 
-	  			print(linkto(a, a)); 
-	  		}); ?></span>
-      <?js } ?>
-      
-			<?js if(docs.mixes && docs.mixes.length) { ?>
-				<span> mixes <?js docs.mixes.forEach(function(i, k) { ?>
-				  <?js if(k > 0) { print(', '); } ?>
-				  <?js= linkto(i, i) ?>
-				<?js}); ?></span>
-      <?js } ?>
-  		
-			<?js if(docs.implements && docs.implements.length) { ?>
-				<span> implements <?js docs.implements.forEach(function(i, k) { ?>
-				  <?js if(k > 0) { print(', '); } ?>
-				  <?js= linkto(i, i) ?>
-				<?js}); ?></span>
-      <?js } ?>
-  	</p>
-  	
-  	
-  	<!-- CLASS DESCRIPTION -->
-  	<?js print(render('description.tmpl', docs)); ?>
-  	
-  	
-  	<!-- CLASS CONSTRUCTOR SUMMARY -->
-  	<h2>
-  		Constructor
-  		<small><a href="#">Top</a></small>
-  	</h2>
-		<table>
-			<tbody>
-				<tr>
-          <td class="type">&nbsp;</td>
-          <td class="last">
-            <a href="#<?js= docs.id ?>"><?js= docs.name ?></a>
-            <span><?js print(render('signature.tmpl', docs)); ?></span>
-            <?js
-              if(docs.summary) {
-                print('<p>' + docs.summary + '</p>');
-              }
-            ?>
-          <td>
-          <td></td>
-				</tr>
-			</tbody>
-		</table>
-  	
-  	
-  	<!-- CLASS REQUIRES -->
-  	
-  	
-  	<!-- CLASS CONSTANTS SUMMARY -->
-    <?js if(docs.constants && docs.constants.length) { ?>
-    	<h2>
-	  		Constants
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.constants})); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS STATIC PROPERTIES & ENUMERATIONS SUMMARY -->
-  	<?js if(docs.staticMembers && docs.staticMembers.length) { ?>
-    	<h2>
-	  		Static Properties & Enumerations
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.staticMembers})); ?>
-    <?js } ?>
-  	
-  	<!-- CLASS PROPERTIES SUMMARY -->
-    <?js if(docs.members && docs.members.length) { ?>
-    	<h2>
-	  		Properties
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.members})); ?>
-    <?js } ?>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title>jWire API</title>
+	</head>
+	<body id="class">
 
-  	<!-- CLASS STATIC METHODS SUMMARY -->
-    <?js if(docs.staticMethods && docs.staticMethods.length) { ?>
-    	<h2>
-	  		Static Methods
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
-    <?js } ?>
-	
-  	<!-- CLASS METHODS SUMMARY -->
-    <?js if(docs.methods  && docs.methods.length) { ?>
-    	<h2>
-	  		Methods
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('methods.tmpl', {methods: docs.methods, parentName: docs.longname})); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS EVENTS SUMMARY -->
-    <?js if(docs.events  && docs.events.length) { ?>
-    	<h2>
-	  		Events
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-    	<?js print(render('methods.tmpl', {methods: docs.events, parentName: docs.longname})); ?>
-    <?js } ?>
-  	
-<!--
-################################################################################
-## DETAILS
-################################################################################
--->
-	
-  	<!-- CLASS CONSTRUCTOR DETAILS -->
-  	<h2>
-  		<a name='constructor_details'></a>
-		Constructor details
-  		<small><a href="#">Top</a></small>
-	  	<?js print(render('method.tmpl', docs)); ?>
-  	</h2>
-  	
-  	
-  	<!-- CLASS STATIC PROPERTIES & ENUMERATIONS DETAIL -->
-    <?js if(docs.staticMembers  && docs.staticMembers.length) { ?>
-    	<h2>
-	  		<a name='static_properties_details'></a>
-			Static Properties & Enumerations Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.staticMembers.forEach(function(prop) {
-	      print(render('property.tmpl', prop));
-	    }); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS STATIC METHODS DETAIL -->
-    <?js if(docs.staticMethods  && docs.staticMethods.length) { ?>
-    	<h2>
-	  		<a name='static_methods_details'></a>
-			Static Methods Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.staticMethods.forEach(function(method) {
-	      print(render('method.tmpl', method));
-	    }); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS PROPERTIES DETAIL -->
-    <?js if(docs.members  && docs.members.length) { ?>
-    	<h2>
-			<a name='properties_details'></a>
-	  		Properties Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.members.forEach(function(prop) {
-	      print(render('property.tmpl', prop));
-	    }); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS METHODS DETAIL -->
-    <?js if(docs.methods  && docs.methods.length) { ?>
-    	<h2>
-	  		<a name='methods_details'></a>
-			Methods Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.methods.forEach(function(method) {
-	      print(render('method.tmpl', method));
-	    }); ?>
-    <?js } ?>
-  	
-  	
-  	<!-- CLASS EVENTS DETAIL -->
-    <?js if(docs.events  && docs.events.length) { ?>
-    	<h2>
-			<a name='events_details'></a>
-			Events Detail
-	  		<small><a href="#">Top</a></small>
-	  	</h2>
-	  	<?js docs.events.forEach(function(method) {
-	      print(render('method.tmpl', method));
-	    }); ?>
-    <?js } ?>
-  	
-  </div>
-  
-  <?js print(render('footer.tmpl', this)); ?>
-  
-</body>
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
+				<div class="type"><?js print(docs.kind.charAt(0).toUpperCase() + docs.kind.substr(1)); ?></div>
+				<h1>
+					<?js
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					?>
+				</h1>
+			</div>
+		</header>
+
+		<div class="content">
+
+			<?js print(render('anchors_class_namespace.tmpl', docs)); ?>
+			
+			<!-- CLASS SIGNATURE -->
+			<p class="PrincipalTitle">
+				<span><?js= docs.virtual ? 'abstract' : '' ?> </span>
+				<span><?js= docs.kind ?> </span>
+				<strong>
+					<?js
+					if(docs.virtual) {
+					print('<em>');
+					}
+					if(docs.ancestors && docs.ancestors.length) {
+					print(docs.ancestors.join(''));
+					}
+					print(docs.name);
+					if(docs.variation) {
+					print('<sup class="variation">' + docs.variation + '</sup>'); 
+					}
+					if(docs.virtual) {
+					print('</em>');
+					}
+					?>
+				</strong>
+
+				<?js if(docs.augments && docs.augments.length) { ?>
+				<span> extends <?js docs.augments.forEach(function(a, k) {
+					if(k > 0) {
+					print(', ');
+					} 
+					print(linkto(a, a)); 
+					}); ?></span>
+				<?js } ?>
+
+				<?js if(docs.mixes && docs.mixes.length) { ?>
+				<span> mixes <?js docs.mixes.forEach(function(i, k) { ?>
+					<?js if(k > 0) { print(', '); } ?>
+					<?js= linkto(i, i) ?>
+					<?js}); ?></span>
+				<?js } ?>
+
+				<?js if(docs.implements && docs.implements.length) { ?>
+				<span> implements <?js docs.implements.forEach(function(i, k) { ?>
+					<?js if(k > 0) { print(', '); } ?>
+					<?js= linkto(i, i) ?>
+					<?js}); ?></span>
+				<?js } ?>
+			</p>
+
+
+			<!-- CLASS DESCRIPTION -->
+			<?js print(render('description.tmpl', docs)); ?>
+
+
+			<!-- CLASS CONSTRUCTOR SUMMARY -->
+			<h2>
+				<a name='constructor'></a>
+				Constructor
+				<small><a href="#">Top</a></small>
+			</h2>
+			<table>
+				<tbody>
+					<tr>
+						<td class="type">&nbsp;</td>
+						<td class="last">
+							<a href="#<?js= docs.id ?>"><?js= docs.name ?></a>
+							<span><?js print(render('signature.tmpl', docs)); ?></span>
+							<?js
+							if(docs.summary) {
+							print('<p>' + docs.summary + '</p>');
+							}
+							?>
+						<td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<!-- CLASS REQUIRES -->
+
+
+			<!-- CLASS CONSTANTS SUMMARY -->
+			<?js if(docs.constants && docs.constants.length) { ?>
+			<h2>
+				<a name='constants'></a>
+				Constants
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.constants})); ?>
+			<?js } ?>
+
+
+			<!-- CLASS STATIC PROPERTIES & ENUMERATIONS SUMMARY -->
+			<?js if(docs.staticMembers && docs.staticMembers.length) { ?>
+			<h2>
+				<a name='static_properties'></a>
+				Static Properties & Enumerations
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.staticMembers})); ?>
+			<?js } ?>
+
+			<!-- CLASS PROPERTIES SUMMARY -->
+			<?js if(docs.members && docs.members.length) { ?>
+			<h2>
+				<a name='properties'></a>
+				Properties
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('properties.tmpl', {parentName: docs.longname, props: docs.members})); ?>
+			<?js } ?>
+
+			<!-- CLASS STATIC METHODS SUMMARY -->
+			<?js if(docs.staticMethods && docs.staticMethods.length) { ?>
+			<h2>
+				<a name='static_methods'></a>
+				Static Methods
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('methods.tmpl', {methods: docs.staticMethods, parentName: docs.longname})); ?>
+			<?js } ?>
+
+			<!-- CLASS METHODS SUMMARY -->
+			<?js if(docs.methods  && docs.methods.length) { ?>
+			<h2>
+				<a name='methods'></a>
+				Methods
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('methods.tmpl', {methods: docs.methods, parentName: docs.longname})); ?>
+			<?js } ?>
+
+
+			<!-- CLASS EVENTS SUMMARY -->
+			<?js if(docs.events  && docs.events.length) { ?>
+			<h2>
+				<a name='events'></a>
+				Events
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js print(render('methods.tmpl', {methods: docs.events, parentName: docs.longname})); ?>
+			<?js } ?>
+
+			<!--
+			################################################################################
+			## DETAILS
+			################################################################################
+			-->
+
+			<!-- CLASS CONSTRUCTOR DETAILS -->
+			<h2>
+				<a name='constructor_details'></a>
+				Constructor details
+				<small><a href="#">Top</a></small>
+				<?js print(render('method.tmpl', docs)); ?>
+			</h2>
+
+
+			<!-- CLASS STATIC PROPERTIES & ENUMERATIONS DETAIL -->
+			<?js if(docs.staticMembers  && docs.staticMembers.length) { ?>
+			<h2>
+				<a name='static_properties_details'></a>
+				Static Properties & Enumerations Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.staticMembers.forEach(function(prop) {
+			print(render('property.tmpl', prop));
+			}); ?>
+			<?js } ?>
+
+
+			<!-- CLASS STATIC METHODS DETAIL -->
+			<?js if(docs.staticMethods  && docs.staticMethods.length) { ?>
+			<h2>
+				<a name='static_methods_details'></a>
+				Static Methods Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.staticMethods.forEach(function(method) {
+			print(render('method.tmpl', method));
+			}); ?>
+			<?js } ?>
+
+
+			<!-- CLASS PROPERTIES DETAIL -->
+			<?js if(docs.members  && docs.members.length) { ?>
+			<h2>
+				<a name='properties_details'></a>
+				Properties Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.members.forEach(function(prop) {
+			print(render('property.tmpl', prop));
+			}); ?>
+			<?js } ?>
+
+
+			<!-- CLASS METHODS DETAIL -->
+			<?js if(docs.methods  && docs.methods.length) { ?>
+			<h2>
+				<a name='methods_details'></a>
+				Methods Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.methods.forEach(function(method) {
+			print(render('method.tmpl', method));
+			}); ?>
+			<?js } ?>
+
+
+			<!-- CLASS EVENTS DETAIL -->
+			<?js if(docs.events  && docs.events.length) { ?>
+			<h2>
+				<a name='events_details'></a>
+				Events Detail
+				<small><a href="#">Top</a></small>
+			</h2>
+			<?js docs.events.forEach(function(method) {
+			print(render('method.tmpl', method));
+			}); ?>
+			<?js } ?>
+
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
 </html>
