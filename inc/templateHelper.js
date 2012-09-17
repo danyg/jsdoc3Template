@@ -32,6 +32,7 @@ var linkMap = {
 };
 
 exports.registerLink = function(longname, url) {
+	//todo if longname or url is named like a methods in Object.prototype explodes
     linkMap.longnameToUrl[longname] = url;
     linkMap.urlToLongname[url] = longname;
 }

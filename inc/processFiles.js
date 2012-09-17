@@ -36,18 +36,31 @@ exports.processFiles = {
 			new Packages.java.io.FileWriter(logFile, true)
 		);
 
+		this.publish.kinds.file.data.forEach(function(doclet){
+			me.processFileDoclet(doclet);
+		});
+
 		for(var i in this.publish.kinds){
 			if(this.publish.kinds.hasOwnProperty(i)) {
-				
-				this.publish.kinds[i].data.forEach(function(doclet){
-					me.processDoclet(doclet);
-				});
+				if(i !== 'file'){
+					this.publish.kinds[i].data.forEach(function(doclet){
+						me.processDoclet(doclet);
+					});
+				}
 			}
 		}
 		
 		this.logOut.close();
 		
 		return this.files;
+	},
+
+	processFileDoclet: function(doclet){
+		if(doclet.meta && doclet.meta.filename) {
+			var f = doclet.meta.path + '/' + doclet.meta.filename;
+			this.files[f] = doclet.meta;
+			this.files[f].description = doclet.description;
+		}
 	},
 	
 	processDoclet: function(doclet){
@@ -89,10 +102,7 @@ exports.processFiles = {
 	},
 	
 	kindModule: function(doclet){
-		if(doclet.meta && doclet.meta.filename) {
-			this.files[doclet.meta.filename] = doclet.meta;
-			this.files[doclet.meta.filename].description = doclet.description;
-		}
+		
 		
 		return true; // usa template por default para este kind
 	},
@@ -151,11 +161,12 @@ exports.processFiles = {
 		});
 		
 		this._classFinds(doclet);
+		/*
 		this._classBorrowed(doclet);
 		this._classMixesNBorrowed(doclet);
 		
 		this._classExtends(doclet);
-		
+		*/
 		return true;
 	},
 	
@@ -170,34 +181,43 @@ exports.processFiles = {
 		// class static methods
 		doclet.staticMethods = this.publish.find({
 			kind: 'function',  
-			memberof: doclet.mixes && doclet.mixes.length ? [doclet.longname].concat(doclet.mixes) : doclet.longname,
+			memberof: /*(doclet.mixes && doclet.mixes.length) ? 
+						[doclet.longname].concat(doclet.mixes) :  // ya no hace falta */
+						doclet.longname,
 			scope: 'static'
 		});
-		this._genMethodList(doclet, doclet.staticMethods);
+//		this._genMethodList(doclet, doclet.staticMethods);
 		
 		// class methods
 		doclet.methods = this.publish.find({
 			kind: 'function',  
-			memberof: doclet.mixes && doclet.mixes.length ? [doclet.longname].concat(doclet.mixes) : doclet.longname,
+			memberof: /*(doclet.mixes && doclet.mixes.length) ? 
+						[doclet.longname].concat(doclet.mixes) :  // ya no hace falta */
+						doclet.longname,
 			scope: 'instance'
 		});
-		this._genMethodList(doclet, doclet.methods);
+//		this._genMethodList(doclet, doclet.methods);
 
 		// class static members
 		doclet.staticMembers = this.publish.find({
 			kind: 'member', 
-			memberof: doclet.mixes && doclet.mixes.length ? [doclet.longname].concat(doclet.mixes) : doclet.longname,
+			memberof: /*(doclet.mixes && doclet.mixes.length) ? 
+						[doclet.longname].concat(doclet.mixes) : // ya no hace falta */
+						doclet.longname
+			,
 			scope: 'static'
 		});
-		this._genPropertyList(doclet, doclet.staticMembers);
+//		this._genPropertyList(doclet, doclet.staticMembers);
 
 		// class properties
 		doclet.members = this.publish.find({
 			kind: 'member',  
-			memberof: doclet.mixes && doclet.mixes.length ? [doclet.longname].concat(doclet.mixes) : doclet.longname,
+			memberof: /*(doclet.mixes && doclet.mixes.length) ? 
+						[doclet.longname].concat(doclet.mixes) :  // ya no hace falta */
+						doclet.longname,
 			scope: 'instance'
 		});
-		this._genPropertyList(doclet, doclet.members);
+//		this._genPropertyList(doclet, doclet.members);
 
 		// class events
 		doclet.events = this.publish.find({
@@ -229,17 +249,17 @@ exports.processFiles = {
 	_classExtends: function(doclet){
 		var me = this;
 		
-		me.log.dbg('** Check augments: ' + doclet.longname);
+		//me.log.dbg('** Check augments: ' + doclet.longname);
 		
 		if(doclet.augments && doclet.augments.length > 0) {
 
-			me.log.dbg('** Check augments: ' + doclet.longname + ' extends from ', doclet.augments);
+			//me.log.dbg('** Check augments: ' + doclet.longname + ' extends from ', doclet.augments);
 			
 			if(!doclet.methodList){
 				doclet.methodList = [];
 			}
-			me.log.dbg('** Check augments: ' + doclet.longname + ' methods ', doclet.methodList);
-			me.log.dbg('** Check augments: ' + doclet.longname + ' propertys ', doclet.propertyList);
+			//me.log.dbg('** Check augments: ' + doclet.longname + ' methods ', doclet.methodList);
+			//me.log.dbg('** Check augments: ' + doclet.longname + ' propertys ', doclet.propertyList);
 			
 			for(var i = 0; i < doclet.augments.length; i++){
 
@@ -272,11 +292,11 @@ exports.processFiles = {
 				// PUAJ!
 				me.logOut.write(doclet.name + ' + ' + method.name + ' from ' + method.memberof + '(' + parentClassName + ')\n');
 				
-				me.log.dbg('** Check methods augments: ' + doclet.longname + 
-					' check method: ' + parentClassName + '.'+ method.name);
+				//me.log.dbg('** Check methods augments: ' + doclet.longname + 
+				//	' check method: ' + parentClassName + '.'+ method.name);
 				if(doclet.methodList.indexOf(method.name) === -1){
 
-					me.log.dbg('** Agregando Method Borrow: ' + method.name + ' a ' + doclet.longname);
+					//me.log.dbg('** Agregando Method Borrow: ' + method.name + ' a ' + doclet.longname);
 
 					if(method.scope === 'static'){
 						doclet.staticMethods.push(method);
@@ -284,7 +304,7 @@ exports.processFiles = {
 						doclet.methods.push(method);
 					}
 				}else{
-					me.log.dbg('** Check augments: ' + doclet.longname + ' method: ' + method.name + ' overwrited');
+					//me.log.dbg('** Check augments: ' + doclet.longname + ' method: ' + method.name + ' overwrited');
 				}
 			}
 		});
@@ -316,11 +336,11 @@ exports.processFiles = {
 		;
 		
 		propertys.forEach(function(property){
-			me.log.dbg('** Check properties augments: ' + doclet.longname +
-				' check property: ' + parentClassName + '.'+ property.name);
+			//me.log.dbg('** Check properties augments: ' + doclet.longname +
+//				' check property: ' + parentClassName + '.'+ property.name);
 			if(doclet.propertyList.indexOf(property.name) === -1){
 
-				me.log.dbg('** Agregando Property Borrow: ' + property.name + ' a ' + doclet.longname);
+				//me.log.dbg('** Agregando Property Borrow: ' + property.name + ' a ' + doclet.longname);
 
 				if(property.scope === 'static'){
 					doclet.staticMembers.push(property);
@@ -328,7 +348,7 @@ exports.processFiles = {
 					doclet.members.push(property);
 				}
 			}else{
-				me.log.dbg('** Check augments: ' + doclet.longname + ' property: ' + property.name + ' overwrited');
+				//me.log.dbg('** Check augments: ' + doclet.longname + ' property: ' + property.name + ' overwrited');
 			}
 		});
 		
@@ -450,7 +470,16 @@ exports.processFiles = {
 				fkeys.push(k);
 			}
 		}
+		
+this.publish.log.dbg('#######################################################');
+this.publish.log.dbg('# File List');
+this.publish.log.dbg('#######################################################');
+this.publish.log.dbg('PRESORT: ');
+this.publish.log.dbg(fkeys);
 		fkeys.sort();
+this.publish.log.dbg('POSTSORT: ');
+this.publish.log.dbg(fkeys);
+this.publish.log.dbg('/######################################################');
 		for(var i = 0, n = fkeys.length; i < n; ++i) {
 			sortedFiles[ fkeys[i] ] = this.files[ fkeys[i] ];
 		}
@@ -465,7 +494,7 @@ exports.processFiles = {
 			);
       
 			// generate pages for each file
-			for(var i in this.files) {
+			for(i in this.files) {
 				if(this.files.hasOwnProperty(i)) {
 					this.publish.generate(
 						this.files[i].path + '/' + this.files[i].filename, 

@@ -16,6 +16,7 @@ var THEME = 'myCustom',
 	;
 	publish = function(data, opts) {
 		console.log('Init myPublisher');
+		
 		myPublisher.log.debugOn = true; // opts??
 				
 		myPublisher.publish(data, opts);

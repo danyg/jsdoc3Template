@@ -68,9 +68,13 @@ exports.myPublisher = {
 
 		this.processFiles = require('./processFiles').processFiles;
 		
-		this.parseTags = require('./parseTags').parseTags;
-		this.parseTags.init(this);
-		this.tag2Parse = this.parseTags.getProccessableTags();
+		this.processTags = require('./processTags').processTags;
+		this.processTags.init(this);
+		this.tag2Parse = this.processTags.getProccessableTags();
+		
+		this.processProperties = require('./processProperties').processProperties;
+		this.processProperties.init(this);
+		this.prop2Parse = this.processProperties.getProccessableProps();
 		
 		this.scopeToPunc = { 
 			'static': '.', 
@@ -171,8 +175,7 @@ exports.myPublisher = {
 			try{
 			me._processDoclet(doclet);
 			}catch(e){
-				
-				me.log._(e);
+				me.log.showError('Processing doclet: ' + doclet.longname, e);
 				return false;
 				
 			}
@@ -180,7 +183,8 @@ exports.myPublisher = {
 	},
 	
 	_processDoclet: function(doclet){
-		this._processDocletTags(doclet);
+		this.processDocletTags(doclet);
+		this.processDocletProperties(doclet);
 		
 		if(!this.helper.longnameToUrl[doclet.longname]){
 			var url = this.helper.createLink(doclet);
@@ -198,9 +202,9 @@ exports.myPublisher = {
 		}
 
 		try{
-			doclet = this.parseTags.onProccessDoclet(doclet);
+			doclet = this.processTags.onProccessDoclet(doclet);
 		}catch(e){
-			this.log.error('parseTag.onProccessDoclet con: ', doclet);
+			this.log.error('processTags.onProccessDoclet con: ', doclet.longname);
 		}
 
 		doclet.ancestors = this.generateAncestors(doclet);
@@ -209,7 +213,7 @@ exports.myPublisher = {
 		return doclet;
 	},
 	
-	_processDocletTags: function(doclet){
+	processDocletTags: function(doclet){
 		var me = this,
 			tagName, 
 			method, 
@@ -219,19 +223,46 @@ exports.myPublisher = {
 
 		// Itero la lista de tags a parsear y aplico el parseo 
 		// correspondiente
-		for(i = 0; i < this.tag2Parse.length; i++){
-			tagName = this.tag2Parse[i];
-			methodName = 'tag' + tagName.charAt(0).toUpperCase() + 
-							tagName.substr(1)
-			;
-			method = this.parseTags[methodName];
 
-			if(undefined !== doclet[tagName] && 
+		if(doclet.tags && doclet.tags.length > 0){
+			for(i = 0; i < doclet.tags.length; i++){
+				tagName = doclet.tags[i].title;
+				if(this.tag2Parse.indexOf( tagName ) !== -1){ // tagParseable
+					methodName = this.processTags.getTagMethodName(tagName);
+					method = this.processTags[methodName];
+
+					if(typeof(method) === 'function'){
+						doclet[tagName] = method.call(
+							this.processTags, 
+							doclet.tags[i], i, doclet
+						);
+					}
+				}
+			}
+		}
+	},
+	
+	processDocletProperties: function(doclet){
+		var me = this,
+			propName, 
+			method, 
+			methodName, 
+			i
+		;
+
+		// Itero la lista de props a parsear y aplico el parseo 
+		// correspondiente
+		for(i = 0; i < this.prop2Parse.length; i++){
+			propName = this.prop2Parse[i];
+			methodName = this.processProperties.getPropMethodName(propName);
+			method = this.processProperties[methodName];
+
+			if(undefined !== doclet[propName] && 
 				undefined !== method && 
 				typeof(method) === 'function'
 			){
-				doclet[tagName] = doclet[tagName].map(function(){
-					return method.apply(me.parseTags, arguments);
+				doclet[propName] = doclet[propName].map(function(){
+					return method.apply(me.processProperties, arguments);
 				});
 			}
 		}
@@ -249,7 +280,7 @@ exports.myPublisher = {
 						doclet.kind = 'interface';
 						var url = this.helper.createLink(doclet);
 						this.helper.registerLink(doclet.longname, url);
-						this.log.dbg('Creando link a interface: ', doclet.longname, url);
+//						this.log.dbg('Creando link a interface: ', doclet.longname, url);
 					}
 				}
 			}
@@ -363,6 +394,12 @@ exports.myPublisher = {
 					}
 				})
 			},
+			'file': {
+				once: true,
+				data: this.find({
+					kind: 'file'
+				})
+			},
 			'external': {
 				once: true,
 				data: this.find({
@@ -419,7 +456,7 @@ exports.myPublisher = {
 			}
 		};
 		
-		this.kinds = this.parseTags.onSetKinds(this.kinds);
+		this.kinds = this.processTags.onSetKinds(this.kinds);
 	},
 	
 	_buildSearchIndex: function(){
@@ -459,7 +496,7 @@ exports.myPublisher = {
 	},
 	
 	_generateOUTPUT: function(){
-		this.parseTags.afterProccessDoclets();
+		this.processTags.afterProccessDoclets();
 
 		this.generate('Index', [], 'index.html', 'index');		
 
@@ -790,36 +827,40 @@ exports.myPublisher = {
      * @returns {String} the rendered template
      */ 
 	render: function(templateName, partialData){
-		var me = this,
-			template
-		;
+		try{
+			var me = this,
+				template
+			;
 
-		partialData.log = this.log;
-		partialData.render = function(){
-			return me.render.apply(me, arguments);
-		};
-		partialData.find = function(){
-			return me.find.apply(me, arguments);
-		};
-		partialData.linkto = function(){
-			return me.linkto.apply(me, arguments);
-		};
-		partialData.htmlsafe = function(){
-			return me.htmlsafe.apply(me, arguments);
-		};
+			partialData.log = this.log;
+			partialData.render = function(){
+				return me.render.apply(me, arguments);
+			};
+			partialData.find = function(){
+				return me.find.apply(me, arguments);
+			};
+			partialData.linkto = function(){
+				return me.linkto.apply(me, arguments);
+			};
+			partialData.htmlsafe = function(){
+				return me.htmlsafe.apply(me, arguments);
+			};
 
-		templateName = templateName.replace('.tmpl', '');
+			templateName = templateName.replace('.tmpl', '');
 
-		if(this._templates[templateName]){
-			template = this._templates[templateName];
-		}else{
-			
-			template = this._templates[templateName] = this.template.render(
-				this.fs.readFileSync(this.getTemplatePath(templateName))
-			);
+			if(this._templates[templateName]){
+				template = this._templates[templateName];
+			}else{
+
+				template = this._templates[templateName] = this.template.render(
+					this.fs.readFileSync(this.getTemplatePath(templateName))
+				);
+			}
+
+			return template.call(partialData, partialData);
+		}catch(e){
+			this.log.showError('Rendering : ' + templateName, e);
 		}
-
-		return template.call(partialData, partialData);
 	},
 	
 	/**
@@ -929,6 +970,17 @@ exports.myPublisher = {
 		},
 		_: function(msg){
 			console.log.apply(console, arguments);
+			return this;
+		},
+		showError: function(msg, e){
+			this.error(msg);
+
+			if(e.rhinoException != null){
+				e.rhinoException.printStackTrace();
+			}
+			else if(e.javaException != null){
+				e.javaException.printStackTrace();
+			}
 			return this;
 		}
 	}

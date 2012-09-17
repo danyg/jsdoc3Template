@@ -1,7 +1,7 @@
-var parseTags = function(){
+var processTags = function(){
 }
 
-parseTags.prototype = {
+processTags.prototype = {
 	publish: null,
 	containers: null,
 	
@@ -49,31 +49,31 @@ parseTags.prototype = {
 		return tag2Parse;
 	},
 	
-	_getMethodName: function(tagName){
+	getTagMethodName: function(tagName){
 		tagName = tagName.toString().toLowerCase();
 		return 'tag' + tagName.charAt(0).toUpperCase() + 
 							tagName.substr(1);
 	},
 	
 	isProccessableTag: function(tagName){
-		var methodName = this._getMethodName(tagName);
+		var methodName = this.getTagMethodName(tagName);
 		return ('function' === typeof(this[methodName]));
 	},
 	
 	processTag: function(tagName, doclet){
 		if(this.isProccessableTag(tagName)){
-			var methodName = this._getMethodName(tagName);
+			var methodName = this.getTagMethodName(tagName);
 			this[methodName](doclet);
 		}
 	}
 };
 
-exports.parseTags = new parseTags();
-exports.parseTags.containers = ['interface']; //todo mixin o borrows
-exports.parseTags.implementations = {}; //todo mixin o borrows
-exports.parseTags.ifaceDoclets = {};
+exports.processTags = new processTags();
+exports.processTags.containers = ['interface']; //todo mixin o borrows
+exports.processTags.implementations = {}; //todo mixin o borrows
+exports.processTags.ifaceDoclets = {};
 
-exports.parseTags.onProccessDoclet = function(doclet){
+exports.processTags.onProccessDoclet = function(doclet){
 	// parse custom @implements tag to generate implements
 	// and fill implementations hash
 	if(doclet.kind === 'class' || doclet.kind === 'namespace') {
@@ -121,7 +121,7 @@ exports.parseTags.onProccessDoclet = function(doclet){
 	return doclet;
 };
 
-exports.parseTags.onSetKinds = function(kinds){
+exports.processTags.onSetKinds = function(kinds){
 	kinds['interface'] = {
 		once: true,
 		data: this.publish.find({
@@ -135,38 +135,57 @@ exports.parseTags.onSetKinds = function(kinds){
  * TAGS!
  */
 
-exports.parseTags.tagSee = function(item, i, doclet){
-	return this.publish.hashToLink(doclet, item);
-};
-exports.parseTags.tagExamples = function(example, i, doclet){
-	var caption = '', code = example;
-	if(example.match(/^\s*<caption>([\s\S]+?)<\/caption>(\s*[\n\r])([\s\S]+)$/i)) {
-		caption = RegExp.$1;
-		code    = RegExp.$3;
-	}
-	return {
-		caption: caption,
-		code: code
-	};
-};
-
-exports.parseTags.tagImplements = function(tag, i, doclet){
+exports.processTags.tagImplements = function(tag, i, doclet){
 	// parse custom @interface tag to generate custom interface-kind doclets
-		if(doclet.kind === 'member') {
-			if(doclet.tags && doclet.tags.length) {
-				for(var i = 0, n = doclet.tags.length; i < n; ++i) {
-					if(doclet.tags[i].title === 'interface') {
-						doclet.kind = 'interface';
-						var url = this.publish.helper.createLink(doclet);
-						this.publish.helper.registerLink(doclet.longname, url);
-//						this.log.dbg('Creando link a interface: ', doclet.longname, url);
-					}
-				}
+	var ifaceName = tag.value;
+
+	if(!this.ifaceNameDoclets[ifaceName]){
+		// if the interface is not parsed yet
+
+		var docletifaceName = this.publish.find({
+			longname: ifaceName,
+			kind: 'member'
+		});
+
+		if(docletifaceName.length > 0){
+			docletifaceName = docletifaceName[0];
+		}else{
+			docletifaceName = null;
+			if(!this.implementations[ifaceName]){
+				this.log.error('Interface not found: ', ifaceName);
 			}
 		}
+		if(docletifaceName){
+	//							this.log.debug('### INTERFACE : ', ifaceName, '###########')
+	//							this.log.debug(docletifaceName)
+	//							this.log.debug('### END:INTERFACE ###################')
+
+			this.publish.processDocletTags(docletifaceName);
+			
+		}
+	}
+
+	// add to doclet's implements array
+	doclet['implements'].push(ifaceName);
+
+	// add interface implementation to implementations hash
+	if(!this.implementations[ifaceName]) {
+		this.implementations[ifaceName] = [];
+	}
+	this.implementations[ifaceName].push(doclet);
 }
 
-exports.parseTags.tagExtends = function(tag, i, doclet){
+exports.processTags.tagInterface = function(tag, i, doclet){
+	// parse custom @interface tag to generate custom interface-kind doclets
+	var url = this.publish.helper.createLink(doclet),
+		ifaceName = doclet.longname
+	;
+	doclet.kind = 'interface';
+	this.publish.helper.registerLink(ifaceName, url);
+	this.ifaceDoclets[ifaceName] = doclet;
+}
+/*
+exports.processTags.tagExtends = function(tag, i, doclet){
 	var parent,
 		classes = this.publish.find({
 		longname: tag,
@@ -182,4 +201,21 @@ exports.parseTags.tagExtends = function(tag, i, doclet){
 	this.log.dbg('## !FOUND EXTENDS ##');
 
 	return doclet;
-}
+}*/
+
+exports.processTags.tagListen = function(item, i, doclet){
+	var r='';
+	if(undefined === doclet.listen){
+		doclet.listen = [];
+	}
+	doclet.listen.push( r = this.publish.hashToLink(doclet, item.value) );
+	
+	
+this.log.dbg('------- HEY HEY -------');
+this.log.dbg('Listen TAG Found on ' + doclet.longname);
+this.log.dbg('------ /HEY /HEY ------');
+	
+	
+	
+	return r;
+};

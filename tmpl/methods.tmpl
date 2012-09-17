@@ -45,19 +45,18 @@
       			print('<small>mixed from ' + linkto(method.borrower, method.borrower) + '</small>');
       		}
       	?>
+
+		<?js if(method.fires){
+			print('<br/><h4>Fires:</h4>');
+			print(render('fires.tmpl', method));
+		}?>
+
+		<?js if(method.listen){
+			print('<br/><h4>Listen:</h4>');
+			print(render('listen.tmpl', method));
+		}?>
       </td>
     </tr>
-	<?js if(undefined !== method.fires && method.fires.length > 0){
-	?>
-	<tr>
-		<td colspan="3">
-			Dispara los siguientes eventos:
-			<?js print(render('fires.tmpl',  method)); ?>
-		</td>
-	</tr>
-	<?js
-	}?>
-    
     <?js }); ?>
     
   </tbody>

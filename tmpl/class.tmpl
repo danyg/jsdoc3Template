@@ -156,10 +156,16 @@
     	<?js print(render('methods.tmpl', {methods: docs.events, parentName: docs.longname})); ?>
     <?js } ?>
   	
-  	
+<!--
+################################################################################
+## DETAILS
+################################################################################
+-->
+	
   	<!-- CLASS CONSTRUCTOR DETAILS -->
   	<h2>
-  		Constructor details
+  		<a name='constructor_details'></a>
+		Constructor details
   		<small><a href="#">Top</a></small>
 	  	<?js print(render('method.tmpl', docs)); ?>
   	</h2>
@@ -168,7 +174,8 @@
   	<!-- CLASS STATIC PROPERTIES & ENUMERATIONS DETAIL -->
     <?js if(docs.staticMembers  && docs.staticMembers.length) { ?>
     	<h2>
-	  		Static Properties & Enumerations Detail
+	  		<a name='static_properties_details'></a>
+			Static Properties & Enumerations Detail
 	  		<small><a href="#">Top</a></small>
 	  	</h2>
 	  	<?js docs.staticMembers.forEach(function(prop) {
@@ -180,7 +187,8 @@
   	<!-- CLASS STATIC METHODS DETAIL -->
     <?js if(docs.staticMethods  && docs.staticMethods.length) { ?>
     	<h2>
-	  		Static Methods Detail
+	  		<a name='static_methods_details'></a>
+			Static Methods Detail
 	  		<small><a href="#">Top</a></small>
 	  	</h2>
 	  	<?js docs.staticMethods.forEach(function(method) {
@@ -192,6 +200,7 @@
   	<!-- CLASS PROPERTIES DETAIL -->
     <?js if(docs.members  && docs.members.length) { ?>
     	<h2>
+			<a name='properties_details'></a>
 	  		Properties Detail
 	  		<small><a href="#">Top</a></small>
 	  	</h2>
@@ -204,7 +213,8 @@
   	<!-- CLASS METHODS DETAIL -->
     <?js if(docs.methods  && docs.methods.length) { ?>
     	<h2>
-	  		Methods Detail
+	  		<a name='methods_details'></a>
+			Methods Detail
 	  		<small><a href="#">Top</a></small>
 	  	</h2>
 	  	<?js docs.methods.forEach(function(method) {
@@ -216,7 +226,8 @@
   	<!-- CLASS EVENTS DETAIL -->
     <?js if(docs.events  && docs.events.length) { ?>
     	<h2>
-	  		Events Detail
+			<a name='events_details'></a>
+			Events Detail
 	  		<small><a href="#">Top</a></small>
 	  	</h2>
 	  	<?js docs.events.forEach(function(method) {

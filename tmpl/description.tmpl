@@ -11,7 +11,9 @@
 	   this.since || 
 		 this.todo && this.todo.length ||
 		 this.summary || 
-	   this.version
+	   this.version || 
+	   this.fires || 
+	   this.listen
 		) {
 		
   	print('<div class="description ' + (this.inherited ? 'inherited' : '') + '">'); 
@@ -62,6 +64,16 @@
     	print('<p><strong>Deprecated</strong>' + this.deprecated + '</p>'); 
     }
     
+    if(this.listen) {
+    	print('<h4>Listen</h4>');
+		print(render('listen.tmpl', this));
+    }
+    
+	if(this.fires) {
+    	print('<h4>Fires</h4>');
+		print(render('fires.tmpl', this));
+    }
+
     if(this.author && this.author.length) {
     	this.author.forEach(function(a) {
 	    	print('<p>Author: ' + a + '</p>');
