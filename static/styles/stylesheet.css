@@ -72,7 +72,7 @@ div.header ul li a { color:#000; text-transform:uppercase; }
 #footer { margin:30px; text-align:right; font-size:80%; }
 .fineprint { color:#999; font-size:85%; }
 .content { padding: 10px 30px; position: absolute; bottom: 14px; overflow: auto;}
-
+.content table{width: 100%;}
 /* class */
 div.type { color:#aaa; margin:10px 0 0; }
 div.location { font-size:85%; float:right; }

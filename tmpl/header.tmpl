@@ -24,15 +24,24 @@ $(document).ready(function(){
 	
 	function resize(){
 		var availableHeight = $(window).height() - (header.outerHeight() + footer.outerHeight()),
+			availableWidth = $(window).width(),
 			contentOffsetH = mtn(content.css('borderTopWidth')) + 
 				mtn(content.css('marginTop')) +
 				mtn(content.css('paddingTop')) +
 				
 				mtn(content.css('paddingBottom')) +
 				mtn(content.css('marginBottom')) +
-				mtn(content.css('borderBottomWidth'))
+				mtn(content.css('borderBottomWidth')),
+			contentOffsetW = mtn(content.css('borderLeftWidth')) + 
+				mtn(content.css('marginLeft')) +
+				mtn(content.css('paddingLeft')) +
+				
+				mtn(content.css('paddingRight')) +
+				mtn(content.css('marginRight')) +
+				mtn(content.css('borderRightWidth'))
 		;
 		content.height(availableHeight - contentOffsetH);
+		content.width(availableWidth - contentOffsetW);
 	}
 	resize();
 	$(window).resize(resize);
