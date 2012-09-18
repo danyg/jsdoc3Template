@@ -1,3 +1,44 @@
+<script type="text/javascript" src="js/jQuery.172.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var header = $('.header'),
+		content = $('.content')
+		footer = $('footer')
+	;
+
+	function mtn(str){
+		if(
+			'' === str
+			|| undefined === str
+			|| null === str
+		){
+			return 0;
+		}else{
+			var a = parseInt(str.replace(/px|ex|em/, ''), 10);
+			if(isNaN(a)){
+				a = 0;
+			}
+			return a;
+		}
+	}
+	
+	function resize(){
+		var availableHeight = $(window).height() - (header.outerHeight() + footer.outerHeight()),
+			contentOffsetH = mtn(content.css('borderTopWidth')) + 
+				mtn(content.css('marginTop')) +
+				mtn(content.css('paddingTop')) +
+				
+				mtn(content.css('paddingBottom')) +
+				mtn(content.css('marginBottom')) +
+				mtn(content.css('borderBottomWidth'))
+		;
+		content.height(availableHeight - contentOffsetH);
+	}
+	resize();
+	$(window).resize(resize);
+});
+</script>
+
 <ul>
 	<?js if(this.info['class']) { ?>
 	<li><a href="class_index.html">Classes</a></li>

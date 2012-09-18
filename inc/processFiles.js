@@ -476,16 +476,7 @@ exports.processFiles = {
 				fkeys.push(k);
 			}
 		}
-		
-this.publish.log.dbg('#######################################################');
-this.publish.log.dbg('# File List');
-this.publish.log.dbg('#######################################################');
-this.publish.log.dbg('PRESORT: ');
-this.publish.log.dbg(fkeys);
 		fkeys.sort();
-this.publish.log.dbg('POSTSORT: ');
-this.publish.log.dbg(fkeys);
-this.publish.log.dbg('/######################################################');
 		for(var i = 0, n = fkeys.length; i < n; ++i) {
 			sortedFiles[ fkeys[i] ] = this.files[ fkeys[i] ];
 		}
