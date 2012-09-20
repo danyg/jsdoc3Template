@@ -451,7 +451,7 @@ Searchdoc.Panel.prototype = $.extend({}, Searchdoc.Navigation, new function() {
         if (typeof badge != 'undefined') {
             html += '<span class="badge badge_' + (badge % 6 + 1) + '">' + escapeHTML(this.data.badges[badge] || 'unknown') + '</span>';
         }
-        html += hlt(result.namespace) + '</p>';
+        html += hlt(result.namespace || '') + '</p>';
         if (result.snippet) html += '<p class="snippet">' + escapeHTML(result.snippet) + '</p>';
         li.innerHTML = html;
         jQuery.data(li, 'path', result.path);

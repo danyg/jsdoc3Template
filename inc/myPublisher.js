@@ -1,3 +1,6 @@
+var THEME = 'myCustom',
+	MY_PATH = 'templates/myCustom/'
+;
 exports.myPublisher = {
 	debugOn: true,
 	data: null,

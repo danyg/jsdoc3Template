@@ -208,7 +208,25 @@ exports.processTags.tagListen = function(item, i, doclet){
 	if(undefined === doclet.listen){
 		doclet.listen = [];
 	}
-	doclet.listen.push( r = this.publish.hashToLink(doclet, item.value) );
+	
+	var pos = item.value.lastIndexOf('.');
+	if(pos === -1){
+		item.value = 'event:' + item.value;
+	}else{
+		var eventName = item.value.substring(pos+1);
+		item.value = item.value.substring(0, pos) + '#event:' + eventName;
+		
+		try{
+			var eventDoclet = this.publish.find({
+				longname: item.value,
+				kind: 'event'
+			})[0];
+		}catch(e){}
+	}
+	
+	item.value
+	
+	doclet.listen.push( r = this.publish.hashToLink(eventDoclet, item.value) );
 
 	return doclet.listen;
 };
