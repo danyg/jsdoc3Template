@@ -133,7 +133,9 @@ function sh_highlightString(inputString, language) {
   var endOfLinePattern = /\r\n|\r|\n/g;
   endOfLinePattern.lastIndex = 0;
   var inputStringLength = inputString.length;
+  var linenum = 0;
   while (pos < inputStringLength) {
+    linenum++;
     var start = pos;
     var end;
     var startOfNextLine;
@@ -247,7 +249,7 @@ function sh_highlightString(inputString, language) {
     pos = startOfNextLine;
   }
 
-  return tags;
+  return [tags, linenum];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -445,6 +447,49 @@ function sh_insertTags(tags, text) {
 }
 
 /**
+* Add linenumbers
+*
+* @param element, the pre element including the highlighted code
+* @param lines, the number of code lines (calculated in sh_highlightString())
+* @see sh_highlightString
+*/
+function sh_lineNumbers(element, lines) {
+  //Parent wrapper
+  var 
+    wrapperDiv = document.createElement('div'), 
+    innerWrapper = document.createElement('div');
+  
+  wrapperDiv.setAttribute('class','sh_wrapper');
+  innerWrapper.setAttribute('class','sh_inner');
+  
+  //create line number element
+  var lineNumbers = document.createElement('pre');
+  lineNumbers.setAttribute('class','sh_linenum');
+  
+  //add line numbers
+  var html = '';
+  for(var i = 1; i <= lines; i++) {
+  html = html + ('<span id="lineno'+i+'">'+i+"</span>\n");
+  }
+  lineNumbers.innerHTML = html;
+  
+  //Append to wrapper span
+  wrapperDiv.appendChild(innerWrapper);
+  
+  //replace element with the new table code structure
+  element.parentNode.replaceChild(wrapperDiv, element);
+  
+  //wrap each element appropriately
+  innerWrapper.appendChild(lineNumbers);
+  innerWrapper.appendChild(element);
+  
+  //Making both column of table of same height
+  lineNumbers.style.paddingBottom=  0;
+  var diff = element.offsetHeight - lineNumbers.clientHeight;
+  lineNumbers.style.paddingBottom = (diff) + 'px';
+}
+
+/**
 Highlights an element containing source code.  Upon completion of this function,
 the element will have been placed in the "sh_sourceCode" class.
 @param  element  a DOM <pre> element containing the source code to be highlighted
@@ -454,13 +499,16 @@ function sh_highlightElement(element, language) {
   sh_addClass(element, 'sh_sourceCode');
   var originalTags = [];
   var inputString = sh_extractTags(element, originalTags);
-  var highlightTags = sh_highlightString(inputString, language);
+  var highlightResult = sh_highlightString(inputString, language);
+  var highlightTags = highlightResult[0];
   var tags = sh_mergeTags(originalTags, highlightTags);
   var documentFragment = sh_insertTags(tags, inputString);
   while (element.hasChildNodes()) {
     element.removeChild(element.firstChild);
   }
   element.appendChild(documentFragment);
+
+  sh_lineNumbers(element, highlightResult[1]);
 }
 
 function sh_getXMLHttpRequest() {
@@ -512,7 +560,7 @@ identifies the element as containing "java" language source code.
 */
 function sh_highlightDocument(prefix, suffix) {
   var nodeList = document.getElementsByTagName('pre');
-  for (var i = 0; i < nodeList.length; i++) {
+  for (var i = 0, n = nodeList.length; i < n; i++) {
     var element = nodeList.item(i);
     var htmlClasses = sh_getClasses(element);
     for (var j = 0; j < htmlClasses.length; j++) {
