@@ -45,11 +45,15 @@
     
     if(this.examples && this.examples.length) {
     	this.examples.forEach(function(e) {
-	    	if(e.caption) {
-          print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
-        }
-        print('<pre class="example sh_javascript">' + e.code + '</pre>');
-	    }); 
+			if(typeof(e) === 'string'){
+				print('<pre class="example sh_javascript">' + e + '</pre>');
+			}else{
+				if(e.caption) {
+					print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
+				}
+				print('<pre class="example sh_javascript">' + e.code + '</pre>');
+			}
+		}); 
     }
     
     if(this.version) {

@@ -183,6 +183,20 @@ exports.myPublisher = {
 	},
 	
 	_processDoclet: function(doclet){
+		// si es una funcion y no tiene definido un return, se asume que 
+		// devuelve void
+		
+		if(doclet.kind === 'function' && !doclet.returns){
+			doclet.returns = [{
+				type: {
+					names: ['void'],
+					optional: [],
+					nullable: [],
+					variable: []
+				}
+			}];
+		}
+
 		this.processDocletTags(doclet);
 		this.processDocletProperties(doclet);
 		

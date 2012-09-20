@@ -103,6 +103,26 @@
 
 			<!-- CLASS REQUIRES -->
 
+			<!-- NAMESPACE SUB-NAMESPACES -->
+			<?js if(docs.namespaces && docs.namespaces.length) { ?>
+			<h2>
+				<a name="namespaces"></a>
+				Namespaces
+				<small><a href="#">Top</a></small>
+			</h2>
+			<table>
+				<tbody>
+					<?js docs.namespaces.forEach(function(n) { ?>
+					<tr>
+						<td>
+							<?js print(linkto(n.longname, n.name)); ?>
+						</td>
+						<td><?js print(n.summary || n.description || ''); ?></td>
+					</tr>
+					<?js }); ?>
+				</tbody>
+			</table>
+			<?js } ?>			
 
 			<!-- CLASS CONSTANTS SUMMARY -->
 			<?js if(docs.constants && docs.constants.length) { ?>
