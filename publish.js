@@ -18,7 +18,6 @@ var THEME = 'myCustom',
 		console.log('Init myPublisher');
 		
 		myPublisher.log.debugOn = true; // opts??
-				
 		myPublisher.publish(data, opts);
 	};
 }());

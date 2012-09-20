@@ -1,5 +1,10 @@
 exports.myPublisher = {
 	debugOn: true,
+	data: null,
+	opts: null,
+	info: null,
+	_templates: null,
+	
 	
 	publish: function(data, opts){
 		this._initVars(data, opts);
@@ -57,6 +62,9 @@ exports.myPublisher = {
 		this.info = {};
 		this._templates = {};
 		this.linktoNotFound = {};
+		
+		this.outdir = env.opts.destination;
+		this.dirname = env.dirname;
 		
 		this._ = require(MY_PATH + 'lib/underscore/underscore.js');
 		this.template = require(MY_PATH + 'lib/underscore/template.js');
@@ -359,7 +367,7 @@ exports.myPublisher = {
 	},
 	
 	_copyStatic: function(){
-		var fromDir = __dirname + '/templates/' + THEME + '/static',
+		var fromDir = env.dirname + '/templates/' + THEME + '/static',
 			staticFiles = this.fs.ls(fromDir, 3),
 			me = this
 		;
@@ -367,7 +375,7 @@ exports.myPublisher = {
 		staticFiles.forEach(function(fileName) {
 			var toDir = me.fs.toDir(fileName.replace(fromDir, me.outdir));
 			me.fs.mkPath(toDir);
-			me.fs.copyFile(fileName, toDir);
+			me.fs.copyFileSync(fileName, toDir);
 		});
 	},
 	
@@ -953,7 +961,7 @@ exports.myPublisher = {
 	},
 	
 	getTemplatePath: function(templateName){
-		return __dirname + '/templates/' + THEME + '/tmpl/' + 
+		return env.dirname + '/templates/' + THEME + '/tmpl/' + 
 					templateName + '.tmpl';
 	},
 

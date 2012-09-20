@@ -498,7 +498,7 @@ exports.processFiles = {
 						{ 
 							info: this.publish.info,
 							code: this.publish.fs.readFileSync(
-								__dirname + '/' + this.files[i].path +
+								env.dirname + '/' + this.files[i].path +
 								'/' + this.files[i].filename) 
 						}, 
 						this.files[i].filename.split('/').pop() + '.html', 
