@@ -6,10 +6,13 @@ exports.processFiles = {
 			refile = false;
 		}
 		
+		f = env.dirname + '/' + f;
+		
 		var methodsLog = new Packages.java.io.File(f);
 
 		if(!methodsLog.canWrite()){
 			if(!methodsLog.exists()){
+				console.log( f );
 				methodsLog.createNewFile();
 			}else{
 				// fuck, no puedo escribir!

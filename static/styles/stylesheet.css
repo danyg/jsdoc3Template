@@ -52,6 +52,27 @@ h3 { font-size:110%; }
 h4 { font-weight:bold; }
 h2 small { font-size:11px; font-weight:normal; float:right; line-height:19px; padding:0 8px; }
 
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
 header{
 	width: 100%;
 	position: fixed;
@@ -101,14 +122,14 @@ pre, .example { background-color:transparent; font-family:Menlo,Monaco,"Courier 
 .example .sh_difflines,
 .example .sh_keyword,
 .example .sh_property,
-.example .sh_selector { color:#7F0055; font-weight:bold; }
+.example .sh_selector { color:#7F0055; }
 .example .sh_number { color:#000; }
 .example .sh_preproc { color:#3f5fbf; }
 .example .sh_regexp,
 .example .sh_specialchar,
 .example .sh_string { color:#2A00FF /*#0000ff*/; }
 .example .sh_symbol { color:#000; }
-.example .sh_type { color:#8F9FC0 /*#7f0055*/; font-weight:bold; }
+.example .sh_type { color:#8F9FC0 /*#7f0055*/;}
 .example .sh_ip,
 .example .sh_name,
 .example .sh_newfile,
@@ -118,7 +139,7 @@ pre, .example { background-color:transparent; font-family:Menlo,Monaco,"Courier 
 .example .sh_variable,
 .example .sh_date,
 .example .sh_time,
-.example .sh_file { color:#8F9FC0 /*#7f0055*/; font-weight:bold; }
+.example .sh_file { color:#8F9FC0 /*#7f0055*/; }
 
 /* footer */
 footer{
@@ -164,4 +185,25 @@ footer{
 
 .anchor_list h2{
 	margin-top: 0;
+}
+
+.sh_linenum,
+.sh_javascript{
+	font: normal 15px/18px Consolas, Nitti;
+	float: left;
+	display: inline;
+	margin: 0 !important;
+	padding: 20px 0px !important;
+}
+
+.sh_wrapper .sh_javascript{padding-left: 10px !important; text-align: left;}
+.sh_linenum{padding-right: 5px !important; text-align: right; border: solid 1px skyblue; border-width: 0px 1px 0px 0px; background: #EDF3FE; }
+
+.sh_wrapper{text-align: center; margin-top: 10px;}
+
+.sh_inner{
+	border: solid 1px #ececec;
+	background: white;
+	box-shadow: 7px 7px 10px #888;
+	margin: 0 auto;
 }

@@ -460,7 +460,7 @@ function sh_lineNumbers(element, lines) {
     innerWrapper = document.createElement('div');
   
   wrapperDiv.setAttribute('class','sh_wrapper');
-  innerWrapper.setAttribute('class','sh_inner');
+  innerWrapper.setAttribute('class','sh_inner clearfix');
   
   //create line number element
   var lineNumbers = document.createElement('pre');

@@ -2,7 +2,7 @@
   
   <div class="location">
   <?js if(this.meta && this.meta.filename && this.meta.lineno) { ?>
-  	<a href="<?js= this.meta.filename ?>.html"><?js= this.meta.filename ?></a> at line <?js= this.meta.lineno ?>
+  	<a href="<?js= this.meta.filename ?>.html#lineno<?js print(this.meta.lineno); ?>"><?js= this.meta.filename ?></a> at line <?js= this.meta.lineno ?>
   <?js } ?>
   </div>
 	
