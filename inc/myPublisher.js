@@ -197,7 +197,7 @@ exports.myPublisher = {
 		// si es una funcion y no tiene definido un return, se asume que 
 		// devuelve void
 		
-		if(doclet.kind === 'function' && !doclet.returns){
+		if((doclet.kind === 'function' || doclet.kind === 'event') && !doclet.returns){
 			doclet.returns = [{
 				type: {
 					names: ['void'],
@@ -431,30 +431,6 @@ exports.myPublisher = {
 					kind: 'external'
 				})
 			},
-			'module': {
-				once: true,
-				data: this.find({
-					kind: 'module'
-				})
-			},
-			'namespace': {
-				once: true,
-				data: this.find({
-					kind: 'namespace'
-				})
-			},
-			'class': {
-				once: true,
-				data: this.find({
-					kind: 'class'
-				})
-			},
-			'mixin': {
-				once: true,
-				data: this.find({
-					kind: 'mixin'
-				})
-			},
 			'constant': {
 				once: false,
 				data: this.find({
@@ -466,21 +442,55 @@ exports.myPublisher = {
 				data: this.find({
 					kind: 'function'
 				})
-			},
+			},/*
 			'member': {
 				once: false,
 				data: this.find({
 					kind: 'member'
 				})
-			},
+			},*/
 			'event': {
 				once: false,
 				data: this.find({
 					kind: 'event'
 				})
+			},
+			'mixin': {
+				once: true,
+				data: this.find({
+					kind: 'mixin'
+				})
+			},
+			'class': {
+				once: true,
+				data: this.find({
+					kind: 'class'
+				})
+			},
+			'namespace': {
+				once: true,
+				data: this.find({
+					kind: 'namespace'
+				})
+			},
+			'module': {
+				once: true,
+				data: this.find({
+					kind: 'module'
+				})
 			}
 		};
-		
+
+		for(var name in this.kinds){
+			if(this.kinds.hasOwnProperty(name)){
+				if(this.kinds[name].data.length > 0){
+					this.info[name] = true; // Para el menu superior
+				}else{
+					this.info[name] = false; // Para el menu superior
+				}
+			}
+		}
+
 		this.kinds = this.processTags.onSetKinds(this.kinds);
 	},
 	
@@ -541,23 +551,37 @@ exports.myPublisher = {
 		for(var kindName in this.kinds){
 			if(this.kinds.hasOwnProperty(kindName)){
 				if(this.kinds[kindName].data.length) {
-					this.log.dbg('generate ' + kindName + 'index');
+					var title = kindName.charAt(0).toUpperCase() + kindName.substring(1);
+					this.log.dbg('Generating ' + title + ' index');
 					
-					if(this._templateExists(kindName + '_index')){
-						this.generate(
-							kindName, 
-							this.kinds[kindName].data, 
-							kindName + '_index.html', 
-							kindName + '_index'
-						);
-					}else{
-						this.generate(
-							kindName, 
-							this.kinds[kindName].data, 
-							kindName + '_index.html', 
-							'kind_default_index'
-						);
+					try{
+						if(this._templateExists(kindName + '_index')){
+							this.generate(
+								title, 
+								this.kinds[kindName].data.sort(this.sortMethods.sortByName), 
+								kindName + '_index.html', 
+								kindName + '_index'
+							);
+						}else{
+							var title = kindName.charAt(0).toUpperCase() + kindName.substring(1);
+							var outputFile = kindName + '_index.html';
+							if(kindName === 'global'){
+								outputFile = 'global.html';
+							}
+							this.generate(
+								title, 
+								this.kinds[kindName].data.sort(this.sortMethods.sortByName), 
+								outputFile, 
+								'kind_default_index'
+							);
+
+							this.info[kindName] = true;
+						}
+					}catch(e){
+						this.log.showError('Error Generating ' + title + ' index', e);
 					}
+					
+					this.log.dbg('	DONE!');
 				}
 			}
 		}
@@ -575,6 +599,43 @@ exports.myPublisher = {
 		this._generateDocIndex();
 		
 		this.processFiles._generateSRCFilesPages();
+	},
+
+	sortMethods: {
+		
+		sortByName: function(oA, oB){
+			if(oA.name > oB.name){
+				return 1;
+			}else if(oA.name < oB.name){
+				return -1;
+			}else{
+				return 0;
+			}
+		},
+		sortByLongname: function(oA, oB){
+			if(oA.longname > oB.longname){
+				return 1;
+			}else if(oA.longname < oB.longname){
+				return -1;
+			}else{
+				return 0;
+			}
+		},
+		sortByMemberOfAndName: function(oA, oB){
+			if(oA.memberof > oB.memberof){
+				return 1;
+			}else if(oA.memberof < oB.memberof){
+				return -1;
+			}else{
+				if(oA.name > oB.name){
+					return 1;
+				}else if(oA.name < oB.name){
+					return -1;
+				}else{
+					return 0;
+				}
+			}
+		}		
 	},
 	
 	_generateDocIndex: function(){
@@ -903,7 +964,7 @@ exports.myPublisher = {
 				log: this.log,
 				title: title,
 				docs: docs,
-				tmp: 'me cago en la puta',
+				tmp: 'oops!',
 				info: this.info,
 				// helpers
 				render: function(){return me.render.apply(me, arguments);},

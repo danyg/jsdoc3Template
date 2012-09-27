@@ -1,0 +1,90 @@
+<h3 id="<?js= this.id ?>"  class="<?js print((this.access ? this.access : 'public') + (this.inherited ? ' inherited' : '') + (this.borrowed ? ' borrowed' : '') + (this.mixed ? ' mixed' : '')); ?>">
+	<div class="signature">
+		<?js if(this.kind !== 'class') { ?>
+	  <span class="virtual">
+	    <?js print(this.virtual ? 'abstract' : ''); ?>
+	  </span>
+	  
+	  <span class="scope">
+	    <?js print(this.scope === 'static' ? 'static' : ''); ?>
+	  </span>
+	  
+	  <span class="accesslevel">
+	    <?js print(this.access ? this.access : 'public'); ?>
+	  </span>
+	  
+    <span class="returnvalues">
+      <?js print(render('returns.tmpl', this)); ?>
+    </span>
+	  <?js } ?>
+  
+		<strong><?js= this.name ?></strong>
+		
+    <span class="params">
+      <?js print(render('signature.tmpl', this)); ?>
+    </span>
+	</div>
+</h3>
+
+<?js /* print(render(this.kind === 'class' ? 'constructor_description.tmpl' : 'description.tmpl', this)); */ ?>
+<?js print(render('description.tmpl', this)); ?>
+
+<div class="details <?js if(this.inherited) { print('inherited'); } ?>">
+	<div class="tags">
+	
+    <!-- PARAMS -->
+    <?js if(this.params && this.params.length) { ?>
+    <h4>Parameters</h4>
+    <?js print(render('params.tmpl', this.params)); ?>
+    <?js } ?>
+
+    <!-- RETURN VALUE -->
+    <?js if(this.returns && this.returns.length) { ?>
+    <h4>Return Value</h4>
+    <?js print(render('params.tmpl', this.returns)); ?>
+    <?js } ?>
+
+    <!-- EXCEPTIONS -->
+    <?js if(this.exceptions && this.exceptions.length) { ?>
+    <h4>Throws</h4>
+    <?js print(render('params.tmpl', this.exceptions)); ?>
+    <?js } ?>
+
+    <!-- TRIGGERED BY -->
+    <?js if(this.triggeredBy && this.triggeredBy.length) { ?>
+	<div class="TriggeredBy BoxData">
+		<h4>Triggered by</h4>
+		<?js 
+			print(
+				render(
+					'methods.tmpl', {
+						methods: this.triggeredBy, 
+						showParent: true,
+						showFires: false
+					}
+				)
+			); 
+		?>
+	</div>
+    <?js } ?>
+
+    <!-- LISTENED BY -->
+    <?js if(this.listenedBy && this.listenedBy.length) { ?>
+	<div class="ListenedBy BoxData">
+		<h4>Listened by</h4>
+		<?js 
+			print(
+				render(
+					'methods.tmpl', {
+						methods: this.listenedBy, 
+						showParent: true,
+						showListen: false
+					}
+				)
+			); 
+		?>
+	</div>
+    <?js } ?>
+    
+	</div>
+</div>

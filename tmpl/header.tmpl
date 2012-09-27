@@ -67,8 +67,17 @@ $(document).ready(function(){
 	<?js if(this.info['external']) { ?>
 	<li><a href="external_index.html">Externals</a></li>
 	<?js } ?>
+	<?js if(this.info['event']) { ?>
+	<li><a href="event_index.html">Events</a></li>
+	<?js } ?>
+	<?js if(this.info['event']) { ?>
+	<li><a href="constant_index.html">Constants</a></li>
+	<?js } ?>
+	<?js if(this.info['function']) { ?>
+	<li><a href="function_index.html">Methods/Functions</a></li>
+	<?js } ?>
 	<?js if(this.info['global']) { ?>
-	<li><a href="global_index.html">Globals</a></li>
+	<li><a href="global.html">Globals</a></li>
 	<?js } ?>
 	<li><a href="file_index.html">Files</a></li>
 	<li><a href="doc-index.html">Index</a></li>

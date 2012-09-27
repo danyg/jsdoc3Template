@@ -2,7 +2,21 @@
   <tbody>
   
     <?js 
-		PARENTNAME = this.parentName;
+		var Options = {
+			showParent: false,
+			showListen: true,
+			showFires: true
+		};
+		if(typeof(this.showParent) !== 'undefined'){
+			Options.showParent = this.showParent ? true : false;
+		}
+		if(typeof(this.showListen) !== 'undefined'){
+			Options.showListen = this.showListen ? true : false;
+		}
+		if(typeof(this.showFires) !== 'undefined'){
+			Options.showFires = this.showFires ? true : false;
+		}
+
 		this.methods.forEach(function(method) { ?>
 
     <tr  class="<?js print((method.access ? method.access : 'public') + (method.inherited ? ' inherited' : '') + (method.borrowed ? ' borrowed' : '') + (method.mixed ? ' mixed' : '')); ?>">
@@ -13,11 +27,20 @@
       </td>
       
       <td class="last">
-        <a href="#<?js= method.id ?>">
-        	<abbr title="<?js= method.longname ?>">
-        		<?js= method.name ?>
-        	</abbr>
-        </a>
+		<?js if(Options.showParent){?>
+			<abbr title="<?js= method.longname ?>">
+				<?js if(Options.showParent && method.memberof){
+					print(linkto(method.memberof, method.memberof) + '.');
+				}?>
+				<strong><?js= linkto(method.longname, method.name) ?></strong>
+			</abbr>
+		<?js }else{ ?>
+			<a href="#<?js= method.id ?>">
+				<abbr title="<?js= method.longname ?>">
+					<?js= method.name ?>
+				</abbr>
+			</a>
+		<?js } ?>
         
       	<span>
       		<?js print(render('signature.tmpl', method)); ?>
@@ -27,12 +50,12 @@
         	<p><?js= method.summary ?></p>
         <?js } ?>
 		
-		<?js if(method.fires){
+		<?js if(Options.showFires && method.fires){
 			print('<br/><h4>Fires:</h4>');
 			print(render('fires.tmpl', method));
 		}?>
 
-		<?js if(method.listen){
+		<?js if(Options.showListen && method.listen){
 			print('<br/><h4>Listen:</h4>');
 			print(render('listen.tmpl', method));
 		}?>
@@ -40,19 +63,17 @@
       
       <td>
       	<?js
-			if(method.memberof != PARENTNAME){
-				print('<small>inherited from ' + linkto(method.memberof, method.memberof) + '</small>');
-			}
-		
-      		if(method.inherited) { 
-      			var parent = method.inherits.split('#')[0];
-      			print('<small>inherited from ' + linkto(parent, parent) + '</small>');
-      			
-      		} else if(method.borrowed && method.borrower) {
-      			print('<small>borrowed from ' + linkto(method.borrower, method.borrower) + '</small>');
-      			
-      		} else if(method.mixed && method.borrower) {
-      			print('<small>mixed from ' + linkto(method.borrower, method.borrower) + '</small>');
+			if(!Options.showParent){
+				if(method.inherited) { 
+					var parent = method.inherits.split('#')[0];
+					print('<small>inherited from ' + linkto(parent, parent) + '</small>');
+
+				} else if(method.borrowed && method.borrower) {
+					print('<small>borrowed from ' + linkto(method.borrower, method.borrower) + '</small>');
+
+				} else if(method.mixed && method.borrower) {
+					print('<small>mixed from ' + linkto(method.borrower, method.borrower) + '</small>');
+				}
       		}
       	?>
       </td>

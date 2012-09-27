@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
-		<title>jWire API</title>
+		<title><?js print(info['package'] ? info['package'].name + ' Documentation' : 'Documentation');?></title>
 	</head>
 	<body id="overview">
 
@@ -16,14 +16,29 @@
 		<div class="content">
 			<table>
 				<tbody>
-					<?js docs.forEach(function(doc) { ?>
+					<?js 
+					
+					var me = this;
+					
+					docs.forEach(function(doc) { try{ ?>
 					<tr>
 						<td>
-							<?js= linkto(doc.longname, doc.longname) ?>
+							<abbr title="<?js= doc.longname ?>">
+								<?js if(doc.memberof){
+									print(linkto(doc.memberof, doc.memberof) + '.');
+								}?>
+								<strong><?js= linkto(doc.longname, doc.name) ?></strong>
+							</abbr>
 						</td>
-						<td><?js= doc.summary ?></td>
+						<td><?js print(doc.summary ? doc.summary : (doc.description ? doc.description : '' ) );?></td>
+						<td width="15%"><div class="location">
+<?js if(doc.meta && doc.meta.filename && doc.meta.lineno) { ?>
+  	<a href="<?js= doc.meta.filename ?>.html#lineno<?js print(doc.meta.lineno); ?>"><?js= doc.meta.filename ?>:<?js= doc.meta.lineno ?></a>
+<?js } ?>
+							</div> 
+						</td>
 					</tr>
-					<?js }); ?>
+					<?js  }catch(e){ me.log.showError('Boom ON ' +doc.longname, e); } }); ?>
 				</tbody>
 			</table>
 		</div>

@@ -10,24 +10,16 @@
 			<div class="header">
 				<?js print(render('header.tmpl', this)); ?>
 
-				<h1>Modules</h1>
+				<h1>Events, Messages, Signals</h1>
 			</div>
 		</header>
 
 		<div class="content">
-			<table>
-				<tbody>
-					<?js docs.forEach(function(doc) { ?>
-					<tr>
-						<td>
-							<?js= linkto(doc.longname, doc.name) ?>
-						</td>
-						<td><?js= doc.description ?></td>
-					</tr>
-					<?js }); ?>
-
-				</tbody>
-			</table>
+			<h2>
+				<a name='events'></a>
+				Summary
+			</h2>
+			<?js print(render('events.tmpl', {events: docs, showParent:true})); ?>
 		</div>
 
 		<?js print(render('footer.tmpl', this)); ?>

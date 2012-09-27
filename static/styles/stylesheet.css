@@ -207,3 +207,10 @@ footer{
 	box-shadow: 7px 7px 10px #888;
 	margin: 0 auto;
 }
+
+.BoxData{
+	border: solid 1px #ccc;
+	margin: 10px 0px;
+}
+
+.BoxData h4{margin:0;padding: 5px; background:#EDF3FE;}

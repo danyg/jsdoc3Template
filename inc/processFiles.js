@@ -46,9 +46,11 @@ exports.processFiles = {
 		for(var i in this.publish.kinds){
 			if(this.publish.kinds.hasOwnProperty(i)) {
 				if(i !== 'file'){
+					this.publish.log.dbg('Processing Kind ' + i);
 					this.publish.kinds[i].data.forEach(function(doclet){
 						me.processDoclet(doclet);
 					});
+					this.publish.log.dbg('-- Kind ' + i + ' Processed');
 				}
 			}
 		}
@@ -93,6 +95,8 @@ exports.processFiles = {
 				this.publish.helper.longnameToUrl[doclet.longname]
 			;
 
+this.publish.log.dbg('--- Generating doclet kind: ' + doclet.kind + ' | ' + doclet.longname);
+
 			this.publish.generate(
 				doclet.name,
 				doclet,
@@ -102,6 +106,50 @@ exports.processFiles = {
 			// toca generar si hay template asociado!
 			// this.publish.generate(doclet.name, doclet, doclet.kind, template);
 		}
+	},
+	
+	kindEvent: function(doclet){
+		var name1 = doclet.longname,
+			name2
+		;
+
+		if(name1.indexOf('#event') !== -1){
+			name2 = name1.replace('#event:', '.event:');
+		}else if(name1.indexOf('.event:') !== -1){
+			name2 = name1.replace('.event:', '#event:');
+		}else{
+			name2=false;
+		}
+		// else ???? wath are you?
+
+		// TRIGGEREDBY
+		// TODO Por el amor de dios arreglar esto de concat y sort y no se que 
+		// pollas, tiene que haber una forma mas optima de hacerlo
+		doclet.triggeredBy = this.publish.find({
+			kind: 'function',
+			fires: name1
+		});
+		if(name2){
+			doclet.triggeredBy = doclet.triggeredBy.concat(this.publish.find({
+				kind: 'function',
+				fires: name2
+			}));
+		}
+		doclet.triggeredBy = doclet.triggeredBy.sort(this.publish.sortMethods.sortByName);
+		// LISTENEDBY
+		doclet.listenedBy = this.publish.find({
+			kind: 'function',
+			listen: name1
+		});
+		if(name2){
+			doclet.listenedBy = doclet.listenedBy.concat(this.publish.find({
+				kind: 'function',
+				listen: name2
+			}));
+		}
+		doclet.listenedBy = doclet.listenedBy.sort(this.publish.sortMethods.sortByName);
+
+		return false; // no html por cada event
 	},
 	
 	kindModule: function(doclet){
@@ -153,7 +201,7 @@ exports.processFiles = {
 		doclet.events = this.publish.find({
 			kind: 'event', 
 			memberof: doclet.longname
-		});
+		}).sort(this.publish.sortMethods.sortByName);
 		
 		return true;
 	},
@@ -232,7 +280,7 @@ exports.processFiles = {
 		doclet.events = this.publish.find({
 			kind: 'event', 
 			memberof: doclet.longname
-		});
+		}).sort(this.publish.sortMethods.sortByName);
 	},
 	
 	_genMethodList: function(doclet, list){

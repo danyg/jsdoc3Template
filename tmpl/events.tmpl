@@ -1,0 +1,67 @@
+<table>
+  <tbody>
+  
+    <?js 
+		var SHOW_PARENT = this.showParent ? true : false;
+		this.events.forEach(function(event) { ?>
+
+    <tr  class="<?js print((event.access ? event.access : 'public') + (event.inherited ? ' inherited' : '') + (event.borrowed ? ' borrowed' : '') + (event.mixed ? ' mixed' : '')); ?>">
+      <td class="type">
+      	<span>
+      	<?js print(render('returns.tmpl', event)); ?>
+      	</span>
+      </td>
+      
+      <td class="last">
+        <a href="#<?js= event.id ?>">
+			<abbr title="<?js= event.longname ?>">
+				<?js if(SHOW_PARENT && event.memberof){
+					print(linkto(event.memberof, event.memberof) + '.<strong>');
+				}?>
+				<?js= linkto(event.longname, event.name) ?>
+				<?js if(SHOW_PARENT && event.memberof){
+					print('</strong>');
+				}?>
+        	</abbr>
+        </a>
+        
+      	<span>
+      		<?js print(render('signature.tmpl', event)); ?>
+      	</span>
+        
+        <?js if(event.summary) { ?>
+        	<p><?js= event.summary ?></p>
+        <?js } ?>
+		
+		<?js if(event.fires){
+			print('<br/><h4>Fires:</h4>');
+			print(render('fires.tmpl', event));
+		}?>
+
+		<?js if(event.listen){
+			print('<br/><h4>Listen:</h4>');
+			print(render('listen.tmpl', event));
+		}?>
+      </td>
+      
+      <td>
+      	<?js
+			if(!SHOW_PARENT){
+				if(event.inherited) { 
+					var parent = event.inherits.split('#')[0];
+					print('<small>inherited from ' + linkto(parent, parent) + '</small>');
+
+				} else if(event.borrowed && event.borrower) {
+					print('<small>borrowed from ' + linkto(event.borrower, event.borrower) + '</small>');
+
+				} else if(event.mixed && event.borrower) {
+					print('<small>mixed from ' + linkto(event.borrower, event.borrower) + '</small>');
+				}
+      		}
+      	?>
+      </td>
+    </tr>
+    <?js }); ?>
+    
+  </tbody>
+</table>
