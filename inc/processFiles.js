@@ -122,8 +122,8 @@ this.publish.log.dbg('--- Generating doclet kind: ' + doclet.kind + ' | ' + docl
 		}
 		// else ???? wath are you?
 
-this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-this.publish.log.dbg('!!! BUSCANDO TriggeredBy for ' + name1 + ' | ' + name2);
+//this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+//this.publish.log.dbg('!!! BUSCANDO TriggeredBy for ' + name1 + ' | ' + name2);
 
 
 		// TRIGGEREDBY
@@ -140,11 +140,11 @@ this.publish.log.dbg('!!! BUSCANDO TriggeredBy for ' + name1 + ' | ' + name2);
 			}));
 		}
 		doclet.triggeredBy = doclet.triggeredBy.sort(this.publish.sortMethods.sortByName);
-this.publish.log.dbg('!!! ' + doclet.triggeredBy.length + ' encontrados');
-this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+//this.publish.log.dbg('!!! ' + doclet.triggeredBy.length + ' encontrados');
+//this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 		// LISTENEDBY
-this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-this.publish.log.dbg('!!! BUSCANDO ListenedBy for ' + name1 + ' | ' + name2);
+//this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+//this.publish.log.dbg('!!! BUSCANDO ListenedBy for ' + name1 + ' | ' + name2);
 		doclet.listenedBy = this.publish.find({
 			kind: 'function',
 			listen: {'has': name1}
@@ -156,8 +156,8 @@ this.publish.log.dbg('!!! BUSCANDO ListenedBy for ' + name1 + ' | ' + name2);
 			}));
 		}
 		doclet.listenedBy = doclet.listenedBy.sort(this.publish.sortMethods.sortByName);
-this.publish.log.dbg('!!! ' + doclet.listenedBy.length + ' encontrados');
-this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+//this.publish.log.dbg('!!! ' + doclet.listenedBy.length + ' encontrados');
+//this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 		return false; // no html por cada event
 	},
