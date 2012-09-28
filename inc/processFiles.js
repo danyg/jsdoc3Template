@@ -122,32 +122,42 @@ this.publish.log.dbg('--- Generating doclet kind: ' + doclet.kind + ' | ' + docl
 		}
 		// else ???? wath are you?
 
+this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+this.publish.log.dbg('!!! BUSCANDO TriggeredBy for ' + name1 + ' | ' + name2);
+
+
 		// TRIGGEREDBY
 		// TODO Por el amor de dios arreglar esto de concat y sort y no se que 
 		// pollas, tiene que haber una forma mas optima de hacerlo
 		doclet.triggeredBy = this.publish.find({
 			kind: 'function',
-			fires: name1
+			fires: {'has': name1}
 		});
 		if(name2){
 			doclet.triggeredBy = doclet.triggeredBy.concat(this.publish.find({
 				kind: 'function',
-				fires: name2
+				fires: {'has': name2}
 			}));
 		}
 		doclet.triggeredBy = doclet.triggeredBy.sort(this.publish.sortMethods.sortByName);
+this.publish.log.dbg('!!! ' + doclet.triggeredBy.length + ' encontrados');
+this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 		// LISTENEDBY
+this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+this.publish.log.dbg('!!! BUSCANDO ListenedBy for ' + name1 + ' | ' + name2);
 		doclet.listenedBy = this.publish.find({
 			kind: 'function',
-			listen: name1
+			listen: {'has': name1}
 		});
 		if(name2){
 			doclet.listenedBy = doclet.listenedBy.concat(this.publish.find({
 				kind: 'function',
-				listen: name2
+				listen: {'has': name2}
 			}));
 		}
 		doclet.listenedBy = doclet.listenedBy.sort(this.publish.sortMethods.sortByName);
+this.publish.log.dbg('!!! ' + doclet.listenedBy.length + ' encontrados');
+this.publish.log.dbg('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 		return false; // no html por cada event
 	},
