@@ -553,21 +553,20 @@ exports.myPublisher = {
 				if(this.kinds[kindName].data.length) {
 					var title = kindName.charAt(0).toUpperCase() + kindName.substring(1);
 					this.log.dbg('Generating ' + title + ' index');
-					
+					var outputFile = kindName + '_index.html';
+					if(kindName === 'global'){
+						outputFile = 'global.html';
+					}
+
 					try{
 						if(this._templateExists(kindName + '_index')){
 							this.generate(
 								title, 
 								this.kinds[kindName].data.sort(this.sortMethods.sortByName), 
-								kindName + '_index.html', 
+								outputFile,
 								kindName + '_index'
 							);
 						}else{
-							var title = kindName.charAt(0).toUpperCase() + kindName.substring(1);
-							var outputFile = kindName + '_index.html';
-							if(kindName === 'global'){
-								outputFile = 'global.html';
-							}
 							this.generate(
 								title, 
 								this.kinds[kindName].data.sort(this.sortMethods.sortByName), 

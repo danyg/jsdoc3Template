@@ -208,7 +208,26 @@ exports.processTags.tagListen = function(item, i, doclet){
 	if(undefined === doclet.listen){
 		doclet.listen = [];
 	}
-	
+
+/*
+ *	// TODO Mejorar esto, ver si se puede acceder al parser de eventos 
+ *	// internos de jsdoc3
+	var pos = item.value.lastIndexOf('#');
+	if(pos === -1){ //
+		var pos = item.value.lastIndexOf('.');
+		if(pos === -1){
+			item.value = 'event:' + item.value;
+		}else{
+			var eventName = item.value.substring(pos+1);
+			item.value = item.value.substring(0, pos) + '.event:' + eventName;
+		}
+	}else{
+		var eventName = item.value.substring(pos+1);
+		item.value = item.value.substring(0, pos) + '#event:' + eventName;
+	}
+ */
+
+
 	var pos = item.value.lastIndexOf('.');
 	if(pos === -1){
 		item.value = 'event:' + item.value;
@@ -223,8 +242,6 @@ exports.processTags.tagListen = function(item, i, doclet){
 			})[0];
 		}catch(e){}
 	}
-	
-	item.value
 	
 	doclet.listen.push( r = this.publish.hashToLink(eventDoclet, item.value) );
 
