@@ -18,20 +18,10 @@ Features
 - Relatively easy way to add custom tags (Alpha)
 - Searcher for methods class namespaces etc.. (Beta)
 - Tree view of namespaces (Beta)
-- Automatic resolve of @extends pull the properties & methods of parent (grandparents, etc...) class, mixes (Alpha)
-
-RoadMap (To do)
---------------
-https://github.com/danyg/jsdoc3Template/wiki/To-Do
-- Document the documenting code ;P
-- Graph of inheritance
-- More efficient template system (actually undescore)
-- Custom tags in classes
-- Probably use of MVC
+- @listen Tag to use with @events and @fires, in the event documentation you see the function or method that trigger or listen the event 
 
 Usage
 -----
-
 
 This is a bash script to load this template. *Be careful the sources 
 placed in INPUT_DIR they will be destroyed* you must designate a 
@@ -85,3 +75,14 @@ ORIGNAL_SOURCE path from copy your incremental code,
 	echo '         Done!'
 	echo -l ''
 	echo -l 'Time Elapsed: ' $(timer $t)
+
+
+
+RoadMap (To do)
+--------------
+https://github.com/danyg/jsdoc3Template/wiki/To-Do
+- Document the documenting code ;P
+- Graph of inheritance
+- More efficient template system (actually undescore)
+- Custom tags in classes
+- Probably use of MVC
