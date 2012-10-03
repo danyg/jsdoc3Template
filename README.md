@@ -1,6 +1,8 @@
 jsdoc3Template
 ==============
 
+[Screenshots](https://github.com/danyg/jsdoc3Template/wiki#wiki-screenshots)
+
 A custom Customizable JSDOC3 template
 
 Authors
