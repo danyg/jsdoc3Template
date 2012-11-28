@@ -61,7 +61,7 @@ exports.myPublisher = {
 	_initVars: function(data, opts){
 		this.data = data;
 		this.opts = opts;
-		
+
 		this.info = {};
 		this._templates = {};
 		this.linktoNotFound = {};
@@ -93,7 +93,7 @@ exports.myPublisher = {
 			'instance': '#' 
 		};
 	},
-	
+
 	_loadTemplates: function(){
 		
 	},
@@ -207,6 +207,19 @@ exports.myPublisher = {
 				}
 			}];
 		}
+
+		if(doclet.meta && doclet.meta.filename){
+			if(undefined === doclet.meta.path){
+				doclet.meta.filename = doclet.meta.filename.replace(/\\/g, '/')
+				var p = doclet.meta.filename.split('/');
+				doclet.meta.filename = p.pop();
+				doclet.meta.path = p.join('/');
+			}
+			doclet.meta.cpath = doclet.meta.path + '/' + doclet.meta.filename;
+			this.helper.registerLink('file:' + doclet.meta.cpath, doclet.meta.cpath.replace(/[:\/\\"'~$<>\.]/g, '_') + '.html');
+		}
+
+
 
 		this.processDocletTags(doclet);
 		this.processDocletProperties(doclet);
@@ -551,6 +564,9 @@ exports.myPublisher = {
 		for(var kindName in this.kinds){
 			if(this.kinds.hasOwnProperty(kindName)){
 				if(this.kinds[kindName].data.length) {
+					if(kindName === 'file'){
+						continue; // se hace al final
+					}
 					var title = kindName.charAt(0).toUpperCase() + kindName.substring(1);
 					this.log.dbg('Generating ' + title + ' index');
 					var outputFile = kindName + '_index.html';
@@ -761,6 +777,10 @@ exports.myPublisher = {
 		;
 	},
 	
+	getURL: function(longname){
+		return this.helper.longnameToUrl[longname];
+	},
+	
 	/**
      * Helper to generate links.
      * 
@@ -917,7 +937,12 @@ exports.myPublisher = {
 				template
 			;
 
+			partialData.myPublisher = this;
 			partialData.log = this.log;
+			
+			partialData.getURL = function(){
+				return me.getURL.apply(me, arguments);
+			};
 			partialData.render = function(){
 				return me.render.apply(me, arguments);
 			};
@@ -966,6 +991,8 @@ exports.myPublisher = {
 				tmp: 'oops!',
 				info: this.info,
 				// helpers
+				myPublisher: this,
+				getURL: function(){return me.getURL.apply(me, arguments);},
 				render: function(){return me.render.apply(me, arguments);},
 				find: function(){return me.find.apply(me, arguments);},
 				linkto: function(){return me.linkto.apply(me, arguments);},

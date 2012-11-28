@@ -62,7 +62,20 @@ exports.processFiles = {
 
 	processFileDoclet: function(doclet){
 		if(doclet.meta && doclet.meta.filename) {
-			var f = doclet.meta.path + '/' + doclet.meta.filename;
+			if(doclet.meta.path){
+				var f = doclet.meta.path + '/' + doclet.meta.filename;
+			}else{
+				f = doclet.meta.filename;
+			}
+			
+			doclet.meta.htmlFile = f.replace(/[:\/\\"'~$<>\.]/g, '_') + '.html';
+			// because all path is parsed in the filename, this can exceed the 255 length of filename
+			if(doclet.meta.htmlFile.length > 200){
+				var i = doclet.meta.htmlFile.length - 200;
+				doclet.meta.htmlFile = doclet.meta.htmlFile.substr(i);
+			}
+			
+			
 			this.files[f] = doclet.meta;
 			this.files[f].description = doclet.description;
 		}
@@ -552,17 +565,18 @@ this.publish.log.dbg('--- Generating doclet kind: ' + doclet.kind + ' | ' + docl
 			);
       
 			// generate pages for each file
-			for(i in this.files) {
-				if(this.files.hasOwnProperty(i)) {
+			var filename;
+			for(filename in this.files) {
+				if(this.files.hasOwnProperty(filename)) {
 					this.publish.generate(
-						this.files[i].path + '/' + this.files[i].filename, 
+						filename, 
 						{ 
 							info: this.publish.info,
 							code: this.publish.fs.readFileSync(
-								env.dirname + '/' + this.files[i].path +
-								'/' + this.files[i].filename) 
-						}, 
-						this.files[i].filename.split('/').pop() + '.html', 
+								env.dirname + '/' + filename
+							) 
+						},
+						this.files[filename].htmlFile,
 						'file'
 					);
 				}

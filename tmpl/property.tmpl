@@ -1,9 +1,9 @@
 <h3 id="<?js= this.id ? this.id : this.name ?>" class="<?js print((this.access ? this.access : 'public') + (this.inherited ? ' inherited' : '') + (this.borrowed ? ' borrowed' : '') + (this.mixed ? ' mixed' : '')); ?>">
   
   <div class="location">
-  <?js if(this.meta && this.meta.filename && this.meta.lineno) { ?>
-  	<a href="<?js= this.meta.filename ?>.html#lineno<?js print(this.meta.lineno); ?>"><?js= this.meta.filename ?></a> at line <?js= this.meta.lineno ?>
-  <?js } ?>
+<?js if(this.meta && this.meta.cpath && this.meta.lineno) { ?>
+  	<a href="<?js= getURL('file:' + this.meta.cpath) ?>#lineno<?js print(this.meta.lineno); ?>"><?js= this.meta.filename ?></a> at line <?js= this.meta.lineno ?>
+<?js } ?>
   </div>
 	
 	<div class="signature">

@@ -196,7 +196,7 @@ footer{
 	padding: 20px 10px !important;
 }
 
-.sh_wrapper .sh_javascript{padding-left: 10px !important; text-align: left;}
+.sh_wrapper .sh_javascript{padding-left: 10px !important; text-align: left;tab-size: 4;}
 .sh_wrapper .sh_linenum{padding-right: 5px !important;text-align: right; border: solid 1px skyblue; border-width: 0px 1px 0px 0px; background: #EDF3FE; }
 
 .sh_wrapper{text-align: center; margin-top: 10px;}

@@ -17,16 +17,14 @@
 		<div class="content">
 			<table>
 				<tbody>
-					<?js for(var i in docs) { ?>
-					<?js if(docs.hasOwnProperty(i)) { ?>
+					<?js for(var filename in docs) { ?>
+					<?js if(docs.hasOwnProperty(filename)) { ?>
 					<tr>
 						<td>
-							<a href="<?js= docs[i].filename ?>.html">
-								<?js= docs[i].path + '/' + docs[i].filename ?>
-							</a>
+							<?js= linkto('file:' + docs[filename].cpath, filename) ?>
 						</td>
 						<td>
-							<?js= docs[i].description ?>
+							<?js= docs[filename].description ?>
 						</td>
 					</tr>
 					<?js } ?>

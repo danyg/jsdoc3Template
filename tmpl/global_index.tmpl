@@ -31,10 +31,11 @@
 							</abbr>
 						</td>
 						<td><?js print(doc.summary ? doc.summary : (doc.description ? doc.description : '' ) );?></td>
-						<td width="15%"><div class="location">
-<?js if(doc.meta && doc.meta.filename && doc.meta.lineno) { ?>
-  	<a href="<?js= doc.meta.filename ?>.html#lineno<?js print(doc.meta.lineno); ?>"><?js= doc.meta.filename ?>:<?js= doc.meta.lineno ?></a>
-<?js } ?>
+						<td width="15%">
+							<div class="location">
+							<?js if(doc.meta && doc.meta.cpath && doc.meta.lineno) { ?>
+								<a href="<?js= getURL('file:' + doc.meta.cpath) ?>#lineno<?js print(doc.meta.lineno); ?>"><?js= doc.meta.filename ?></a> at line <?js= doc.meta.lineno ?>
+							<?js } ?>
 							</div> 
 						</td>
 					</tr>
