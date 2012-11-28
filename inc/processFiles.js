@@ -28,16 +28,10 @@ exports.processFiles = {
 	
 	
 	process: function(publish){
-		var me = this,
-			logFile = this._giveMeReferenceToFile('logs/methods-2.log')
-		;
+		var me = this;
 		this.publish = publish;
 		this.log = this.publish.log;
 		this.files = {};
-
-		this.logOut = new Packages.java.io.BufferedWriter(
-			new Packages.java.io.FileWriter(logFile, true)
-		);
 
 		this.publish.kinds.file.data.forEach(function(doclet){
 			me.processFileDoclet(doclet);
@@ -54,8 +48,6 @@ exports.processFiles = {
 				}
 			}
 		}
-		
-		this.logOut.close();
 		
 		return this.files;
 	},
@@ -359,19 +351,9 @@ this.publish.log.dbg('--- Generating doclet kind: ' + doclet.kind + ' | ' + docl
 			})
 		;
 
-		me.logOut.write(
-			'\n' +
-			'#############################################\n' +
-			'### ' + doclet.name + '\n' + 
-			'#############################################\n'
-		);
-
 		methods.forEach(function(method){
 			if(method.memberof === parentClassName){	// Evito procesar una clase q ya ha pasado por este metodo
-				
-				// PUAJ!
-				me.logOut.write(doclet.name + ' + ' + method.name + ' from ' + method.memberof + '(' + parentClassName + ')\n');
-				
+
 				//me.log.dbg('** Check methods augments: ' + doclet.longname + 
 				//	' check method: ' + parentClassName + '.'+ method.name);
 				if(doclet.methodList.indexOf(method.name) === -1){
