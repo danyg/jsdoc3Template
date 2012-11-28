@@ -31,7 +31,8 @@ ORIGNAL_SOURCE path from copy your incremental code,
 
   *NOTE:* the ORIGINAL_SOURCE must be your SVN or GIT working copy the .svn and .git folders are excludes
 
-	**LINUX**
+**LINUX**
+
     #!/bin/bash
   	TEMPLATE='myCustom'     # Template directory real JSDOC_DIR/templates/$TEMPLATE
   	OUTPUT_DIR='proyects/PROJECTNAME/docs/'       # HTML output dir, you must create before launch this. JSDOC_DIR/$OUTPUT_DIR
@@ -79,7 +80,8 @@ ORIGNAL_SOURCE path from copy your incremental code,
 	echo -l ''
 	echo -l 'Time Elapsed: ' $(timer $t)
 
-	** WINDOWS / MS-DOS **
+**WINDOWS / MS-DOS**
+
 	@echo off
 
 	REM jsdoc3\templates\%TEMPLATE%
