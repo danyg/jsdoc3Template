@@ -2,7 +2,7 @@
  * @module jsdoc/util/templateHelper
  */
 
-var hash = require('pajhome/hash');
+// var hash = require('pajhome/hash');
 var dictionary = require('jsdoc/tag/dictionary');
 
 exports.globalName = 'global';
@@ -69,7 +69,8 @@ function getNamespace(kind) {
 
 function strToFilename(str) {
     if ( /[^$a-z0-9._-]/i.test(str) ) {
-        return hash.hex_md5(str).substr(0, 10);
+        // return hash.hex_md5(str).substr(0, 10);
+        return str.replace( /[^$a-z0-9._-]/, "_", "g" );
     }
     return str;
 }
