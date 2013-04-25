@@ -100,29 +100,29 @@ exports.myPublisher = {
 	
 	_removeOverData: function(){
 		this.log.dbg('removing undocumented data');
-		this.data.remove({
+		this.data({
 			undocumented: true
-		});
+		}).remove();
 		this.log.dbg('DONE!');
 		
 		this.log.dbg('removing ignored doclets');
-		this.data.remove({
+		this.data({
 			ignore: true
-		});
+		}).remove;
 		this.log.dbg('DONE!');
 		
 		if(!this.opts['private']) { 
 			this.log.dbg('removing private doclets');
-			this.data.remove({
+			this.data({
 				access: 'private'
-			}); 
+			}).remove; 
 			this.log.dbg('DONE!');
 		}
     
 		this.log.dbg('removing <anonymous> doclets');
-		this.data.remove({
+		this.data({
 			memberof: '<anonymous>'
-		});
+		}).remove;
 		this.log.dbg('[debug] removed <anonymous> doclets');
 	},
 	
@@ -138,7 +138,8 @@ exports.myPublisher = {
 				try {
 					this.info['package'] = JSON.parse(
 						this.fs.readFileSync(
-							this.opts['_'][i] + '../package.json'
+                                                        this.opts['_'][i] + '../package.json',
+                                                        env.opts.encoding
 						)
 					);
 
@@ -154,7 +155,7 @@ exports.myPublisher = {
 		// try to fetch LICENSE
 		for(var i = 0, n = this.opts['_'].length; i < n; ++i) {
 			try {
-				this.info.license = this.fs.readFileSync(this.opts['_'][i] + '../LICENSE');
+				this.info.license = this.fs.readFileSync(this.opts['_'][i] + '../LICENSE', env.opts.encoding);
 				break;
 			} catch(e) {}
 		}
@@ -164,7 +165,7 @@ exports.myPublisher = {
 		// try to fetch README
 		for(var i = 0, n = this.opts['_'].length; i < n; ++i) {
 			try {
-				this.info.readme = this.fs.readFileSync(this.opts['_'][i] + '../README');
+				this.info.readme = this.fs.readFileSync(this.opts['_'][i] + '../README', env.opts.encoding);
 				break;
 			} catch(e) {}
 		}
@@ -174,14 +175,14 @@ exports.myPublisher = {
 		var me = this;
 
 		// Itero los doclets
-		
-		this.log.dbg('processData| Items a iterar: ', this.data.getLength());
-		var step = Math.ceil(this.data.getLength() / 10);
+		// mbd: getLenght => count??
+		this.log.dbg('processData| Items a iterar: ', this.data().count());
+		var step = Math.ceil(this.data().count() / 10);
 		if(step > 50){step = 50;}
 
-		this.data.forEach(function(doclet, ix){
+		this.data().each(function(doclet, ix){
 			if((ix%step) === 0){
-				me.log.dbg('processData| Iterados: ' + ix + '/' + me.data.getLength());
+				me.log.dbg('processData| Iterados: ' + ix + '/' + me.data().count());
 			}
 			try{
 			me._processDoclet(doclet);
@@ -396,7 +397,7 @@ exports.myPublisher = {
 	},
 	
 	_orderData: function(){
-		this.data.orderBy(['longname', 'version', 'since']);
+		this.data.sort('longname, version, since');
 	},
 	
 	_prepareIndexVars: function(){
@@ -692,7 +693,7 @@ exports.myPublisher = {
 		str += JSON.stringify(this.indexes.searchIndex);
 		str += ';}catch(e){if(console && console.log){ console.log(e);}}';
 
-		this.fs.writeFileSync(this.opts.destination + '/searchdata.js', str);
+		this.fs.writeFileSync(this.opts.destination + '/searchdata.js', str, env.opts.encoding);
 		this.log.dbg('    DONE!');
 	},
 	
@@ -761,7 +762,7 @@ exports.myPublisher = {
      * @returns {Object[]} The data found
      */
 	find: function(spec){
-		return this.data.get( this.data.find(spec) );
+		return this.data(spec).get();
 	},
 
 	/**
@@ -963,7 +964,7 @@ exports.myPublisher = {
 			}else{
 
 				template = this._templates[templateName] = this.template.render(
-					this.fs.readFileSync(this.getTemplatePath(templateName))
+					this.fs.readFileSync(this.getTemplatePath(templateName), env.opts.encoding)
 				);
 			}
 
@@ -1008,7 +1009,7 @@ exports.myPublisher = {
 			template = this._templates[templateName];
 		}else{
 			template = this._templates[templateName] = this.template.render(
-				this.fs.readFileSync(this.getTemplatePath(templateName))
+				this.fs.readFileSync(this.getTemplatePath(templateName), env.opts.encoding)
 			);
 		}
 
@@ -1026,7 +1027,7 @@ exports.myPublisher = {
 		html = raw ? html : this.helper.resolveLinks(html);
 
 		// write template
-		this.fs.writeFileSync(path, html);
+		this.fs.writeFileSync(path, html, env.opts.encoding);
 
 		this.log.dbg('    DONE');
 	},
