@@ -2,9 +2,13 @@
 <html lang="en">
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+                <link rel="stylesheet" type="text/css" href="styles/shCore.css">
+                <link rel="stylesheet" type="text/css" href="styles/shThemeDefault.css">
+                <script type="text/javascript" src="js/shCore.js"></script>
+                <script type="text/javascript" src="js/shBrushJScript.js"></script>
 		<title><?js print(info['package'] ? info['package'].name + ' Documentation' : 'Documentation');?></title>
 	</head>
-	<body id="class">
+	<body id="class" onLoad="SyntaxHighlighter.highlight()">
 
 		<header>
 			<div class="header">

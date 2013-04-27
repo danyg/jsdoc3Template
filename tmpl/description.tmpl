@@ -43,18 +43,6 @@
     	print('<p>Mixed from ' + linkto(this.borrower, this.borrower) + '</p>'); 
     }
     
-    if(this.examples && this.examples.length) {
-    	this.examples.forEach(function(e) {
-			if(typeof(e) === 'string'){
-				print('<pre class="example sh_javascript">' + e + '</pre>');
-			}else{
-				if(e.caption) {
-					print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
-				}
-				print('<pre class="example sh_javascript">' + e.code + '</pre>');
-			}
-		}); 
-    }
     
     if(this.version) {
     	print('<p>Version ' + this.version + '</p>'); 
@@ -105,5 +93,21 @@
     }
   	
   	print('</div>');
+  
+    if(this.examples && this.examples.length) {
+    	this.examples.forEach(function(e) {
+			if(typeof(e) === 'string'){
+				print('<pre class="brush: js">' + e + '</pre>');
+			}else{
+				if(e.caption) {
+					print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
+				}
+				print('<pre class="brush: js">' + e.code + '</pre>');
+			}
+		}); 
+    }
+  
+
+
   }
 ?>
