@@ -1,8 +1,12 @@
-var MY_PATH = 'templates/myCustom/',
-	myPublisher = require(MY_PATH + 'inc/myPublisher.js').myPublisher
-;
+
+
 exports.publish = function(data, opts) {
-	console.log('Init myPublisher');
+	require.paths.push(opts.template + '/node_modules');
+	var myPublisher = require('jd3t/myPublisher.js');
+
+	console.log(opts);
+
+	console.log('Init jsdoc3Template');
 
 	myPublisher.log.debugOn = true; // opts??
 	myPublisher.publish(data, opts);
