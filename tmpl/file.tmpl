@@ -4,12 +4,14 @@
 		<meta charset="utf-8">
 		<title>Package API</title>
 
-		<script src="js/sh_main.min.js"> </script>
-		<script src="js/lang/sh_javascript.min.js"> </script>
+                <link rel="stylesheet" type="text/css" href="styles/shCore.css">
+                <link rel="stylesheet" type="text/css" href="styles/shThemeDefault.css">
+                <script type="text/javascript" src="js/shCore.js"></script>
+                <script type="text/javascript" src="js/shBrushJScript.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
 	</head>
-	<body>
+	<body onLoad="SyntaxHighlighter.highlight(); location.hash=location.hash;">
 
 		<header>
 			<div class="header">
@@ -21,7 +23,7 @@
 		</header>
 
 		<div class="content">
-			<pre class="example sh_javascript"><?js print(htmlsafe(docs.code)); ?></pre>
+			<pre class="brush: js"><?js print(htmlsafe(docs.code)); ?></pre>
 		</div>
 
 		<?js print(render('footer.tmpl', this)); ?>
