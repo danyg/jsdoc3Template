@@ -53,7 +53,13 @@
     }
     
     if(this.deprecated) {
-    	print('<p><strong>Deprecated</strong>' + this.deprecated + '</p>'); 
+    	print('<p><span class="important tag-deprecated">Deprecated:</span> ');
+        if (this.deprecated === true) { 
+                print('<span class="yes-def tag-deprecated dummy">Yes</span>');
+        } else {
+                print('<span class="dummy">' + this.deprecated + '</span>');
+        }
+        print('</p>'); 
     }
     
     if(this.listen) {
