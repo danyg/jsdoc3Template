@@ -95,7 +95,8 @@
   	print('</div>');
   
     if(this.examples && this.examples.length) {
-    	this.examples.forEach(function(e) {
+        print('<h4>Example' + ( examples.length > 1? 's':'' ) + '</h4>');
+   	this.examples.forEach(function(e) {
 			if(typeof(e) === 'string'){
 				print('<pre class="brush: js">' + e + '</pre>');
 			}else{
