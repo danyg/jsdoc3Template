@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+		<title><?js print(info['package'] ? info['package'].name + ' Documentation' : 'Documentation');?></title>
+	</head>
+	<body id="overview">
+
+		<header>
+			<div class="header">
+				<?js print(render('header.tmpl', this)); ?>
+
+				<div class="type">Mainpage</div>
+				<h1>Mainpage</h1>
+			</div>
+		</header>
+
+		<div class="content">
+                        <?js print(info.mainpage); ?>
+		</div>
+
+		<?js print(render('footer.tmpl', this)); ?>
+
+	</body>
+</html>
