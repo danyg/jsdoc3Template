@@ -28,14 +28,14 @@
       
       <td class="last">
 		<?js if(Options.showParent){?>
-			<abbr title="<?js= method.longname ?>">
+			<abbr class="name" title="<?js= method.longname ?>">
 				<?js if(Options.showParent && method.memberof){
 					print(linkto(method.memberof, method.memberof) + '.');
 				}?>
 				<strong><?js= linkto(method.longname, method.name) ?></strong>
 			</abbr>
 		<?js }else{ ?>
-			<a href="#<?js= method.id ?>">
+			<a class="name" href="#<?js= method.id ?>">
 				<abbr title="<?js= method.longname ?>">
 					<?js= method.name ?>
 				</abbr>
@@ -47,8 +47,10 @@
       	</span>
         
         <?js if(method.summary) { ?>
-        	<p><?js= method.summary ?></p>
-        <?js } ?>
+        	<p class="summary"><?js= method.summary ?></p>
+	<?js } else if(method.description) { ?>
+		<p class="summary"><?js= method.description.split('.')[0] + "." ?></p>
+	<?js } ?>
 		
 		<?js if(Options.showFires && method.fires){
 			print('<br/><h4>Fires:</h4>');
