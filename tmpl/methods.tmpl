@@ -49,7 +49,7 @@
         <?js if(method.summary) { ?>
         	<p class="summary"><?js= method.summary ?></p>
 	<?js } else if(method.description) { ?>
-		<p class="summary"><?js= method.description.split('.')[0] + "." ?></p>
+		<p class="summary"><?js= method.description.split(/\.\s/)[0] + "." ?></p>
 	<?js } ?>
 		
 		<?js if(Options.showFires && method.fires){
