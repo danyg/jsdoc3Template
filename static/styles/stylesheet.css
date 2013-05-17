@@ -112,6 +112,23 @@ td small { font-size:85%; white-space:nowrap; }
 .description ol li { margin:5px 0; }
 .description ol li p { padding:8px 0; text-align:center; }
 
+/* important is used in e.g. deprecated tags */
+.important
+{
+        font-weight: bold;
+        color: #950B02;
+}
+
+/* name is partially used for member names */
+.name 
+{
+        font-weight: bold;
+}
+
+/* summary is partially used for summaries of methods */
+.summary {}
+
+
 /* code */
 pre, .example { background-color:transparent; font-family:Menlo,Monaco,"Courier New",monospace; line-height:1.5; margin:1.5em 0; overflow:aMenlo,Monaco,"Courier New",monospaceing:6px 10px 6px 20px; white-space:pre; }
 .content .example { padding:0 30px; }

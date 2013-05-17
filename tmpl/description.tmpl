@@ -43,18 +43,6 @@
     	print('<p>Mixed from ' + linkto(this.borrower, this.borrower) + '</p>'); 
     }
     
-    if(this.examples && this.examples.length) {
-    	this.examples.forEach(function(e) {
-			if(typeof(e) === 'string'){
-				print('<pre class="example sh_javascript">' + e + '</pre>');
-			}else{
-				if(e.caption) {
-					print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
-				}
-				print('<pre class="example sh_javascript">' + e.code + '</pre>');
-			}
-		}); 
-    }
     
     if(this.version) {
     	print('<p>Version ' + this.version + '</p>'); 
@@ -65,7 +53,13 @@
     }
     
     if(this.deprecated) {
-    	print('<p><strong>Deprecated</strong>' + this.deprecated + '</p>'); 
+    	print('<p><span class="important tag-deprecated">Deprecated:</span> ');
+        if (this.deprecated === true) { 
+                print('<span class="yes-def tag-deprecated dummy">Yes</span>');
+        } else {
+                print('<span class="dummy">' + this.deprecated + '</span>');
+        }
+        print('</p>'); 
     }
     
     if(this.listen) {
@@ -105,5 +99,22 @@
     }
   	
   	print('</div>');
+  
+    if(this.examples && this.examples.length) {
+        print('<h4>Example' + ( examples.length > 1? 's':'' ) + '</h4>');
+   	this.examples.forEach(function(e) {
+			if(typeof(e) === 'string'){
+				print('<pre class="brush: js">' + e + '</pre>');
+			}else{
+				if(e.caption) {
+					print('<p><strong>Example</strong>&nbsp;&mdash;&nbsp;' + e.caption + '</p>');
+				}
+				print('<pre class="brush: js">' + e.code + '</pre>');
+			}
+		}); 
+    }
+  
+
+
   }
 ?>

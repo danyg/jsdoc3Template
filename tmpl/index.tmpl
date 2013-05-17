@@ -5,7 +5,11 @@
 </head>
 <frameset cols="25%,75%" frameborder="1" border="1" bordercolor="#bbb" framespacing="1">
   <frame src="panel.html" name="index">
-  <frame src="class_index.html" name="main">
+  <?js if(this.info['mainpage']) { ?>
+    <frame src="mainpage.html" name="main">
+  <?js } else { ?>
+    <frame src="class_index.html" name="main">
+  <?js } ?>
   <noframes>
     &lt;body&gt;
       Your browser does not support frames. Go to the &lt;a href="classes.html"&gt;non-frame version&lt;/a&gt;.

@@ -21,7 +21,7 @@
 					<?js if(docs.hasOwnProperty(filename)) { ?>
 					<tr>
 						<td>
-							<?js= linkto('file:' + docs[filename].cpath, filename) ?>
+							<?js= linkto('file:' + docs[filename].cpath, docs[filename].visibleFilename) ?>
 						</td>
 						<td>
 							<?js= docs[filename].description ?>

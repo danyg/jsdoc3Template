@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+                <meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+                <link rel="stylesheet" type="text/css" href="styles/shCore.css">
+                <link rel="stylesheet" type="text/css" href="styles/shThemeDefault.css">
+                <script type="text/javascript" src="js/shCore.js"></script>
+                <script type="text/javascript" src="js/shBrushJScript.js"></script>
 		<title><?js print(info['package'] ? info['package'].name + ' Documentation' : 'Documentation');?></title>
 	</head>
-	<body id="overview">
+	<body id="overview" onLoad="SyntaxHighlighter.highlight()">
 
 		<header>
 			<div class="header">

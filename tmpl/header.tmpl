@@ -49,6 +49,9 @@ $(document).ready(function(){
 </script>
 
 <ul>
+	<?js if(this.info['mainpage']) { ?>
+	<li><a href="mainpage.html">Home</a></li>
+	<?js } ?>
 	<?js if(this.info['class']) { ?>
 	<li><a href="class_index.html">Classes</a></li>
 	<?js } ?>
