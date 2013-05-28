@@ -22,6 +22,16 @@ Features
 - Tree view of namespaces (Beta)
 - @listen Tag to use with @events and @fires, in the event documentation you see the function or method that trigger or listen the event 
 
+Pull Requests Policy
+--------------------
+
+To avoid the mega block pullrequest filled with a thousend of commits, 
+please make a branch in your fork, for every new feature, fix, or 
+whatever and then create a pull request for every branch with the 
+specification of the modification. 
+
+Thanks a lot!
+
 Usage
 -----
 
