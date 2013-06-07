@@ -2,6 +2,7 @@ jsdoc3Template
 ==============
 
 [Screenshots](https://github.com/danyg/jsdoc3Template/wiki#wiki-screenshots)
+[jsdoc3 & template bundle](https://github.com/danyg/jsdoc3Template/wiki/jsdoc.rar)
 
 A custom Customizable JSDOC3 template
 
