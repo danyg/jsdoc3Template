@@ -1,0 +1,2107 @@
+Error: cannot create a doclet for the comment "/**		 * @const		 * @type {?*874sd}		 * @desc Defines the version of this application		 * @readonly		 */": unable to parse the type expression "?*874sd": Expected "!", "=", "?" or "|" but "8" found.
+TagValueRequiredError: The @description tag requires a value. File: undefined, line: undefined
+Error: cannot create a doclet for the comment "/**		 * @const		 * @type {?*874sd}		 * @desc Defines the version of this application		 * @readonly		 */": unable to parse the type expression "?*874sd": Expected "!", "=", "?" or "|" but "8" found.
+TagValueRequiredError: The @description tag requires a value. File: undefined, line: undefined
+
+[
+    {
+        "comment": "/**\n\t * @class Event\n\t * @memberOf myAppCore\n\t * @requires myAppCore\n\t * @desc Defines an Event Object\n\t */",
+        "meta": {
+            "range": [
+                42,
+                149
+            ],
+            "filename": "Event.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "class",
+        "name": "Event",
+        "memberof": "myAppCore",
+        "requires": [
+            "module:myAppCore"
+        ],
+        "description": "Defines an Event Object",
+        "scope": "static",
+        "longname": "myAppCore.Event"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                155,
+                180
+            ],
+            "filename": "Event.js",
+            "lineno": 9,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode16343187",
+                "name": "Event",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "Event",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~Event",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\n\t * Cleans the type received\n\t * \n\t * @param {String} type A type of event name\n\t * \n\t * @return {String}\n\t */",
+        "meta": {
+            "range": [
+                301,
+                348
+            ],
+            "filename": "Event.js",
+            "lineno": 20,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode918638",
+                "name": "Event.prototype.sanitizeType",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "type"
+                ]
+            }
+        },
+        "description": "Cleans the type received",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "A type of event name",
+                "name": "type"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "sanitizeType",
+        "kind": "function",
+        "longname": "<anonymous>~Event#sanitizeType",
+        "memberof": "<anonymous>~Event",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * Stops the propagation between layers\n\t */",
+        "meta": {
+            "range": [
+                404,
+                450
+            ],
+            "filename": "Event.js",
+            "lineno": 25,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode6143120",
+                "name": "Event.prototype.stopPropagation",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Stops the propagation between layers",
+        "name": "stopPropagation",
+        "kind": "function",
+        "longname": "<anonymous>~Event#stopPropagation",
+        "memberof": "<anonymous>~Event",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * Prevent the execution of other listeners\n\t */",
+        "meta": {
+            "range": [
+                510,
+                563
+            ],
+            "filename": "Event.js",
+            "lineno": 30,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode20372204",
+                "name": "Event.prototype.stopListenerExcecution",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Prevent the execution of other listeners",
+        "name": "stopListenerExcecution",
+        "kind": "function",
+        "longname": "<anonymous>~Event#stopListenerExcecution",
+        "memberof": "<anonymous>~Event",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * Returns a exactly copy of this instance\n\t * \n\t * @return {myCoreApp.Event}\n\t */",
+        "meta": {
+            "range": [
+                657,
+                693
+            ],
+            "filename": "Event.js",
+            "lineno": 37,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode24930297",
+                "name": "Event.prototype.clone",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Returns a exactly copy of this instance",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "myCoreApp.Event"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "clone",
+        "kind": "function",
+        "longname": "<anonymous>~Event#clone",
+        "memberof": "<anonymous>~Event",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * Returns a exactly copy of this instance\n\t * \n\t * @param {...*} params The parameters to send to the listeners\n\t * \n\t */",
+        "meta": {
+            "range": [
+                827,
+                877
+            ],
+            "filename": "Event.js",
+            "lineno": 45,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode25972044",
+                "name": "Event.prototype.setParameters",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "params"
+                ]
+            }
+        },
+        "description": "Returns a exactly copy of this instance",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "*"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": true,
+                "defaultvalue": "undefined",
+                "description": "The parameters to send to the listeners",
+                "name": "params"
+            }
+        ],
+        "name": "setParameters",
+        "kind": "function",
+        "longname": "<anonymous>~Event#setParameters",
+        "memberof": "<anonymous>~Event",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * @name myAppCore\n\t * @namespace\n\t * @desc This is the principal namespace of my Application, all the core \n\t * modules, and methods are here\n\t */",
+        "meta": {
+            "range": [
+                26,
+                178
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "name": "myAppCore",
+        "kind": "namespace",
+        "description": "This is the principal namespace of my Application, all the core \nmodules, and methods are here",
+        "longname": "myAppCore"
+    },
+    {
+        "comment": "/**\n\t * @function\n\t * @name anonymousDocumentedFunction\n\t * \n\t * @this myAppCore\n\t * \n\t * @desc This is how you can document anonymous functions\n\t * \n\t * @param {myCoreApp.Event} event An event object to listen\n\t * @param {String} label A label to use in some button\n\t */",
+        "meta": {
+            "range": [
+                2240,
+                2511
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 92,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "function",
+        "name": "anonymousDocumentedFunction",
+        "see": [],
+        "this": "myAppCore",
+        "description": "This is how you can document anonymous functions",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "myCoreApp.Event"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "An event object to listen",
+                "name": "event"
+            },
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "A label to use in some button",
+                "name": "label"
+            }
+        ],
+        "longname": "anonymousDocumentedFunction"
+    },
+    {
+        "comment": "/**\n\t * @event SystemReady\n\t * @requires myCoreApp.Event\n\t * \n\t * @param {Date} date The date object with the timestampo of initialization\n\t */",
+        "meta": {
+            "range": [
+                2515,
+                2658
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 94,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "SystemReady",
+        "requires": [
+            "module:myCoreApp.Event"
+        ],
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Date"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The date object with the timestampo of initialization",
+                "name": "date"
+            }
+        ],
+        "longname": "event:SystemReady"
+    },
+    {
+        "comment": "/**\n\t * @event MyCoreApp.SystemReady\n\t * @requires myCoreApp.Event\n\t * \n\t * @param {Date} date The date object with the timestampo of initialization\n\t */",
+        "meta": {
+            "range": [
+                2661,
+                2814
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 96,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "SystemReady",
+        "requires": [
+            "module:myCoreApp.Event"
+        ],
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Date"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The date object with the timestampo of initialization",
+                "name": "date"
+            }
+        ],
+        "memberof": "MyCoreApp",
+        "longname": "MyCoreApp.event:SystemReady",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @event document.SystemReady\n\t * @requires $.Event\n\t * \n\t * @param {$.Event} event jQuery Fake Event\n\t * @param {Date} date The date object with the timestampo of initialization\n\t */",
+        "meta": {
+            "range": [
+                2817,
+                3006
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 98,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "SystemReady",
+        "requires": [
+            "module:$.Event"
+        ],
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "$.Event"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "jQuery Fake Event",
+                "name": "event"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Date"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The date object with the timestampo of initialization",
+                "name": "date"
+            }
+        ],
+        "memberof": "document",
+        "longname": "document.event:SystemReady",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @class\n\t * @name Class\n\t * @desc Refers to any object that can be instaciated\n\t */",
+        "meta": {
+            "range": [
+                3010,
+                3100
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 100,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "class",
+        "name": "Class",
+        "description": "Refers to any object that can be instaciated",
+        "longname": "Class"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                184,
+                2235
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 9,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode14996351",
+                "name": "myAppCore",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "myAppCore",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~myAppCore",
+        "scope": "inner"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "code": {}
+        },
+        "description": "undefined",
+        "name": "version",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.version"
+    },
+    {
+        "comment": "/**\n\t\t * @type {Object}\n\t\t * @desc Definition of default Settings\n\t\t * @property {Boolean} settings.checkDependencies Defines if check \n\t\t *    dependencies\n\t\t * @property {Array.<String>} settings.imagesPaths List of Path to \n\t\t *    search images\n\t\t * @property {Object} settings.otherSettings More settings\n\t\t * @property {Object} settings.otherSettings.aSettings Settings for a\n\t\t * @property {Boolean} settings.otherSettings.aSettings.use Define if use\n\t\t * @property {anonymousDocumentedFunction} settings.otherSettings.aSettings.foo A callback to do something\n\t\t */",
+        "meta": {
+            "range": [
+                907,
+                1142
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 30,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode19016590",
+                "name": "settings",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "type": {
+            "names": [
+                "Object"
+            ]
+        },
+        "description": "Definition of default Settings",
+        "properties": [
+            {
+                "type": {
+                    "names": [
+                        "Boolean"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Defines if check \n   dependencies",
+                "name": "settings.checkDependencies"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Array.<String>"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "List of Path to \n   search images",
+                "name": "settings.imagesPaths"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "More settings",
+                "name": "settings.otherSettings"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Settings for a",
+                "name": "settings.otherSettings.aSettings"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Boolean"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Define if use",
+                "name": "settings.otherSettings.aSettings.use"
+            },
+            {
+                "type": {
+                    "names": [
+                        "anonymousDocumentedFunction"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "A callback to do something",
+                "name": "settings.otherSettings.aSettings.foo"
+            }
+        ],
+        "name": "settings",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                922,
+                945
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 31,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode12908155",
+                "name": "checkDependencies",
+                "type": "TRUE",
+                "node": "<Object>",
+                "value": "true"
+            }
+        },
+        "undocumented": true,
+        "name": "checkDependencies",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore.settings",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.checkDependencies"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                950,
+                1011
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 32,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode21360255",
+                "name": "imagesPaths",
+                "type": "ARRAYLIT",
+                "node": "<Object>",
+                "value": "ARRAYLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "imagesPaths",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore.settings",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.imagesPaths"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1016,
+                1138
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 35,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode28001670",
+                "name": "otherSettings",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "otherSettings",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore.settings",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.otherSettings"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1037,
+                1133
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 36,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode24848478",
+                "name": "aSetting",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "aSetting",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore.settings.otherSettings",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.otherSettings.aSetting"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1054,
+                1063
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 37,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode17939164",
+                "name": "use",
+                "type": "TRUE",
+                "node": "<Object>",
+                "value": "true"
+            }
+        },
+        "undocumented": true,
+        "name": "use",
+        "kind": "member",
+        "memberof": "<anonymous>~myAppCore.settings.otherSettings.aSetting",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.otherSettings.aSetting.use"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1070,
+                1127
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 38,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode32125196",
+                "name": "foo",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "event",
+                    "label"
+                ]
+            }
+        },
+        "undocumented": true,
+        "name": "foo",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore.settings.otherSettings.aSetting",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.settings.otherSettings.aSetting.foo"
+    },
+    {
+        "comment": "/**\n\t\t * @desc Inicialization method\n\t\t * \n\t\t * @fires SystemReady\n\t\t * @fires MyCoreApp.SystemReady\n\t\t * @fires document.SystemReady\n\t\t */",
+        "meta": {
+            "range": [
+                1291,
+                1309
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 50,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode3146425",
+                "name": "init",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Inicialization method",
+        "fires": [
+            "event:SystemReady",
+            "MyCoreApp.event:SystemReady",
+            "document.event:SystemReady"
+        ],
+        "name": "init",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.init"
+    },
+    {
+        "comment": "/**\n\t\t * Triggers an event\n\t\t * \n\t\t * @param {myAppCore.Event|String} event An event instance, or a string \n\t\t *     to be used as type\n\t\t * @param {Array.<*>} params Parameters to be sended to the listeners\n\t\t * \n\t\t * @return {myAppCore.Event}\n\t\t */",
+        "meta": {
+            "range": [
+                1569,
+                1603
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 61,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode4615965",
+                "name": "trigger",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "event",
+                    "params"
+                ]
+            }
+        },
+        "description": "Triggers an event",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "myAppCore.Event",
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "An event instance, or a string \n    to be used as type",
+                "name": "event"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Array.<*>"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Parameters to be sended to the listeners",
+                "name": "params"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "myAppCore.Event"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "trigger",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.trigger"
+    },
+    {
+        "comment": "/**\n\t\t * Listen an event\n\t\t * \n\t\t * @param {String} eventName The event name to listen\n\t\t * @return {void}\n\t\t */",
+        "meta": {
+            "range": [
+                1725,
+                1752
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 69,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode17981356",
+                "name": "bind",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "eventName"
+                ]
+            }
+        },
+        "description": "Listen an event",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The event name to listen",
+                "name": "eventName"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "void"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "bind",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.bind"
+    },
+    {
+        "comment": "/**\n\t\t * Creates a Class based on a name and prototype object \n\t\t * \n\t\t * @param {String} name Class Name\n\t\t * @param {Object} proto The prototype used for this class\n\t\t * @param {Class} [parent] A class to be inherited\n\t\t * \n\t\t * @return {Class}\n\t\t */",
+        "meta": {
+            "range": [
+                2014,
+                2058
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 80,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode30836967",
+                "name": "createClass",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "name",
+                    "proto",
+                    "parent"
+                ]
+            }
+        },
+        "description": "Creates a Class based on a name and prototype object",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Class Name",
+                "name": "name"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The prototype used for this class",
+                "name": "proto"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Class"
+                    ]
+                },
+                "optional": true,
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "A class to be inherited",
+                "name": "parent"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "Class"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "createClass",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.createClass"
+    },
+    {
+        "comment": "/**\n\t\t * Factory for plugins\n\t\t * \n\t\t * @param {String} pluginName Name of the plugin\n\t\t * \n\t\t * @returns {myAppCore.Plugin}\n\t\t */",
+        "meta": {
+            "range": [
+                2198,
+                2232
+            ],
+            "filename": "myAppCore.js",
+            "lineno": 89,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode21821228",
+                "name": "makePlugin",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "pluginName"
+                ]
+            }
+        },
+        "description": "Factory for plugins",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Name of the plugin",
+                "name": "pluginName"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "myAppCore.Plugin"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "makePlugin",
+        "kind": "function",
+        "memberof": "<anonymous>~myAppCore",
+        "scope": "static",
+        "longname": "<anonymous>~myAppCore.makePlugin"
+    },
+    {
+        "comment": "/**\n\t * @class myAppCore.Plugin\n\t * @requires myAppCore, myAppCore.Event\n\t * @abstract\n\t * @desc Defines an Plugin Object\n\t */",
+        "meta": {
+            "range": [
+                56,
+                182
+            ],
+            "filename": "Plugin.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "class",
+        "name": "Plugin",
+        "requires": [
+            "module:myAppCore,"
+        ],
+        "virtual": true,
+        "description": "Defines an Plugin Object",
+        "memberof": "myAppCore",
+        "longname": "myAppCore.Plugin",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @event PluginCreated\n\t * \n\t * @param {String} pluginName The Plugin Name\n\t * \n\t */",
+        "meta": {
+            "range": [
+                498,
+                588
+            ],
+            "filename": "Plugin.js",
+            "lineno": 31,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "PluginCreated",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The Plugin Name",
+                "name": "pluginName"
+            }
+        ],
+        "longname": "event:PluginCreated"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                188,
+                214
+            ],
+            "filename": "Plugin.js",
+            "lineno": 9,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode26140045",
+                "name": "Plugin",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "undocumented": true,
+        "name": "Plugin",
+        "kind": "function",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~Plugin",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\n\t * Construct the plugin\n\t * @protected\n\t * \n\t * @fires PluginCreated\n\t */",
+        "meta": {
+            "range": [
+                299,
+                341
+            ],
+            "filename": "Plugin.js",
+            "lineno": 19,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode5520452",
+                "name": "Plugin.prototype._construct",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Construct the plugin",
+        "access": "protected",
+        "fires": [
+            "event:PluginCreated"
+        ],
+        "name": "_construct",
+        "kind": "function",
+        "longname": "<anonymous>~Plugin#_construct",
+        "memberof": "<anonymous>~Plugin",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * Returns a exactly copy of this instance\n\t * \n\t * @return {myCoreApp.Plugin}\n\t */",
+        "meta": {
+            "range": [
+                436,
+                473
+            ],
+            "filename": "Plugin.js",
+            "lineno": 26,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode1688690",
+                "name": "Plugin.prototype.clone",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "funcscope": "<anonymous>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Returns a exactly copy of this instance",
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "myCoreApp.Plugin"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "name": "clone",
+        "kind": "function",
+        "longname": "<anonymous>~Plugin#clone",
+        "memberof": "<anonymous>~Plugin",
+        "scope": "instance"
+    },
+    {
+        "comment": "/**\n\t * @namespace Plugins\n\t * @desc Plugins Namespace\n\t */",
+        "meta": {
+            "range": [
+                26,
+                85
+            ],
+            "filename": "PluginsNS.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {}
+        },
+        "kind": "namespace",
+        "name": "Plugins",
+        "description": "Plugins Namespace",
+        "longname": "Plugins"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                91,
+                103
+            ],
+            "filename": "PluginsNS.js",
+            "lineno": 7,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\core",
+            "code": {
+                "id": "astnode10117911",
+                "name": "Plugins",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "Plugins",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~Plugins",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\n\t * @class myAppCore.AnotherPlugin\n\t * @extends myAppCore.Plugin\n\t * @desc Another Super Mega Hyper Fantasic Plugin\n\t * @requires myAppCore, jQuery, Plugins.SuperPlugin\n\t * @example\n\t *\tvar pluginInstance = myCoreApp.makePlugin('AnotherPlugin');\n\t *\n\t * @see myCoreApp.makePlugin\n\t * @link https://github.com/danyg/jsdoc3Template\n\t */",
+        "meta": {
+            "range": [
+                72,
+                410
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {}
+        },
+        "kind": "class",
+        "name": "AnotherPlugin",
+        "augments": [
+            "myAppCore.Plugin"
+        ],
+        "description": "Another Super Mega Hyper Fantasic Plugin",
+        "requires": [
+            "module:myAppCore,"
+        ],
+        "examples": [
+            "\tvar pluginInstance = myCoreApp.makePlugin('AnotherPlugin');"
+        ],
+        "see": [
+            "myCoreApp.makePlugin"
+        ],
+        "tags": [
+            {
+                "originalTitle": "link",
+                "title": "link",
+                "text": "https://github.com/danyg/jsdoc3Template",
+                "value": "https://github.com/danyg/jsdoc3Template"
+            }
+        ],
+        "memberof": "myAppCore",
+        "longname": "myAppCore.AnotherPlugin",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                418,
+                964
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 15,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {
+                "id": "astnode28504263",
+                "name": "AnotherPlugin",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "AnotherPlugin",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~AnotherPlugin",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\n\t\t * Initialize the plugin\n\t\t * \n\t\t * @listen PluginCreated\n\t\t */",
+        "meta": {
+            "range": [
+                556,
+                704
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 21,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {
+                "id": "astnode17686282",
+                "name": "init",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            },
+            "vars": {
+                "": false
+            }
+        },
+        "description": "Initialize the plugin",
+        "tags": [
+            {
+                "originalTitle": "listen",
+                "title": "listen",
+                "text": "PluginCreated",
+                "value": "PluginCreated"
+            }
+        ],
+        "name": "init",
+        "kind": "function",
+        "memberof": "<anonymous>~AnotherPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~AnotherPlugin.init"
+    },
+    {
+        "comment": "/**\n\t\t * Observes the RPC calls\n\t\t *\n\t\t * @listen Plugins.SuperPlugin.beforeRPC\n\t\t * @listen Plugins.SuperPlugin.afterRPC\n\t\t */",
+        "meta": {
+            "range": [
+                841,
+                873
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 35,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {
+                "id": "astnode4259620",
+                "name": "observeRPC",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "settings"
+                ]
+            }
+        },
+        "description": "Observes the RPC calls",
+        "tags": [
+            {
+                "originalTitle": "listen",
+                "title": "listen",
+                "text": "Plugins.SuperPlugin.beforeRPC",
+                "value": "Plugins.SuperPlugin.beforeRPC"
+            },
+            {
+                "originalTitle": "listen",
+                "title": "listen",
+                "text": "Plugins.SuperPlugin.afterRPC",
+                "value": "Plugins.SuperPlugin.afterRPC"
+            }
+        ],
+        "name": "observeRPC",
+        "kind": "function",
+        "memberof": "<anonymous>~AnotherPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~AnotherPlugin.observeRPC"
+    },
+    {
+        "comment": "/**\n\t\t * @listen Plugins.SuperPlugin.afterRPC\n\t\t */",
+        "meta": {
+            "range": [
+                934,
+                961
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 40,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {
+                "id": "astnode7316011",
+                "name": "checksRawData",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "tags": [
+            {
+                "originalTitle": "listen",
+                "title": "listen",
+                "text": "Plugins.SuperPlugin.afterRPC",
+                "value": "Plugins.SuperPlugin.afterRPC"
+            }
+        ],
+        "name": "checksRawData",
+        "kind": "function",
+        "memberof": "<anonymous>~AnotherPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~AnotherPlugin.checksRawData"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                969,
+                1046
+            ],
+            "filename": "AnotherPlugin.js",
+            "lineno": 43,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin",
+            "code": {
+                "id": "astnode29851750",
+                "name": "Plugins.AnotherPlugin",
+                "type": "CALL",
+                "node": "<Object>",
+                "value": "CALL"
+            }
+        },
+        "undocumented": true,
+        "name": "AnotherPlugin",
+        "kind": "member",
+        "memberof": "Plugins",
+        "longname": "Plugins.AnotherPlugin",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @class Plugins.SuperPlugin\n\t * @extends myAppCore.Plugin\n\t * @desc A Super Mega Hyper Fantasic Plugin\n\t * @requires myAppCore, jQuery\n\t * @example\n\t *\tvar pluginInstance = myCoreApp.makePlugin('SuperPlugin');\n\t *\n\t * @see myCoreApp.makePlugin\n\t * @link https://github.com/danyg/jsdoc3Template\n\t */",
+        "meta": {
+            "range": [
+                72,
+                377
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 3,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "class",
+        "name": "SuperPlugin",
+        "augments": [
+            "myAppCore.Plugin"
+        ],
+        "description": "A Super Mega Hyper Fantasic Plugin",
+        "requires": [
+            "module:myAppCore,"
+        ],
+        "examples": [
+            "\tvar pluginInstance = myCoreApp.makePlugin('SuperPlugin');"
+        ],
+        "see": [
+            "myCoreApp.makePlugin"
+        ],
+        "tags": [
+            {
+                "originalTitle": "link",
+                "title": "link",
+                "text": "https://github.com/danyg/jsdoc3Template",
+                "value": "https://github.com/danyg/jsdoc3Template"
+            }
+        ],
+        "memberof": "Plugins",
+        "longname": "Plugins.SuperPlugin",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @function RPCSuccessCallback\n\t * \n\t * Callback executed when the RPC ajax call success\n\t * \n\t * @param {*} data The data retrieved from the server\n\t * @param {jqXHR} jqxhr The jqXHR Object\n\t * \n\t * @returns {Object} You Must return a JSON Object with data parsed to store\n\t */",
+        "meta": {
+            "range": [
+                1311,
+                1595
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 56,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "function",
+        "name": "RPCSuccessCallback\n\nCallback executed when the RPC ajax call success",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "*"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The data retrieved from the server",
+                "name": "data"
+            },
+            {
+                "type": {
+                    "names": [
+                        "jqXHR"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The jqXHR Object",
+                "name": "jqxhr"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "You Must return a JSON Object with data parsed to store"
+            }
+        ],
+        "longname": "RPCSuccessCallback\n\nCallback executed when the RPC ajax call success"
+    },
+    {
+        "comment": "/**\n\t * @function RPCErrorCallback\n\t * \n\t * Callback executed when the RPC ajax call fails\n\t * \n\t * @param {jqXHR} jqxhr The jqXHR Object\n\t * @param {Number} status Connection Status Code (40x, 50x)\n\t * @param {String} errorType A string with the type of the error\n\t * \n\t * @returns {ErrorSolveSignal} You Must return a ErrorSolveSignal Status\n\t */",
+        "meta": {
+            "range": [
+                1599,
+                1947
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 58,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "function",
+        "name": "RPCErrorCallback\n\nCallback executed when the RPC ajax call fails",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "jqXHR"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The jqXHR Object",
+                "name": "jqxhr"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Number"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Connection Status Code (40x, 50x)",
+                "name": "status"
+            },
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "A string with the type of the error",
+                "name": "errorType"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "ErrorSolveSignal"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "You Must return a ErrorSolveSignal Status"
+            }
+        ],
+        "longname": "RPCErrorCallback\n\nCallback executed when the RPC ajax call fails"
+    },
+    {
+        "comment": "/**\n\t * @name ErrorSolveSignal\n\t * \n\t * @type {Number}\n\t * \n\t * @example\n\t * 0: Everything is fine\n\t * 1: I can't resolve this issue\n\t * 2: Issue Resolved but appeals to the upper throubleshooter\n\t * 3: Issue Resolved Stop!\n\t */",
+        "meta": {
+            "range": [
+                1951,
+                2179
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 60,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "name": "ErrorSolveSignal",
+        "type": {
+            "names": [
+                "Number"
+            ]
+        },
+        "examples": [
+            "0: Everything is fine\n1: I can't resolve this issue\n2: Issue Resolved but appeals to the upper throubleshooter\n3: Issue Resolved Stop!"
+        ],
+        "longname": "ErrorSolveSignal",
+        "kind": "member"
+    },
+    {
+        "comment": "/**\n\t * @event SuperPlugin.beforeRPC\n\t * \n\t * @param {RPCSettings} settings Settings to send to the $.ajax function\n\t * \n\t * @link http://api.jquery.com/jQuery.ajax/\n\t * @return {RPCSettings}\n\t */",
+        "meta": {
+            "range": [
+                2183,
+                2379
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 62,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "beforeRPC",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "RPCSettings"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Settings to send to the $.ajax function",
+                "name": "settings"
+            }
+        ],
+        "tags": [
+            {
+                "originalTitle": "link",
+                "title": "link",
+                "text": "http://api.jquery.com/jQuery.ajax/",
+                "value": "http://api.jquery.com/jQuery.ajax/"
+            }
+        ],
+        "returns": [
+            {
+                "type": {
+                    "names": [
+                        "RPCSettings"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined"
+            }
+        ],
+        "memberof": "SuperPlugin",
+        "longname": "SuperPlugin.event:beforeRPC",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @namespace\n\t * @name RPCSettings\n\t * @param {String} url Url to call\n\t * @param {Object} accepts\n\t * @param {Boolean} async\n\t * @param {Callback} beforeSend\n\t * @param {Boolean|String} cache\n\t */",
+        "meta": {
+            "range": [
+                2383,
+                2586
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 64,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "namespace",
+        "name": "RPCSettings",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Url to call",
+                "name": "url"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "name": "accepts"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Boolean"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "name": "async"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Callback"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "name": "beforeSend"
+            },
+            {
+                "type": {
+                    "names": [
+                        "Boolean",
+                        "String"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "name": "cache"
+            }
+        ],
+        "longname": "RPCSettings"
+    },
+    {
+        "comment": "/**\n\t * @event SuperPlugin.beforeParseData\n\t * \n\t * @param {*} rawData Raw data obtained from the server\n\t */",
+        "meta": {
+            "range": [
+                2589,
+                2698
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 66,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "beforeParseData",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "*"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Raw data obtained from the server",
+                "name": "rawData"
+            }
+        ],
+        "memberof": "SuperPlugin",
+        "longname": "SuperPlugin.event:beforeParseData",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @event SuperPlugin.afterParseData\n\t * \n\t * @param {Object} processedData Data proccessed by the parsers\n\t */",
+        "meta": {
+            "range": [
+                2702,
+                2818
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 68,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "afterParseData",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "Object"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Data proccessed by the parsers",
+                "name": "processedData"
+            }
+        ],
+        "memberof": "SuperPlugin",
+        "longname": "SuperPlugin.event:afterParseData",
+        "scope": "static"
+    },
+    {
+        "comment": "/**\n\t * @event SuperPlugin.afterRPC\n\t * \n\t * @param {RPCSettings} settings Settings sended to the $.ajax function\n\t * \n\t * @link http://api.jquery.com/jQuery.ajax/\n\t */",
+        "meta": {
+            "range": [
+                2822,
+                2990
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 70,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {}
+        },
+        "kind": "event",
+        "name": "afterRPC",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "RPCSettings"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Settings sended to the $.ajax function",
+                "name": "settings"
+            }
+        ],
+        "tags": [
+            {
+                "originalTitle": "link",
+                "title": "link",
+                "text": "http://api.jquery.com/jQuery.ajax/",
+                "value": "http://api.jquery.com/jQuery.ajax/"
+            }
+        ],
+        "memberof": "SuperPlugin",
+        "longname": "SuperPlugin.event:afterRPC",
+        "scope": "static"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                385,
+                1199
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 15,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode33392901",
+                "name": "SuperPlugin",
+                "type": "OBJECTLIT",
+                "node": "<Object>",
+                "value": "OBJECTLIT"
+            }
+        },
+        "undocumented": true,
+        "name": "SuperPlugin",
+        "kind": "member",
+        "memberof": "<anonymous>",
+        "longname": "<anonymous>~SuperPlugin",
+        "scope": "inner"
+    },
+    {
+        "comment": "/**\n\t\t * @type {mix}\n\t\t * @desc Data stored\n\t\t */",
+        "meta": {
+            "range": [
+                497,
+                507
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 20,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode1398703",
+                "name": "data",
+                "type": "NULL",
+                "node": "<Object>",
+                "value": "NULL"
+            }
+        },
+        "type": {
+            "names": [
+                "mix"
+            ]
+        },
+        "description": "Data stored",
+        "name": "data",
+        "kind": "member",
+        "memberof": "<anonymous>~SuperPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~SuperPlugin.data"
+    },
+    {
+        "comment": "/**\n\t\t * Initialize the plugin\n\t\t */",
+        "meta": {
+            "range": [
+                553,
+                571
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 25,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode8686680",
+                "name": "init",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": []
+            }
+        },
+        "description": "Initialize the plugin",
+        "name": "init",
+        "kind": "function",
+        "memberof": "<anonymous>~SuperPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~SuperPlugin.init"
+    },
+    {
+        "comment": "/**\n\t\t * Make a Ajax Callback\n\t\t * \n\t\t * @param {RPCSuccessCallback} callback The callback executed when the \n\t\t *      ajax call success\n\t\t * @param {RPCErrorCallback} eCallback The callback executed when the \n\t\t *      ajax call fails\n\t\t *      \n\t\t * @fires SuperPlugin.beforeRPC\n\t\t * @fires SuperPlugin.beforeParseData\n\t\t * @fires SuperPlugin.afterParseData\n\t\t * @fires SuperPlugin.afterRPC\n\t\t */",
+        "meta": {
+            "range": [
+                980,
+                1016
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 40,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode2601995",
+                "name": "RPC",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "callback",
+                    "eCallback"
+                ]
+            }
+        },
+        "description": "Make a Ajax Callback",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "RPCSuccessCallback"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The callback executed when the \n     ajax call success",
+                "name": "callback"
+            },
+            {
+                "type": {
+                    "names": [
+                        "RPCErrorCallback"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "The callback executed when the \n     ajax call fails",
+                "name": "eCallback"
+            }
+        ],
+        "fires": [
+            "SuperPlugin.event:beforeRPC",
+            "SuperPlugin.event:beforeParseData",
+            "SuperPlugin.event:afterParseData",
+            "SuperPlugin.event:afterRPC"
+        ],
+        "name": "RPC",
+        "kind": "function",
+        "memberof": "<anonymous>~SuperPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~SuperPlugin.RPC"
+    },
+    {
+        "comment": "/**\n\t\t * Store data in this instance\n\t\t * \n\t\t * @param {*} data Data to store in the data property\n\t\t * \n\t\t * @see Plugins.SuperPlugin.data\n\t\t */",
+        "meta": {
+            "range": [
+                1171,
+                1196
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 49,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode9068636",
+                "name": "setData",
+                "type": "FUNCTION",
+                "node": "<Object>",
+                "value": "FUNCTION",
+                "paramnames": [
+                    "data"
+                ]
+            }
+        },
+        "description": "Store data in this instance",
+        "params": [
+            {
+                "type": {
+                    "names": [
+                        "*"
+                    ]
+                },
+                "optional": "undefined",
+                "nullable": "undefined",
+                "variable": "undefined",
+                "defaultvalue": "undefined",
+                "description": "Data to store in the data property",
+                "name": "data"
+            }
+        ],
+        "see": [
+            "Plugins.SuperPlugin.data"
+        ],
+        "name": "setData",
+        "kind": "function",
+        "memberof": "<anonymous>~SuperPlugin",
+        "scope": "static",
+        "longname": "<anonymous>~SuperPlugin.setData"
+    },
+    {
+        "comment": "",
+        "meta": {
+            "range": [
+                1204,
+                1275
+            ],
+            "filename": "SuperPlugin.js",
+            "lineno": 52,
+            "path": "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin",
+            "code": {
+                "id": "astnode30356947",
+                "name": "Plugins.SuperPlugin",
+                "type": "CALL",
+                "node": "<Object>",
+                "value": "CALL"
+            }
+        },
+        "undocumented": true,
+        "name": "SuperPlugin",
+        "kind": "member",
+        "memberof": "Plugins",
+        "longname": "Plugins.SuperPlugin",
+        "scope": "static"
+    },
+    {
+        "files": [
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\core\\Event.js",
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\core\\myAppCore.js",
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\core\\Plugin.js",
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\core\\PluginsNS.js",
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\AnotherPlugin\\AnotherPlugin.js",
+            "D:\\DEVEL\\jsdoc3_test_code\\src\\plugins\\superPlugin\\SuperPlugin.js"
+        ],
+        "kind": "package",
+        "name": "undefined",
+        "longname": "package:undefined",
+        "description": "undefined",
+        "version": "undefined",
+        "licenses": "undefined"
+    }
+]
