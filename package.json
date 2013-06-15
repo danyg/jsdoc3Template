@@ -9,5 +9,12 @@
 		"resizable": false,
 		"frame": false,
 		"toolbar": false
-	}
+	},
+	"repositories": [
+		{
+			"type": "git", 
+			"url": "https://github.com/danyg/jsdoc3Template.git",
+			"path": "/tree/standalone"
+		}
+	]
 }

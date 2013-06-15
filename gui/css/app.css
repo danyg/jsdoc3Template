@@ -56,6 +56,12 @@ html, body, .container-fluid, .container-fluid >.row-fluid, .sidebar{
 	padding-right: 10px;
 }
 
+.close{opacity: 0.6; transition: opacity 500ms;}
+.close:hover{opacity: 1;}
+
+.halo{box-shadow: 0px 0px 0px #fff; transition: box-shadow 250ms;}
+.halo:hover{box-shadow: 0px 0px 10px #fff;}
+
 .project-title{
 	border: solid 1px;
 	border-width: 0px 0px 1px 0px;

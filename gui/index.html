@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Bootstrap 101 Template</title>
+
+		<title>jsdocGUI</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="css/app.css" rel="stylesheet" media="screen">
-		<script src="js/jquery-1.7.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<script src="js/lib/jquery-1.7.2.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/gui/boot.js"></script>
 
-		<script>
-			
-			var gui = require('nw.gui');
-			var win = gui.Window.get();
-			win.showDevTools();
-			
-			require('jsdocGUI');
-		</script>
 	</head>
 	<body>
 		<div class="navbar navbar-inverse navbar-fixed-top principal-nav">
@@ -52,7 +46,8 @@
 						</li>
 					</ul>
 					<div class="btn-group pull-right winactions">
-						<!--						<button class="btn btn-warning btn-small DEVTOOLS_ACTION"><i class="icon-tasks"></i></button>-->
+						<button class="btn btn-warning btn-small REFRESH_ACTION hidden"><i class="icon-refresh"></i></button>
+						<button class="btn btn-warning btn-small DEVTOOLS_ACTION hidden"><i class="icon-tasks"></i></button>
 						<button class="btn btn-inverse btn-small MINIMIZE_ACTION"><i class="icon-minus"></i></button>
 						<button class="btn btn-inverse btn-small CLOSE_ACTION"><i class="icon-remove"></i></button>
 					</div>
@@ -136,15 +131,15 @@
 
 		<div id="closeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
 				<h3 id="myModalLabel">Are you sure ...</h3>
 			</div>
-			<div class="modal-body">
-				<p>To close jsdoc3GUI?</p>
+			<div class="modal-body lead">
+				<p>.. to exit from jsdoc3GUI?</p>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-danger FORCE_CLOSE_ACTION">Yes</button>
-				<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">No</button>
+				<button class="btn btn-danger btn-large FORCE_CLOSE_ACTION">Yes</button>
+				<button class="btn btn-primary btn-large" data-dismiss="modal" aria-hidden="true">No</button>
 			</div>
 		</div>
 
