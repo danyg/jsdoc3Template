@@ -6,7 +6,11 @@ html, body, .container-fluid, .container-fluid >.row-fluid, .sidebar{
 }
 *{cursor: default !important;}
 
-
+.principal-nav{-webkit-app-region: drag}
+.principal-nav button,
+.principal-nav a{
+  -webkit-app-region: no-drag;
+}
 .navbar-inverse .navbar-inner{
 	background-image: -webkit-linear-gradient(top, #111, #444);
 }
@@ -20,6 +24,10 @@ html, body, .container-fluid, .container-fluid >.row-fluid, .sidebar{
 	margin-top: 2px;
 }
 
+.winactions{
+	padding: 4px 4px 0px 0px;
+}
+
 .sidebar {
 	color: #e1e1e1;
 	background: #444;
@@ -27,6 +35,8 @@ html, body, .container-fluid, .container-fluid >.row-fluid, .sidebar{
 	padding-right: 12px;
 	
 }
+.btn-inverse [class^="icon-"], 
+.btn-inverse [class*=" icon-"],
 .sidebar [class^="icon-"], 
 .sidebar [class*=" icon-"] {
 	background-image: url("../img/glyphicons-halflings-white.png");
@@ -153,3 +163,6 @@ html, body, .container-fluid, .container-fluid >.row-fluid, .sidebar{
 		margin-right: 0px;
 	}
 }
+
+
+.hidden{display: none !important;}

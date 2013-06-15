@@ -9,12 +9,18 @@
 		<link href="css/app.css" rel="stylesheet" media="screen">
 		<script src="js/jquery-1.7.2.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<style type="text/css">
 
-		</style>
+		<script>
+			
+			var gui = require('nw.gui');
+			var win = gui.Window.get();
+			win.showDevTools();
+			
+			require('jsdocGUI');
+		</script>
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-fixed-top principal-nav">
 			<div class="navbar-inner">
 				<div class="container-fluid">
 					<span class="brand">JSDoc3GUI</span>
@@ -30,7 +36,7 @@
 									<li><a href="#import-project">Import project</a></li>
 									<li><a href="#export-project">Export project</a></li>
 									<li class="divider"></li>
-									<li><a href="#exit">Exit</a></li>
+									<li><a href="#exit" class="CLOSE_ACTION">Exit</a></li>
 								</ul>
 							</div>
 						</li>
@@ -45,6 +51,11 @@
 							</div>
 						</li>
 					</ul>
+					<div class="btn-group pull-right winactions">
+						<!--						<button class="btn btn-warning btn-small DEVTOOLS_ACTION"><i class="icon-tasks"></i></button>-->
+						<button class="btn btn-inverse btn-small MINIMIZE_ACTION"><i class="icon-minus"></i></button>
+						<button class="btn btn-inverse btn-small CLOSE_ACTION"><i class="icon-remove"></i></button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -70,6 +81,7 @@
 							<div class="control-group">
 								<label class="control-label" for="sourceFolder">Source Folder:</label>
 								<div class="controls">
+									<input type="file" nwdirectory id="sourceFolder_input" class="hidden"/>
 									<input type="text" id="sourceFolder" class="input-xlarge">
 									<button class="btn btn-primary">Select Folder</button>
 								</div>
@@ -77,6 +89,7 @@
 							<div class="control-group">
 								<label class="control-label" for="outputFolder">Output Folder:</label>
 								<div class="controls">
+									<input type="file" nwdirectory id="outputFolder_input" class="hidden"/>
 									<input type="text" id="outputFolder" class="input-xlarge">
 									<button class="btn btn-primary">Select Folder</button>
 								</div>
@@ -84,6 +97,7 @@
 							<div class="control-group">
 								<label class="control-label" for="outputFolder">Tutorials Folder:</label>
 								<div class="controls">
+									<input type="file" nwdirectory id="tutorialFolder_input" class="hidden"/>
 									<input type="text" id="tutorialFolder" class="input-xlarge">
 									<button class="btn btn-inverse">Select Folder</button>
 								</div>
@@ -119,5 +133,20 @@
 
 			</div>
 		</div>
+
+		<div id="closeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3 id="myModalLabel">Are you sure ...</h3>
+			</div>
+			<div class="modal-body">
+				<p>To close jsdoc3GUI?</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger FORCE_CLOSE_ACTION">Yes</button>
+				<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">No</button>
+			</div>
+		</div>
+
 	</body>
 </html>
