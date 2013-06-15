@@ -1,10 +1,123 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+	<head>
+		<title>Bootstrap 101 Template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/app.css" rel="stylesheet" media="screen">
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<span class="brand">JSDoc3GUI</span>
+					<ul class="nav nav-pills topmenu">
+						<li class="active dropdown">
+							<div class="btn-group">
+								<a href="#projects" class="btn btn-inverse">Projects</a>
+								<button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a href="#new-project">New project</a></li>
+									<li><a href="#import-project">Import project</a></li>
+									<li><a href="#export-project">Export project</a></li>
+									<li class="divider"></li>
+									<li><a href="#exit">Exit</a></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<div class="btn-group">
+								<a href="#about" class="btn btn-inverse">About</a>
+							</div>
+						</li>
+						<li>
+							<div class="btn-group">
+								<a href="#help" class="btn btn-inverse">Help</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="container" class="container-fluid">
+
+			<div class="row-fluid">
+				<div class="span3 nearTop sidebar">
+					<!--Sidebar content-->
+					<h2 class="title">Projects</h2>
+					<ul class="nav nav-pills nav-stacked">
+						<li class="active"><a href="#project-mvc"><i class="icon-book"></i> <span class="PNAME">MVC</span></a></li>
+						<li><a href="#project-jsdoc3gui"><i class="icon-book"></i> <span class="PNAME">JSDoc3GUI</span></a></li>
+						<li><a href="#project-3alacarta"><i class="icon-book"></i> <span class="PNAME">3 a la carta</span></a></li>
+					</ul>
+
+				</div>
+				<div class="container span9">
+					<div class="project" id="project-mvc">
+						<div class="project-title nearTop">
+							<input type="text" class="project-name" placeholder="Insert name here" />
+						</div>
+						<div class="form-horizontal">
+							<div class="control-group">
+								<label class="control-label" for="sourceFolder">Source Folder:</label>
+								<div class="controls">
+									<input type="text" id="sourceFolder" class="input-xlarge">
+									<button class="btn btn-primary">Select Folder</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="outputFolder">Output Folder:</label>
+								<div class="controls">
+									<input type="text" id="outputFolder" class="input-xlarge">
+									<button class="btn btn-primary">Select Folder</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="outputFolder">Tutorials Folder:</label>
+								<div class="controls">
+									<input type="text" id="tutorialFolder" class="input-xlarge">
+									<button class="btn btn-inverse">Select Folder</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="includeSources">Include sources in documentation</label>
+								<div class="controls">
+									<div class="btn-group" data-toggle="buttons-radio">
+										<button type="button" class="btn btn-info active">Yes</button>
+										<button type="button" class="btn btn-info">No</button>
+									</div>
+								</div>
+							</div>
+
+							<button class="btn btn-success btn-large">Analyze</button>
+							<button class="btn btn-success btn-large disabled">Build</button>
+						</div>
+						<hr/>
+						<div class="data-status">
+							<ul class="nav nav-stacked">
+								<li class="text-info"><i class="icon-info-sign"></i> Initializing documentator</li>
+								<li class="text-success"><i class="icon-ok"></i> package.json file founded</li>
+								<li class="text-success"><i class="icon-ok"></i> README file founded</li>
+								<li class="text-warning"><i class="icon-warning-sign"></i> LICENSE file not founded</li>
+								<li class="text-warning"><i class="icon-warning-sign"></i> Tutorials not founded</li>
+								<li class="text-error"><i class="icon-remove"></i> Sources not founded</li>
+								<li class="text-error"><i class="icon-ban-circle"></i> Imposible to build documentation</li>
+								<li class="text-success"><i class="icon-ok"></i> Documentation builded successfuly</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
 </html>
