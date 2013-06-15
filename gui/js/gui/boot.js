@@ -4,6 +4,7 @@
 	require('nw.gui').Window.get().showDevTools();
 	
 	// fix the issue of require nw.gui from node_modules
+	global.require.cache['nw.gui'] = window.require('nw.gui');
 	if(!global.require._OWNED){
 		var __realRequire__ = global.require;
 		window.require = global.require = function (name) {
