@@ -1,6 +1,16 @@
 (function(){
 	global.DEBUG_MODE = true;
 	
+	window.reset = function(){
+		var module;
+		for(module in global.require.cache){
+			if(global.require.cache.hasOwnProperty(module)){
+				delete global.require.cache[module];
+			}
+		}
+		require('nw.gui').Window.get().reloadIgnoringCache();
+	}
+	
 	require('nw.gui').Window.get().showDevTools();
 	
 	// fix the issue of require nw.gui from node_modules
