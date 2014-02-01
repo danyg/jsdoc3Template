@@ -152,3 +152,5 @@ https://github.com/danyg/jsdoc3Template/wiki/To-Do
 - More efficient template system (actually undescore)
 - Custom tags in classes
 - Probably use of MVC
+
+[![Analytics](https://ga-beacon.appspot.com/UA-47717226-1/jsdoc3Template/home)](https://github.com/igrigorik/ga-beacon)
